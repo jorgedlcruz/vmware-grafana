@@ -1,4 +1,34 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_INFLUXDB",
+      "label": "influxdb",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.3.2"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "1.0.0"
+    }
+  ],
   "annotations": {
     "list": []
   },
@@ -6,7 +36,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "hideControls": false,
-  "id": 13,
+  "id": null,
   "links": [],
   "refresh": "5m",
   "rows": [
@@ -19,7 +49,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "${DS_INFLUXDB}",
           "fill": 3,
           "id": 15,
           "legend": {
@@ -194,7 +224,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "${DS_INFLUXDB}",
           "fill": 3,
           "id": 16,
           "legend": {
@@ -319,7 +349,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "${DS_INFLUXDB}",
           "fill": 3,
           "id": 17,
           "legend": {
@@ -444,7 +474,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "${DS_INFLUXDB}",
           "fill": 3,
           "id": 19,
           "legend": {
@@ -636,7 +666,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "${DS_INFLUXDB}",
           "fill": 3,
           "id": 14,
           "legend": {
@@ -756,7 +786,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "${DS_INFLUXDB}",
           "fill": 3,
           "id": 13,
           "legend": {
@@ -890,7 +920,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "${DS_INFLUXDB}",
           "fill": 3,
           "hideTimeOverride": false,
           "id": 10,
@@ -1014,7 +1044,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "${DS_INFLUXDB}",
           "fill": 3,
           "id": 12,
           "legend": {
@@ -1148,7 +1178,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "${DS_INFLUXDB}",
           "fill": 1,
           "id": 3,
           "legend": {
@@ -1266,7 +1296,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "${DS_INFLUXDB}",
           "fill": 1,
           "id": 18,
           "legend": {
@@ -1384,7 +1414,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": "${DS_INFLUXDB}",
           "fill": 1,
           "id": 9,
           "legend": {
@@ -1544,5 +1574,5 @@
   },
   "timezone": "browser",
   "title": "VMware Environment",
-  "version": 58
+  "version": 59
 }
