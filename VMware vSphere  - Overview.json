@@ -53,7 +53,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1538297802915,
+  "iteration": 1538273623880,
   "links": [
     {
       "icon": "external link",
@@ -1402,7 +1402,7 @@
           "groupBy": [
             {
               "params": [
-                "1m"
+                "$interval"
               ],
               "type": "time"
             },
@@ -3116,7 +3116,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -3147,5 +3147,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 28
+  "version": 27
 }
