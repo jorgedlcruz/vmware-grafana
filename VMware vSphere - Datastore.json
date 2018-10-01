@@ -59,7 +59,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1538273340381,
+  "iteration": 1538436981933,
   "links": [
     {
       "icon": "external link",
@@ -841,7 +841,7 @@
         "options": [],
         "query": "SHOW TAG VALUES FROM vsphere_datastore_disk WITH KEY=source",
         "refresh": 1,
-        "regex": "",
+        "regex": "/^(?!VeeamBackup_)/",
         "sort": 0,
         "tagValuesQuery": "",
         "tags": [],
@@ -903,5 +903,5 @@
   "timezone": "browser",
   "title": "VMware vSphere - Datastore",
   "uid": "nr_QGP0iz",
-  "version": 11
+  "version": 12
 }
