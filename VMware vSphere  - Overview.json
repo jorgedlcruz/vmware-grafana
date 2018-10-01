@@ -53,7 +53,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1538273623880,
+  "iteration": 1538435893595,
   "links": [
     {
       "icon": "external link",
@@ -181,6 +181,8 @@
           "measurement": "vsphere_host_sys",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "SELECT last(\"uptime_latest\") FROM \"vsphere_host_sys\" WHERE (\"esxhostname\" =~ /^$esxi$/ AND \"vcenter\" =~ /^$vcenter$/ AND \"clustername\" =~ /^$clustername$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -202,6 +204,18 @@
               "key": "esxhostname",
               "operator": "=~",
               "value": "/^$esxi$/"
+            },
+            {
+              "condition": "AND",
+              "key": "vcenter",
+              "operator": "=~",
+              "value": "/^$vcenter$/"
+            },
+            {
+              "condition": "AND",
+              "key": "clustername",
+              "operator": "=~",
+              "value": "/^$clustername$/"
             }
           ]
         }
@@ -676,7 +690,7 @@
         "lineColor": "rgb(31, 120, 193)",
         "show": false
       },
-      "tableColumn": "",
+      "tableColumn": "esxhostname",
       "targets": [
         {
           "groupBy": [
@@ -685,12 +699,6 @@
                 "$__interval"
               ],
               "type": "time"
-            },
-            {
-              "params": [
-                "esxhostname"
-              ],
-              "type": "tag"
             },
             {
               "params": [
@@ -703,7 +711,7 @@
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT last(\"usagemhz_average\") FROM \"vsphere_host_cpu\" WHERE (\"clustername\" =~ /^$clustername$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -725,6 +733,18 @@
               "key": "clustername",
               "operator": "=~",
               "value": "/^$clustername$/"
+            },
+            {
+              "condition": "AND",
+              "key": "vcenter",
+              "operator": "=~",
+              "value": "/^$vcenter$/"
+            },
+            {
+              "condition": "AND",
+              "key": "esxhostname",
+              "operator": "=~",
+              "value": "/^$esxi$/"
             }
           ]
         }
@@ -1156,12 +1176,6 @@
             },
             {
               "params": [
-                "esxhostname"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
                 "null"
               ],
               "type": "fill"
@@ -1171,7 +1185,7 @@
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT last(\"active_average\") FROM \"vsphere_host_mem\" WHERE (\"clustername\" =~ /^$clustername$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1193,6 +1207,18 @@
               "key": "clustername",
               "operator": "=~",
               "value": "/^$clustername$/"
+            },
+            {
+              "condition": "AND",
+              "key": "vcenter",
+              "operator": "=~",
+              "value": "/^$vcenter$/"
+            },
+            {
+              "condition": "AND",
+              "key": "esxhostname",
+              "operator": "=~",
+              "value": "/^$esxi$/"
             }
           ]
         }
@@ -1402,7 +1428,7 @@
           "groupBy": [
             {
               "params": [
-                "$interval"
+                "1m"
               ],
               "type": "time"
             },
@@ -3085,8 +3111,8 @@
         "options": [],
         "query": "SHOW TAG VALUES FROM vsphere_datastore_disk WITH KEY=source",
         "refresh": 1,
-        "regex": "",
-        "sort": 0,
+        "regex": "/^(?!VeeamBackup_)/",
+        "sort": 1,
         "tagValuesQuery": "",
         "tags": [],
         "tagsQuery": "",
@@ -3147,5 +3173,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 27
+  "version": 32
 }
