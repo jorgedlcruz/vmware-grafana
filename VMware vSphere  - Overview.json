@@ -1330,7 +1330,7 @@
           "measurement": "vsphere_datastore_disk",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" = '$datastore') AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
