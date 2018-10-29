@@ -53,7 +53,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1538837189710,
+  "iteration": 1540854058226,
   "links": [
     {
       "icon": "external link",
@@ -1057,7 +1057,7 @@
             },
             {
               "params": [
-                "disk"
+                "interface"
               ],
               "type": "tag"
             },
@@ -1670,5 +1670,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - VMs",
   "uid": "hNDB_E0ik",
-  "version": 3
+  "version": 4
 }
