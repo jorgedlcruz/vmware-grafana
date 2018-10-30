@@ -1525,7 +1525,7 @@
         "useTags": false
       },
       {
-        "allValue": null,
+        "allValue": ".*",
         "current": {},
         "datasource": "${DS_INFLUXDB}",
         "hide": 0,
