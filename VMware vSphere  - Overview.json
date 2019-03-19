@@ -14,7 +14,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "5.2.4"
+      "version": "6.0.0"
     },
     {
       "type": "panel",
@@ -53,7 +53,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1538435893595,
+  "iteration": 1553031102307,
   "links": [
     {
       "icon": "external link",
@@ -261,6 +261,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 0.5,
       "points": false,
@@ -276,7 +277,7 @@
           "groupBy": [
             {
               "params": [
-                "5m"
+                "1m"
               ],
               "type": "time"
             },
@@ -285,6 +286,12 @@
                 "clustername"
               ],
               "type": "tag"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
             }
           ],
           "measurement": "vsphere_host_cpu",
@@ -319,6 +326,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Cluster CPU",
       "tooltip": {
@@ -326,7 +334,6 @@
         "sort": 0,
         "value_type": "individual"
       },
-      "transparent": false,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -386,6 +393,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -410,13 +418,19 @@
                 "clustername"
               ],
               "type": "tag"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
             }
           ],
           "measurement": "vsphere_host_mem",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"usage_average\") FROM \"vsphere_host_cpu\" WHERE \"esxhostname\" = ($esxi) AND $timeFilter GROUP BY time($__interval), \"host\" fill(none)",
-          "rawQuery": false,
+          "query": "SELECT mean(\"totalCapacity_average\") * (mean(\"usage_average\")) / 100 * 1024 FROM \"vsphere_host_mem\" WHERE (\"esxhostname\" =~ /^$esxi$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+          "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -444,6 +458,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Cluster RAM",
       "tooltip": {
@@ -451,7 +466,6 @@
         "sort": 0,
         "value_type": "individual"
       },
-      "transparent": false,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -462,7 +476,7 @@
       },
       "yaxes": [
         {
-          "decimals": null,
+          "decimals": 0,
           "format": "deckbytes",
           "label": "Usage Avg. GB",
           "logBase": 1,
@@ -515,6 +529,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -590,6 +605,7 @@
         }
       ],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Datastores - Usage Capacity",
       "tooltip": {
@@ -597,7 +613,6 @@
         "sort": 0,
         "value_type": "individual"
       },
-      "transparent": false,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -790,6 +805,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 0.5,
       "points": false,
@@ -805,7 +821,7 @@
           "groupBy": [
             {
               "params": [
-                "5m"
+                "1m"
               ],
               "type": "time"
             },
@@ -814,6 +830,12 @@
                 "clustername"
               ],
               "type": "tag"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
             }
           ],
           "measurement": "vsphere_host_net",
@@ -851,7 +873,7 @@
           "groupBy": [
             {
               "params": [
-                "5m"
+                "1m"
               ],
               "type": "time"
             },
@@ -860,6 +882,12 @@
                 "clustername"
               ],
               "type": "tag"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
             }
           ],
           "measurement": "vsphere_host_net",
@@ -894,6 +922,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Cluster Network Usage",
       "tooltip": {
@@ -901,7 +930,6 @@
         "sort": 0,
         "value_type": "individual"
       },
-      "transparent": false,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -961,6 +989,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 0.5,
       "points": false,
@@ -985,6 +1014,12 @@
                 "clustername"
               ],
               "type": "tag"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
             }
           ],
           "measurement": "vsphere_host_storageAdapter",
@@ -1031,6 +1066,12 @@
                 "clustername"
               ],
               "type": "tag"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
             }
           ],
           "measurement": "vsphere_host_storageAdapter",
@@ -1065,6 +1106,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Cluster Storage Adapter",
       "tooltip": {
@@ -1072,7 +1114,6 @@
         "sort": 0,
         "value_type": "individual"
       },
-      "transparent": false,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -1288,7 +1329,7 @@
         }
       ],
       "maxDataPoints": 100,
-      "minSpan": 3,
+      "maxPerRow": 8,
       "nullPointMode": "connected",
       "nullText": null,
       "postfix": "",
@@ -1359,7 +1400,6 @@
       ],
       "thresholds": "65,85",
       "title": "$datastore",
-      "transparent": false,
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
@@ -1413,6 +1453,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -1437,6 +1478,12 @@
                 "esxhostname"
               ],
               "type": "tag"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
             }
           ],
           "measurement": "vsphere_host_cpu",
@@ -1471,6 +1518,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Hypervisor CPU",
       "tooltip": {
@@ -1478,7 +1526,6 @@
         "sort": 0,
         "value_type": "individual"
       },
-      "transparent": false,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -1538,6 +1585,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -1553,7 +1601,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "1m"
               ],
               "type": "time"
             },
@@ -1600,6 +1648,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Hypervisor Memory",
       "tooltip": {
@@ -1607,7 +1656,6 @@
         "sort": 0,
         "value_type": "individual"
       },
-      "transparent": false,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -1667,6 +1715,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -1682,7 +1731,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "1m"
               ],
               "type": "time"
             },
@@ -1729,6 +1778,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Hypervisor Net Usage",
       "tooltip": {
@@ -1736,7 +1786,6 @@
         "sort": 0,
         "value_type": "individual"
       },
-      "transparent": false,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -1796,6 +1845,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -1906,6 +1956,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "vCenter CPU/RAM",
       "tooltip": {
@@ -1913,7 +1964,6 @@
         "sort": 0,
         "value_type": "individual"
       },
-      "transparent": false,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -1987,6 +2037,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -2049,6 +2100,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Virtual Machine CPU Usage MHz",
       "tooltip": {
@@ -2056,7 +2108,6 @@
         "sort": 0,
         "value_type": "individual"
       },
-      "transparent": false,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -2118,6 +2169,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -2197,6 +2249,7 @@
         }
       ],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Virtual Machine Memory Usage Avg.",
       "tooltip": {
@@ -2265,6 +2318,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -2334,6 +2388,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Virtual Machine CPU %READY",
       "tooltip": {
@@ -2404,6 +2459,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -2466,6 +2522,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Virtual Machine Network Usage Avg (Kbps)",
       "tooltip": {
@@ -2535,6 +2592,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -2599,6 +2657,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Virtual Machine Disk Performance (Read VMFS Block IOPS)",
       "tooltip": {
@@ -2668,6 +2727,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -2732,6 +2792,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Virtual Machine Disk Performance (Write VMFS Block IOPS)",
       "tooltip": {
@@ -2801,6 +2862,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -2917,6 +2979,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Virtual Machine Disk Performance (Block Latency Total)",
       "tooltip": {
@@ -2924,7 +2987,6 @@
         "sort": 0,
         "value_type": "individual"
       },
-      "transparent": false,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -2958,8 +3020,8 @@
       }
     }
   ],
-  "refresh": "5m",
-  "schemaVersion": 16,
+  "refresh": false,
+  "schemaVersion": 18,
   "style": "dark",
   "tags": [
     "VMware",
@@ -3037,12 +3099,14 @@
         ],
         "query": "1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
         "refresh": 2,
+        "skipUrlSync": false,
         "type": "interval"
       },
       {
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
+        "definition": "",
         "hide": 0,
         "includeAll": true,
         "label": "vCenter Server",
@@ -3052,6 +3116,7 @@
         "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=vcenter",
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
         "tags": [],
@@ -3063,6 +3128,7 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
+        "definition": "",
         "hide": 0,
         "includeAll": true,
         "label": "Cluster",
@@ -3072,6 +3138,7 @@
         "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=clustername",
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
         "tags": [],
@@ -3083,6 +3150,7 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
+        "definition": "",
         "hide": 0,
         "includeAll": true,
         "label": "ESXi Server",
@@ -3092,6 +3160,7 @@
         "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=esxhostname",
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
         "tags": [],
@@ -3103,6 +3172,7 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
+        "definition": "",
         "hide": 0,
         "includeAll": true,
         "label": "Datastore",
@@ -3112,6 +3182,7 @@
         "query": "SHOW TAG VALUES FROM vsphere_datastore_disk WITH KEY=source",
         "refresh": 1,
         "regex": "/^(?!VeeamBackup_)/",
+        "skipUrlSync": false,
         "sort": 1,
         "tagValuesQuery": "",
         "tags": [],
@@ -3123,6 +3194,7 @@
         "allValue": ".*",
         "current": {},
         "datasource": "${DS_INFLUXDB}",
+        "definition": "",
         "hide": 0,
         "includeAll": true,
         "label": "VM",
@@ -3132,6 +3204,7 @@
         "query": "SHOW TAG VALUES FROM vsphere_vm_cpu WITH KEY=vmname",
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
         "tags": [],
@@ -3142,7 +3215,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {
@@ -3173,5 +3246,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 32
+  "version": 3
 }
