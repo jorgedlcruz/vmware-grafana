@@ -14,7 +14,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.0.0"
+      "version": "6.0.2"
     },
     {
       "type": "panel",
@@ -53,10 +53,9 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1552174738985,
+  "iteration": 1553731445461,
   "links": [
     {
-      "asDropdown": false,
       "icon": "external link",
       "includeVars": true,
       "keepTime": true,
@@ -64,11 +63,9 @@
         "vSphere Overview"
       ],
       "targetBlank": true,
-      "title": "",
       "type": "dashboards"
     },
     {
-      "asDropdown": false,
       "icon": "external link",
       "includeVars": true,
       "keepTime": true,
@@ -76,7 +73,6 @@
         "vSphere Hosts"
       ],
       "targetBlank": true,
-      "title": "",
       "type": "dashboards"
     },
     {
@@ -88,7 +84,7 @@
         "vSphere Datastore"
       ],
       "targetBlank": true,
-      "title": "",
+      "title": "Datastore",
       "type": "dashboards"
     }
   ],
@@ -159,8 +155,8 @@
           "scopedVars": {
             "virtualmachine": {
               "selected": false,
-              "text": "EMC-UNITY",
-              "value": "EMC-UNITY"
+              "text": "AD",
+              "value": "AD"
             }
           },
           "sparkline": {
@@ -283,8 +279,8 @@
           "scopedVars": {
             "virtualmachine": {
               "selected": false,
-              "text": "EMC-UNITY",
-              "value": "EMC-UNITY"
+              "text": "AD",
+              "value": "AD"
             }
           },
           "sparkline": {
@@ -408,8 +404,8 @@
           "scopedVars": {
             "virtualmachine": {
               "selected": false,
-              "text": "EMC-UNITY",
-              "value": "EMC-UNITY"
+              "text": "AD",
+              "value": "AD"
             }
           },
           "sparkline": {
@@ -514,13 +510,13 @@
           "scopedVars": {
             "virtualmachine": {
               "selected": false,
-              "text": "EMC-UNITY",
-              "value": "EMC-UNITY"
+              "text": "AD",
+              "value": "AD"
             }
           },
           "seriesOverrides": [
             {
-              "alias": "vsphere_vm_cpu.mean {cpu: instance-total}",
+              "alias": "vsphere_vm_cpu.last {cpu: instance-total}",
               "color": "#1f78c1"
             }
           ],
@@ -545,7 +541,7 @@
                 },
                 {
                   "params": [
-                    "null"
+                    "none"
                   ],
                   "type": "fill"
                 }
@@ -565,7 +561,7 @@
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "last"
                   }
                 ]
               ],
@@ -656,8 +652,8 @@
           "scopedVars": {
             "virtualmachine": {
               "selected": false,
-              "text": "EMC-UNITY",
-              "value": "EMC-UNITY"
+              "text": "AD",
+              "value": "AD"
             }
           },
           "seriesOverrides": [],
@@ -676,7 +672,7 @@
                 },
                 {
                   "params": [
-                    "null"
+                    "none"
                   ],
                   "type": "fill"
                 }
@@ -696,7 +692,7 @@
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "last"
                   }
                 ]
               ],
@@ -787,13 +783,13 @@
           "scopedVars": {
             "virtualmachine": {
               "selected": false,
-              "text": "EMC-UNITY",
-              "value": "EMC-UNITY"
+              "text": "AD",
+              "value": "AD"
             }
           },
           "seriesOverrides": [
             {
-              "alias": "vsphere_vm_cpu.mean",
+              "alias": "vsphere_vm_cpu.last",
               "color": "#bf1b00"
             }
           ],
@@ -812,7 +808,7 @@
                 },
                 {
                   "params": [
-                    "null"
+                    "none"
                   ],
                   "type": "fill"
                 }
@@ -832,7 +828,7 @@
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "last"
                   }
                 ]
               ],
@@ -942,8 +938,8 @@
           "scopedVars": {
             "virtualmachine": {
               "selected": false,
-              "text": "EMC-UNITY",
-              "value": "EMC-UNITY"
+              "text": "AD",
+              "value": "AD"
             }
           },
           "sparkline": {
@@ -1051,8 +1047,8 @@
           "scopedVars": {
             "virtualmachine": {
               "selected": false,
-              "text": "EMC-UNITY",
-              "value": "EMC-UNITY"
+              "text": "AD",
+              "value": "AD"
             }
           },
           "seriesOverrides": [],
@@ -1065,7 +1061,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "1m"
+                    "$__interval"
                   ],
                   "type": "time"
                 },
@@ -1077,7 +1073,7 @@
                 },
                 {
                   "params": [
-                    "null"
+                    "none"
                   ],
                   "type": "fill"
                 }
@@ -1097,7 +1093,7 @@
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "last"
                   }
                 ]
               ],
@@ -1114,7 +1110,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "1m"
+                    "$__interval"
                   ],
                   "type": "time"
                 },
@@ -1126,7 +1122,7 @@
                 },
                 {
                   "params": [
-                    "null"
+                    "none"
                   ],
                   "type": "fill"
                 }
@@ -1146,7 +1142,7 @@
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "last"
                   }
                 ]
               ],
@@ -1237,8 +1233,8 @@
           "scopedVars": {
             "virtualmachine": {
               "selected": false,
-              "text": "EMC-UNITY",
-              "value": "EMC-UNITY"
+              "text": "AD",
+              "value": "AD"
             }
           },
           "seriesOverrides": [],
@@ -1251,13 +1247,13 @@
               "groupBy": [
                 {
                   "params": [
-                    "1m"
+                    "$__interval"
                   ],
                   "type": "time"
                 },
                 {
                   "params": [
-                    "null"
+                    "none"
                   ],
                   "type": "fill"
                 }
@@ -1277,7 +1273,7 @@
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "last"
                   }
                 ]
               ],
@@ -1294,13 +1290,13 @@
               "groupBy": [
                 {
                   "params": [
-                    "1m"
+                    "$__interval"
                   ],
                   "type": "time"
                 },
                 {
                   "params": [
-                    "null"
+                    "none"
                   ],
                   "type": "fill"
                 }
@@ -1320,7 +1316,7 @@
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "last"
                   }
                 ]
               ],
@@ -1411,8 +1407,8 @@
           "scopedVars": {
             "virtualmachine": {
               "selected": false,
-              "text": "EMC-UNITY",
-              "value": "EMC-UNITY"
+              "text": "AD",
+              "value": "AD"
             }
           },
           "seriesOverrides": [],
@@ -1425,9 +1421,15 @@
               "groupBy": [
                 {
                   "params": [
-                    "$interval"
+                    "$__interval"
                   ],
                   "type": "time"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
                 }
               ],
               "measurement": "vsphere_vm_virtualDisk",
@@ -1445,7 +1447,7 @@
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "last"
                   }
                 ]
               ],
@@ -1462,9 +1464,15 @@
               "groupBy": [
                 {
                   "params": [
-                    "$interval"
+                    "$__interval"
                   ],
                   "type": "time"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
                 }
               ],
               "measurement": "vsphere_vm_virtualDisk",
@@ -1482,7 +1490,7 @@
                   },
                   {
                     "params": [],
-                    "type": "mean"
+                    "type": "last"
                   }
                 ]
               ],
@@ -1556,6 +1564,7 @@
         "auto_count": 100,
         "auto_min": "30s",
         "current": {
+          "selected": true,
           "text": "auto",
           "value": "$__auto_interval_inter"
         },
@@ -1702,7 +1711,7 @@
         "name": "datastore",
         "options": [],
         "query": "SHOW TAG VALUES FROM vsphere_datastore_disk WITH KEY=source",
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -1724,7 +1733,7 @@
         "name": "virtualmachine",
         "options": [],
         "query": "SHOW TAG VALUES FROM vsphere_vm_cpu WITH KEY=vmname",
-        "refresh": 1,
+        "refresh": 2,
         "regex": "/^(?![a-zA-Z0-9-_]+_)/",
         "skipUrlSync": false,
         "sort": 5,
@@ -1737,8 +1746,8 @@
     ]
   },
   "time": {
-    "from": "2019-03-07T21:24:00.044Z",
-    "to": "2019-03-11T21:24:00.044Z"
+    "from": "now-12h",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -1768,5 +1777,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - VMs",
   "uid": "hNDB_E0ik",
-  "version": 4
+  "version": 5
 }
