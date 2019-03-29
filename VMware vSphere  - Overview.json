@@ -53,7 +53,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1553732084652,
+  "iteration": 1553857830406,
   "links": [
     {
       "icon": "external link",
@@ -201,12 +201,6 @@
           ],
           "tags": [
             {
-              "key": "esxhostname",
-              "operator": "=~",
-              "value": "/^$esxi$/"
-            },
-            {
-              "condition": "AND",
               "key": "vcenter",
               "operator": "=~",
               "value": "/^$vcenter$/"
@@ -429,7 +423,7 @@
           "measurement": "vsphere_host_mem",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT last(\"totalCapacity_average\") * (last(\"usage_average\")) / 100 * 1024 FROM \"vsphere_host_mem\" WHERE (\"esxhostname\" =~ /^$esxi$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+          "query": "SELECT last(\"totalmb_average\") * (last(\"usage_average\")) / 100 * 1024 FROM \"vsphere_cluster_mem\" WHERE (\"clustername\" =~ /^$clustername$/) AND $timeFilter GROUP BY time($__interval), \"clustername\" fill(none)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -745,21 +739,15 @@
           ],
           "tags": [
             {
-              "key": "clustername",
-              "operator": "=~",
-              "value": "/^$clustername$/"
-            },
-            {
-              "condition": "AND",
               "key": "vcenter",
               "operator": "=~",
               "value": "/^$vcenter$/"
             },
             {
               "condition": "AND",
-              "key": "esxhostname",
+              "key": "clustername",
               "operator": "=~",
-              "value": "/^$esxi$/"
+              "value": "/^$clustername$/"
             }
           ]
         }
@@ -1245,21 +1233,15 @@
           ],
           "tags": [
             {
-              "key": "clustername",
-              "operator": "=~",
-              "value": "/^$clustername$/"
-            },
-            {
-              "condition": "AND",
               "key": "vcenter",
               "operator": "=~",
               "value": "/^$vcenter$/"
             },
             {
               "condition": "AND",
-              "key": "esxhostname",
+              "key": "clustername",
               "operator": "=~",
-              "value": "/^$esxi$/"
+              "value": "/^$clustername$/"
             }
           ]
         }
@@ -6554,7 +6536,6 @@
         "auto_count": 100,
         "auto_min": "30s",
         "current": {
-          "selected": true,
           "text": "auto",
           "value": "$__auto_interval_inter"
         },
@@ -6736,7 +6717,7 @@
     ]
   },
   "time": {
-    "from": "now-12h",
+    "from": "now/M",
     "to": "now"
   },
   "timepicker": {
@@ -6767,5 +6748,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 5
+  "version": 6
 }
