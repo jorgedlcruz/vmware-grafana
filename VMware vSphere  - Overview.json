@@ -53,7 +53,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1553857830406,
+  "iteration": 1553881401359,
   "links": [
     {
       "icon": "external link",
@@ -377,6 +377,8 @@
         "alignAsTable": false,
         "avg": false,
         "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
         "max": false,
         "min": false,
         "show": false,
@@ -386,7 +388,7 @@
       "lines": true,
       "linewidth": 2,
       "links": [],
-      "nullPointMode": "null",
+      "nullPointMode": "null as zero",
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -480,7 +482,7 @@
         },
         {
           "format": "short",
-          "label": "Usage Avg. %",
+          "label": "",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -6717,7 +6719,7 @@
     ]
   },
   "time": {
-    "from": "now/M",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -6748,5 +6750,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 6
+  "version": 7
 }
