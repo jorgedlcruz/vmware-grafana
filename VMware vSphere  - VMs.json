@@ -53,38 +53,18 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1553731445461,
+  "iteration": 1554034719372,
   "links": [
     {
+      "asDropdown": true,
       "icon": "external link",
       "includeVars": true,
       "keepTime": true,
       "tags": [
-        "vSphere Overview"
+        "vSphere Telegraf"
       ],
       "targetBlank": true,
-      "type": "dashboards"
-    },
-    {
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "vSphere Hosts"
-      ],
-      "targetBlank": true,
-      "type": "dashboards"
-    },
-    {
-      "asDropdown": false,
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "vSphere Datastore"
-      ],
-      "targetBlank": true,
-      "title": "Datastore",
+      "title": "More Dashboards",
       "type": "dashboards"
     }
   ],
@@ -1555,7 +1535,8 @@
   "style": "dark",
   "tags": [
     "VMware",
-    "vSphere VM"
+    "vSphere VM",
+    "vSphere Telegraf"
   ],
   "templating": {
     "list": [
@@ -1564,7 +1545,6 @@
         "auto_count": 100,
         "auto_min": "30s",
         "current": {
-          "selected": true,
           "text": "auto",
           "value": "$__auto_interval_inter"
         },
@@ -1722,7 +1702,7 @@
         "useTags": false
       },
       {
-        "allValue": ".*",
+        "allValue": "",
         "current": {},
         "datasource": "${DS_INFLUXDB}",
         "definition": "SHOW TAG VALUES FROM vsphere_vm_cpu WITH KEY=vmname",
@@ -1737,17 +1717,29 @@
         "regex": "/^(?![a-zA-Z0-9-_]+_)/",
         "skipUrlSync": false,
         "sort": 5,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
+        "tagValuesQuery": "show tag values FROM vsphere_vm_cpu with key = vmname WHERE guest=$tag",
+        "tags": [
+          "freebsd64",
+          "other26xLinux64",
+          "other3xLinux64",
+          "otherGuest64",
+          "otherLinux",
+          "otherLinux64",
+          "sles11_64",
+          "ubuntu64",
+          "vmkernel65",
+          "windows8Server64",
+          "windows9Server64"
+        ],
+        "tagsQuery": "show tag values with key = guest",
         "type": "query",
         "useTags": true
       }
     ]
   },
   "time": {
-    "from": "now-12h",
-    "to": "now"
+    "from": "2019-03-07T21:24:00.044Z",
+    "to": "2019-03-11T21:24:00.044Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -1777,5 +1769,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - VMs",
   "uid": "hNDB_E0ik",
-  "version": 5
+  "version": 7
 }

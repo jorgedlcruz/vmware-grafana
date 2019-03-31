@@ -53,38 +53,18 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1553731025834,
+  "iteration": 1554034719369,
   "links": [
     {
+      "asDropdown": true,
       "icon": "external link",
       "includeVars": true,
       "keepTime": true,
       "tags": [
-        "vSphere Overview"
+        "vSphere Telegraf"
       ],
       "targetBlank": true,
-      "type": "dashboards"
-    },
-    {
-      "asDropdown": false,
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "vSphere Datastore"
-      ],
-      "targetBlank": true,
-      "title": "Datastore",
-      "type": "dashboards"
-    },
-    {
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "vSphere VM"
-      ],
-      "targetBlank": true,
+      "title": "More Dashboards",
       "type": "dashboards"
     }
   ],
@@ -1477,7 +1457,8 @@
   "style": "dark",
   "tags": [
     "VMware",
-    "vSphere Hosts"
+    "vSphere Hosts",
+    "vSphere Telegraf"
   ],
   "templating": {
     "list": [
@@ -1486,20 +1467,20 @@
         "auto_count": 100,
         "auto_min": "30s",
         "current": {
-          "text": "auto",
-          "value": "$__auto_interval_inter"
+          "text": "1m",
+          "value": "1m"
         },
         "hide": 0,
         "label": "Sampling",
         "name": "inter",
         "options": [
           {
-            "selected": true,
+            "selected": false,
             "text": "auto",
             "value": "$__auto_interval_inter"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "1m",
             "value": "1m"
           },
@@ -1645,7 +1626,7 @@
     ]
   },
   "time": {
-    "from": "now-12h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -1676,5 +1657,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Hosts",
   "uid": "MxqCLP0mk",
-  "version": 3
+  "version": 4
 }

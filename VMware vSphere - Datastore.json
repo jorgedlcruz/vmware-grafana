@@ -14,7 +14,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "5.2.4"
+      "version": "6.0.2"
     },
     {
       "type": "panel",
@@ -59,36 +59,18 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1538436981933,
+  "iteration": 1554034717369,
   "links": [
     {
+      "asDropdown": true,
       "icon": "external link",
       "includeVars": true,
       "keepTime": true,
       "tags": [
-        "vSphere Overview"
+        "vSphere Telegraf"
       ],
       "targetBlank": true,
-      "type": "dashboards"
-    },
-    {
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "vSphere Hosts"
-      ],
-      "targetBlank": true,
-      "type": "dashboards"
-    },
-    {
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "vSphere VM"
-      ],
-      "targetBlank": true,
+      "title": "More Dashboards",
       "type": "dashboards"
     }
   ],
@@ -494,7 +476,6 @@
         }
       ],
       "title": "Capacity Summary",
-      "transparent": false,
       "type": "grafana-piechart-panel",
       "valueName": "current"
     },
@@ -525,6 +506,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -551,7 +533,7 @@
             },
             {
               "params": [
-                "null"
+                "none"
               ],
               "type": "fill"
             }
@@ -600,7 +582,7 @@
             },
             {
               "params": [
-                "null"
+                "none"
               ],
               "type": "fill"
             }
@@ -635,6 +617,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Datastore ReadAverage & WriteAverage",
       "tooltip": {
@@ -675,11 +658,12 @@
     }
   ],
   "refresh": "5m",
-  "schemaVersion": 16,
+  "schemaVersion": 18,
   "style": "dark",
   "tags": [
     "VMware",
-    "vSphere Datastore"
+    "vSphere Datastore",
+    "vSphere Telegraf"
   ],
   "templating": {
     "list": [
@@ -695,6 +679,7 @@
         "query": "influxdb",
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "type": "datasource"
       },
       {
@@ -767,12 +752,14 @@
         ],
         "query": "1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
         "refresh": 2,
+        "skipUrlSync": false,
         "type": "interval"
       },
       {
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
+        "definition": "",
         "hide": 0,
         "includeAll": true,
         "label": "vCenter Server",
@@ -782,6 +769,7 @@
         "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=vcenter",
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
         "tags": [],
@@ -793,6 +781,7 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
+        "definition": "",
         "hide": 0,
         "includeAll": true,
         "label": "Cluster",
@@ -802,6 +791,7 @@
         "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=clustername",
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
         "tags": [],
@@ -813,6 +803,7 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
+        "definition": "",
         "hide": 0,
         "includeAll": true,
         "label": "ESXi Server",
@@ -822,6 +813,7 @@
         "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=esxhostname",
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
         "tags": [],
@@ -833,6 +825,7 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
+        "definition": "",
         "hide": 0,
         "includeAll": true,
         "label": "Datastore",
@@ -842,6 +835,7 @@
         "query": "SHOW TAG VALUES FROM vsphere_datastore_disk WITH KEY=source",
         "refresh": 1,
         "regex": "/^(?!VeeamBackup_)/",
+        "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
         "tags": [],
@@ -853,6 +847,7 @@
         "allValue": ".*",
         "current": {},
         "datasource": "${DS_INFLUXDB}",
+        "definition": "",
         "hide": 0,
         "includeAll": true,
         "label": "VM",
@@ -862,6 +857,7 @@
         "query": "SHOW TAG VALUES FROM vsphere_vm_cpu WITH KEY=vmname",
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
         "tags": [],
@@ -903,5 +899,5 @@
   "timezone": "browser",
   "title": "VMware vSphere - Datastore",
   "uid": "nr_QGP0iz",
-  "version": 12
+  "version": 3
 }
