@@ -53,7 +53,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1557274730533,
+  "iteration": 1557486118279,
   "links": [
     {
       "asDropdown": true,
@@ -487,7 +487,9 @@
         "x": 15,
         "y": 1
       },
+      "hideTimeOverride": false,
       "id": 46,
+      "interval": "15m",
       "legend": {
         "alignAsTable": false,
         "avg": false,
@@ -535,7 +537,7 @@
           "measurement": "vsphere_datastore_disk",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time(5m), \"source\"",
+          "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval), \"source\"",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -5278,7 +5280,7 @@
       },
       "yaxes": [
         {
-          "format": "MBs",
+          "format": "KBs",
           "label": "",
           "logBase": 1,
           "max": null,
@@ -6531,20 +6533,20 @@
         "auto_count": 100,
         "auto_min": "30s",
         "current": {
-          "text": "1m",
-          "value": "1m"
+          "text": "auto",
+          "value": "$__auto_interval_inter"
         },
         "hide": 0,
         "label": "Sampling",
         "name": "inter",
         "options": [
           {
-            "selected": false,
+            "selected": true,
             "text": "auto",
             "value": "$__auto_interval_inter"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "1m",
             "value": "1m"
           },
@@ -6712,7 +6714,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {
@@ -6743,5 +6745,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 12
+  "version": 13
 }
