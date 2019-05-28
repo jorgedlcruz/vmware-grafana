@@ -11,28 +11,34 @@
   ],
   "__requires": [
     {
+      "type": "panel",
+      "id": "bargauge",
+      "name": "Bar Gauge",
+      "version": ""
+    },
+    {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.0.2"
+      "version": "6.2.1"
     },
     {
       "type": "panel",
       "id": "graph",
       "name": "Graph",
-      "version": "5.0.0"
+      "version": ""
     },
     {
       "type": "datasource",
       "id": "influxdb",
       "name": "InfluxDB",
-      "version": "5.0.0"
+      "version": "1.0.0"
     },
     {
       "type": "panel",
       "id": "singlestat",
       "name": "Singlestat",
-      "version": "5.0.0"
+      "version": ""
     }
   ],
   "annotations": {
@@ -53,7 +59,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1557486118279,
+  "iteration": 1559069600059,
   "links": [
     {
       "asDropdown": true,
@@ -124,6 +130,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -235,6 +242,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 0.5,
@@ -369,6 +377,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null as zero",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -475,66 +484,72 @@
       }
     },
     {
-      "aliasColors": {},
-      "bars": true,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_INFLUXDB}",
-      "fill": 3,
       "gridPos": {
         "h": 9,
         "w": 9,
         "x": 15,
         "y": 1
       },
-      "hideTimeOverride": false,
-      "id": 46,
-      "interval": "15m",
-      "legend": {
-        "alignAsTable": false,
-        "avg": false,
-        "current": false,
-        "hideEmpty": false,
-        "hideZero": false,
-        "max": false,
-        "min": false,
-        "rightSide": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": false,
-      "linewidth": 2,
+      "id": 123,
       "links": [],
-      "nullPointMode": "null",
-      "paceLength": 10,
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
+      "options": {
+        "displayMode": "lcd",
+        "fieldOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "defaults": {
+            "decimals": 2,
+            "max": 100,
+            "min": 0,
+            "title": "",
+            "unit": "percent"
+          },
+          "mappings": [],
+          "override": {},
+          "thresholds": [
+            {
+              "color": "green",
+              "index": 0,
+              "value": null
+            },
+            {
+              "color": "dark-yellow",
+              "index": 1,
+              "value": 65
+            },
+            {
+              "color": "dark-orange",
+              "index": 2,
+              "value": 75
+            },
+            {
+              "color": "dark-red",
+              "index": 3,
+              "value": 90
+            }
+          ],
+          "values": false
+        },
+        "orientation": "vertical"
+      },
       "targets": [
         {
           "alias": "$tag_source",
-          "dsType": "influxdb",
           "groupBy": [
             {
               "params": [
-                "5m"
+                "$__interval"
               ],
               "type": "time"
             },
             {
               "params": [
-                "source"
+                "null"
               ],
-              "type": "tag"
+              "type": "fill"
             }
           ],
-          "measurement": "vsphere_datastore_disk",
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval), \"source\"",
@@ -545,7 +560,7 @@
             [
               {
                 "params": [
-                  "capacity_latest"
+                  "value"
                 ],
                 "type": "field"
               },
@@ -555,74 +570,13 @@
               }
             ]
           ],
-          "tags": [
-            {
-              "key": "source",
-              "operator": "=~",
-              "value": "/^$datastore$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [
-        {
-          "colorMode": "critical",
-          "fill": true,
-          "line": true,
-          "op": "gt",
-          "value": 80,
-          "yaxis": "left"
-        },
-        {
-          "colorMode": "warning",
-          "fill": true,
-          "line": true,
-          "op": "gt",
-          "value": 60,
-          "yaxis": "left"
+          "tags": []
         }
       ],
       "timeFrom": null,
-      "timeRegions": [],
       "timeShift": null,
       "title": "Datastores - Usage Capacity",
-      "tooltip": {
-        "shared": false,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "series",
-        "name": null,
-        "show": true,
-        "values": [
-          "avg"
-        ]
-      },
-      "yaxes": [
-        {
-          "format": "percent",
-          "label": "Used Space %",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": "Usage Avg. %",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
+      "type": "bargauge"
     },
     {
       "cacheTimeout": null,
@@ -666,6 +620,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "MHz",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -777,6 +732,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 0.5,
@@ -961,6 +917,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 0.5,
@@ -1160,6 +1117,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -1295,6 +1253,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -1423,6 +1382,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -1436,7 +1396,7 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
@@ -1553,6 +1513,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -1566,7 +1527,7 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
@@ -1683,6 +1644,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -1696,13 +1658,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "VM-VAAI",
-              "value": "VM-VAAI"
+              "text": "TOOLS",
+              "value": "TOOLS"
             }
           },
           "sparkline": {
@@ -1813,6 +1775,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -1826,13 +1789,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "VMS-NFS41",
-              "value": "VMS-NFS41"
+              "text": "VM",
+              "value": "VM"
             }
           },
           "sparkline": {
@@ -1943,6 +1906,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -1956,13 +1920,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "VMS-NFS41 (1)",
-              "value": "VMS-NFS41 (1)"
+              "text": "VM-VAAI",
+              "value": "VM-VAAI"
             }
           },
           "sparkline": {
@@ -2073,6 +2037,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -2086,13 +2051,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "VMTEST",
-              "value": "VMTEST"
+              "text": "VMS-NFS41",
+              "value": "VMS-NFS41"
             }
           },
           "sparkline": {
@@ -2203,6 +2168,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -2216,13 +2182,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "VMTOOLS",
-              "value": "VMTOOLS"
+              "text": "VMS-NFS41 (1)",
+              "value": "VMS-NFS41 (1)"
             }
           },
           "sparkline": {
@@ -2333,6 +2299,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -2346,13 +2313,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "VMs",
-              "value": "VMs"
+              "text": "VMTEST",
+              "value": "VMTEST"
             }
           },
           "sparkline": {
@@ -2463,6 +2430,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -2476,13 +2444,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "ZEXT-NETAPP-01",
-              "value": "ZEXT-NETAPP-01"
+              "text": "VMTOOLS",
+              "value": "VMTOOLS"
             }
           },
           "sparkline": {
@@ -2593,6 +2561,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -2606,13 +2575,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "ZEXT-NIMBLE-000",
-              "value": "ZEXT-NIMBLE-000"
+              "text": "VMs",
+              "value": "VMs"
             }
           },
           "sparkline": {
@@ -2723,6 +2692,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -2736,13 +2706,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "ZEXT-NIMBLE-001",
-              "value": "ZEXT-NIMBLE-001"
+              "text": "ZEXT-000",
+              "value": "ZEXT-000"
             }
           },
           "sparkline": {
@@ -2853,6 +2823,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -2866,13 +2837,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "ZEXT-QNAP-001",
-              "value": "ZEXT-QNAP-001"
+              "text": "ZEXT-NETAPP-01",
+              "value": "ZEXT-NETAPP-01"
             }
           },
           "sparkline": {
@@ -2983,6 +2954,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -2996,13 +2968,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "ZINT-ESXi-01",
-              "value": "ZINT-ESXi-01"
+              "text": "ZEXT-NIMBLE-000",
+              "value": "ZEXT-NIMBLE-000"
             }
           },
           "sparkline": {
@@ -3113,6 +3085,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -3126,13 +3099,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "ZINT-ESXi-SSD-01",
-              "value": "ZINT-ESXi-SSD-01"
+              "text": "ZEXT-NIMBLE-001",
+              "value": "ZEXT-NIMBLE-001"
             }
           },
           "sparkline": {
@@ -3243,6 +3216,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -3256,13 +3230,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "ZINT-ESXi2-00",
-              "value": "ZINT-ESXi2-00"
+              "text": "ZEXT-QNAP-001",
+              "value": "ZEXT-QNAP-001"
             }
           },
           "sparkline": {
@@ -3373,6 +3347,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -3386,13 +3361,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "ZINT-ESXi2-000",
-              "value": "ZINT-ESXi2-000"
+              "text": "ZINT-ESXi-01",
+              "value": "ZINT-ESXi-01"
             }
           },
           "sparkline": {
@@ -3503,6 +3478,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -3516,13 +3492,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "ZINT-ESXi2-01",
-              "value": "ZINT-ESXi2-01"
+              "text": "ZINT-ESXi-SSD-01",
+              "value": "ZINT-ESXi-SSD-01"
             }
           },
           "sparkline": {
@@ -3633,6 +3609,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -3646,13 +3623,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "ZINT-ESXi2-02",
-              "value": "ZINT-ESXi2-02"
+              "text": "ZINT-ESXi2-00",
+              "value": "ZINT-ESXi2-00"
             }
           },
           "sparkline": {
@@ -3763,6 +3740,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -3776,13 +3754,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "ZINT-ESXi2-NVMe-01",
-              "value": "ZINT-ESXi2-NVMe-01"
+              "text": "ZINT-ESXi2-000",
+              "value": "ZINT-ESXi2-000"
             }
           },
           "sparkline": {
@@ -3893,6 +3871,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -3906,13 +3885,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "ZINT-ESXi2-SSD-01",
-              "value": "ZINT-ESXi2-SSD-01"
+              "text": "ZINT-ESXi2-01",
+              "value": "ZINT-ESXi2-01"
             }
           },
           "sparkline": {
@@ -4023,6 +4002,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -4036,13 +4016,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "ZINT-ESXi2-SSD-02",
-              "value": "ZINT-ESXi2-SSD-02"
+              "text": "ZINT-ESXi2-02",
+              "value": "ZINT-ESXi2-02"
             }
           },
           "sparkline": {
@@ -4153,6 +4133,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -4166,13 +4147,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "ZINT-ESXi2-SSD-03",
-              "value": "ZINT-ESXi2-SSD-03"
+              "text": "ZINT-ESXi2-NVMe-01",
+              "value": "ZINT-ESXi2-NVMe-01"
             }
           },
           "sparkline": {
@@ -4283,6 +4264,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -4296,13 +4278,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "ZINT-ESXi3-01",
-              "value": "ZINT-ESXi3-01"
+              "text": "ZINT-ESXi2-SSD-01",
+              "value": "ZINT-ESXi2-SSD-01"
             }
           },
           "sparkline": {
@@ -4413,6 +4395,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -4426,13 +4409,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "ZINT-ESXi4-01",
-              "value": "ZINT-ESXi4-01"
+              "text": "ZINT-ESXi2-SSD-02",
+              "value": "ZINT-ESXi2-SSD-02"
             }
           },
           "sparkline": {
@@ -4543,6 +4526,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -4556,13 +4540,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "ZINT-ESXi5-01",
-              "value": "ZINT-ESXi5-01"
+              "text": "ZINT-ESXi2-SSD-03",
+              "value": "ZINT-ESXi2-SSD-03"
             }
           },
           "sparkline": {
@@ -4673,6 +4657,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -4686,13 +4671,13 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
               "selected": false,
-              "text": "snap-1c484923-ZEXT-NIMBLE-000",
-              "value": "snap-1c484923-ZEXT-NIMBLE-000"
+              "text": "ZINT-ESXi3-01",
+              "value": "ZINT-ESXi3-01"
             }
           },
           "sparkline": {
@@ -4803,6 +4788,7 @@
           "maxPerRow": 8,
           "nullPointMode": "connected",
           "nullText": null,
+          "options": {},
           "postfix": "",
           "postfixFontSize": "50%",
           "prefix": "",
@@ -4816,7 +4802,400 @@
           ],
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1553731507634,
+          "repeatIteration": 1559069600058,
+          "repeatPanelId": 34,
+          "scopedVars": {
+            "datastore": {
+              "selected": false,
+              "text": "ZINT-ESXi4-01",
+              "value": "ZINT-ESXi4-01"
+            }
+          },
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vsphere_datastore_disk",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "used_latest"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "source",
+                  "operator": "=",
+                  "value": "ZEXT-NETAPP-01"
+                }
+              ]
+            }
+          ],
+          "thresholds": "65,85",
+          "title": "$datastore",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "rgba(237, 129, 40, 0.89)",
+            "#d44a3a"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 12,
+            "y": 23
+          },
+          "id": 119,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "maxPerRow": 8,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "options": {},
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "repeat": null,
+          "repeatDirection": "h",
+          "repeatIteration": 1559069600058,
+          "repeatPanelId": 34,
+          "scopedVars": {
+            "datastore": {
+              "selected": false,
+              "text": "ZINT-ESXi5-01",
+              "value": "ZINT-ESXi5-01"
+            }
+          },
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vsphere_datastore_disk",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "used_latest"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "source",
+                  "operator": "=",
+                  "value": "ZEXT-NETAPP-01"
+                }
+              ]
+            }
+          ],
+          "thresholds": "65,85",
+          "title": "$datastore",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "rgba(237, 129, 40, 0.89)",
+            "#d44a3a"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 15,
+            "y": 23
+          },
+          "id": 120,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "maxPerRow": 8,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "options": {},
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "repeat": null,
+          "repeatDirection": "h",
+          "repeatIteration": 1559069600058,
+          "repeatPanelId": 34,
+          "scopedVars": {
+            "datastore": {
+              "selected": false,
+              "text": "snap-1c484923-ZEXT-NIMBLE-000",
+              "value": "snap-1c484923-ZEXT-NIMBLE-000"
+            }
+          },
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vsphere_datastore_disk",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "used_latest"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "source",
+                  "operator": "=",
+                  "value": "ZEXT-NETAPP-01"
+                }
+              ]
+            }
+          ],
+          "thresholds": "65,85",
+          "title": "$datastore",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "#299c46",
+            "rgba(237, 129, 40, 0.89)",
+            "#d44a3a"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 3,
+            "x": 18,
+            "y": 23
+          },
+          "id": 121,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "maxPerRow": 8,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "options": {},
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "repeat": null,
+          "repeatDirection": "h",
+          "repeatIteration": 1559069600058,
           "repeatPanelId": 34,
           "scopedVars": {
             "datastore": {
@@ -4937,6 +5316,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -5069,6 +5449,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -5199,6 +5580,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -5329,6 +5711,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -5535,6 +5918,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -5667,6 +6051,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -5816,6 +6201,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -5957,6 +6343,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -6090,6 +6477,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -6225,6 +6613,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -6360,6 +6749,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -6714,7 +7104,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -6745,5 +7135,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 13
+  "version": 14
 }
