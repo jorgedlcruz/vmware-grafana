@@ -59,7 +59,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1559069600059,
+  "iteration": 1560973668322,
   "links": [
     {
       "asDropdown": true,
@@ -490,7 +490,9 @@
         "x": 15,
         "y": 1
       },
+      "hideTimeOverride": false,
       "id": 123,
+      "interval": "1h",
       "links": [],
       "options": {
         "displayMode": "lcd",
@@ -552,7 +554,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval), \"source\"",
+          "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) , \"source\"  fill(none)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -573,7 +575,7 @@
           "tags": []
         }
       ],
-      "timeFrom": null,
+      "timeFrom": "3h",
       "timeShift": null,
       "title": "Datastores - Usage Capacity",
       "type": "bargauge"
@@ -7104,7 +7106,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
@@ -7135,5 +7137,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 14
+  "version": 15
 }
