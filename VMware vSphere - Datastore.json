@@ -14,31 +14,31 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.0.2"
+      "version": "6.2.1"
     },
     {
       "type": "panel",
       "id": "grafana-piechart-panel",
       "name": "Pie Chart",
-      "version": "1.3.3"
+      "version": "1.3.6"
     },
     {
       "type": "panel",
       "id": "graph",
       "name": "Graph",
-      "version": "5.0.0"
+      "version": ""
     },
     {
       "type": "datasource",
       "id": "influxdb",
       "name": "InfluxDB",
-      "version": "5.0.0"
+      "version": "1.0.0"
     },
     {
       "type": "panel",
       "id": "singlestat",
       "name": "Singlestat",
-      "version": "5.0.0"
+      "version": ""
     }
   ],
   "annotations": {
@@ -59,7 +59,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1554034717369,
+  "iteration": 1568317985160,
   "links": [
     {
       "asDropdown": true,
@@ -113,7 +113,7 @@
         "y": 1
       },
       "id": 48,
-      "interval": null,
+      "interval": "1h",
       "links": [],
       "mappingType": 1,
       "mappingTypes": [
@@ -129,6 +129,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -198,6 +199,7 @@
         }
       ],
       "thresholds": "",
+      "timeFrom": "3h",
       "title": "Total Capacity",
       "type": "singlestat",
       "valueFontSize": "80%",
@@ -235,7 +237,7 @@
         "y": 1
       },
       "id": 49,
-      "interval": null,
+      "interval": "1h",
       "links": [],
       "mappingType": 1,
       "mappingTypes": [
@@ -251,6 +253,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -328,6 +331,7 @@
         }
       ],
       "thresholds": "",
+      "timeFrom": "3h",
       "title": "Free Capacity",
       "type": "singlestat",
       "valueFontSize": "80%",
@@ -361,7 +365,7 @@
         "y": 1
       },
       "id": 51,
-      "interval": null,
+      "interval": "1h",
       "legend": {
         "percentage": true,
         "show": true,
@@ -371,6 +375,7 @@
       "links": [],
       "maxDataPoints": 3,
       "nullPointMode": "connected",
+      "options": {},
       "pieType": "donut",
       "strokeWidth": "2",
       "targets": [
@@ -475,6 +480,7 @@
           ]
         }
       ],
+      "timeFrom": "3h",
       "title": "Capacity Summary",
       "type": "grafana-piechart-panel",
       "valueName": "current"
@@ -493,6 +499,7 @@
         "y": 1
       },
       "id": 53,
+      "interval": "",
       "legend": {
         "avg": false,
         "current": false,
@@ -506,6 +513,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -673,7 +681,9 @@
           "value": "default"
         },
         "hide": 0,
+        "includeAll": false,
         "label": null,
+        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "influxdb",
@@ -781,14 +791,14 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
-        "definition": "",
+        "definition": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=clustername WHERE \"vcenter\" =~ /$vcenter/",
         "hide": 0,
         "includeAll": true,
         "label": "Cluster",
         "multi": true,
         "name": "clustername",
         "options": [],
-        "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=clustername",
+        "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=clustername WHERE \"vcenter\" =~ /$vcenter/",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -803,14 +813,14 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
-        "definition": "",
+        "definition": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=esxhostname WHERE \"vcenter\" =~ /$vcenter/",
         "hide": 0,
         "includeAll": true,
         "label": "ESXi Server",
         "multi": true,
         "name": "esxi",
         "options": [],
-        "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=esxhostname",
+        "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=esxhostname WHERE \"vcenter\" =~ /$vcenter/",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -825,14 +835,14 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
-        "definition": "",
+        "definition": "SHOW TAG VALUES FROM vsphere_datastore_disk WITH KEY=source WHERE \"vcenter\" =~ /$vcenter/",
         "hide": 0,
         "includeAll": true,
         "label": "Datastore",
         "multi": true,
         "name": "datastore",
         "options": [],
-        "query": "SHOW TAG VALUES FROM vsphere_datastore_disk WITH KEY=source",
+        "query": "SHOW TAG VALUES FROM vsphere_datastore_disk WITH KEY=source WHERE \"vcenter\" =~ /$vcenter/",
         "refresh": 1,
         "regex": "/^(?!VeeamBackup_)/",
         "skipUrlSync": false,
@@ -847,14 +857,14 @@
         "allValue": ".*",
         "current": {},
         "datasource": "${DS_INFLUXDB}",
-        "definition": "",
+        "definition": "SHOW TAG VALUES FROM vsphere_vm_cpu WITH KEY=vmname WHERE \"vcenter\" =~ /$vcenter/",
         "hide": 0,
         "includeAll": true,
         "label": "VM",
         "multi": true,
         "name": "virtualmachine",
         "options": [],
-        "query": "SHOW TAG VALUES FROM vsphere_vm_cpu WITH KEY=vmname",
+        "query": "SHOW TAG VALUES FROM vsphere_vm_cpu WITH KEY=vmname WHERE \"vcenter\" =~ /$vcenter/",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -868,7 +878,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
@@ -899,5 +909,5 @@
   "timezone": "browser",
   "title": "VMware vSphere - Datastore",
   "uid": "nr_QGP0iz",
-  "version": 3
+  "version": 5
 }
