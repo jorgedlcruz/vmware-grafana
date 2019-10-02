@@ -65,7 +65,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1569949514765,
+  "iteration": 1569949514768,
   "links": [
     {
       "asDropdown": true,
@@ -598,6 +598,7 @@
     {
       "cacheTimeout": null,
       "colorBackground": true,
+      "colorPrefix": false,
       "colorValue": false,
       "colors": [
         "#299c46",
@@ -658,6 +659,7 @@
       "tableColumn": "esxhostname",
       "targets": [
         {
+          "alias": "$tag_clustername",
           "groupBy": [
             {
               "params": [
@@ -689,7 +691,7 @@
               },
               {
                 "params": [],
-                "type": "last"
+                "type": "mean"
               }
             ]
           ],
@@ -3214,5 +3216,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 23
+  "version": 24
 }
