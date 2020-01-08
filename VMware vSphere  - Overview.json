@@ -26,7 +26,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.3.6"
+      "version": "6.5.0"
     },
     {
       "type": "panel",
@@ -65,7 +65,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1569949514768,
+  "iteration": 1578478042975,
   "links": [
     {
       "asDropdown": true,
@@ -83,6 +83,7 @@
   "panels": [
     {
       "collapsed": false,
+      "datasource": "${DS_INFLUXDB}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -234,6 +235,7 @@
         "x": 2,
         "y": 1
       },
+      "hiddenSeries": false,
       "id": 23,
       "legend": {
         "alignAsTable": false,
@@ -338,8 +340,8 @@
           "format": "percent",
           "label": "Usage Average %",
           "logBase": 1,
-          "max": null,
-          "min": null,
+          "max": "100",
+          "min": "0",
           "show": true
         },
         {
@@ -370,6 +372,7 @@
         "x": 8,
         "y": 1
       },
+      "hiddenSeries": false,
       "id": 26,
       "legend": {
         "alignAsTable": false,
@@ -483,8 +486,8 @@
           "format": "percent",
           "label": "Usage Average %",
           "logBase": 1,
-          "max": null,
-          "min": null,
+          "max": "100",
+          "min": "0",
           "show": true
         },
         {
@@ -502,6 +505,7 @@
       }
     },
     {
+      "datasource": "${DS_INFLUXDB}",
       "gridPos": {
         "h": 9,
         "w": 9,
@@ -549,7 +553,7 @@
         },
         "orientation": "vertical"
       },
-      "pluginVersion": "6.3.6",
+      "pluginVersion": "6.5.0",
       "targets": [
         {
           "alias": "$tag_source",
@@ -598,7 +602,6 @@
     {
       "cacheTimeout": null,
       "colorBackground": true,
-      "colorPrefix": false,
       "colorValue": false,
       "colors": [
         "#299c46",
@@ -656,10 +659,9 @@
         "lineColor": "rgb(31, 120, 193)",
         "show": false
       },
-      "tableColumn": "esxhostname",
+      "tableColumn": "",
       "targets": [
         {
-          "alias": "$tag_clustername",
           "groupBy": [
             {
               "params": [
@@ -737,6 +739,7 @@
         "x": 2,
         "y": 6
       },
+      "hiddenSeries": false,
       "id": 90,
       "legend": {
         "alignAsTable": false,
@@ -925,6 +928,7 @@
         "x": 8,
         "y": 6
       },
+      "hiddenSeries": false,
       "id": 91,
       "legend": {
         "alignAsTable": false,
@@ -987,7 +991,7 @@
             [
               {
                 "params": [
-                  "numberReadAveraged_average"
+                  "totalReadLatency_average"
                 ],
                 "type": "field"
               },
@@ -1039,7 +1043,7 @@
             [
               {
                 "params": [
-                  "numberWriteAveraged_average"
+                  "totalWriteLatency_average"
                 ],
                 "type": "field"
               },
@@ -1078,8 +1082,8 @@
       },
       "yaxes": [
         {
-          "decimals": null,
-          "format": "none",
+          "decimals": 0,
+          "format": "ms",
           "label": "ms",
           "logBase": 1,
           "max": null,
@@ -1229,6 +1233,7 @@
     },
     {
       "collapsed": false,
+      "datasource": "${DS_INFLUXDB}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1245,7 +1250,7 @@
       "datasource": "${DS_INFLUXDB}",
       "gridPos": {
         "h": 4,
-        "w": 8,
+        "w": 4,
         "x": 0,
         "y": 11
       },
@@ -1284,7 +1289,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.3.6",
+      "pluginVersion": "6.5.0",
       "repeat": "datastore",
       "repeatDirection": "h",
       "targets": [
@@ -1339,6 +1344,7 @@
     },
     {
       "collapsed": false,
+      "datasource": "${DS_INFLUXDB}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1365,6 +1371,7 @@
         "x": 0,
         "y": 16
       },
+      "hiddenSeries": false,
       "id": 15,
       "legend": {
         "alignAsTable": true,
@@ -1469,8 +1476,8 @@
           "format": "percent",
           "label": "CPU Usage Avg. %",
           "logBase": 1,
-          "max": null,
-          "min": null,
+          "max": "100",
+          "min": "0",
           "show": true
         },
         {
@@ -1501,6 +1508,7 @@
         "x": 6,
         "y": 16
       },
+      "hiddenSeries": false,
       "id": 16,
       "legend": {
         "alignAsTable": true,
@@ -1603,8 +1611,8 @@
           "format": "percent",
           "label": "Memory Usage Avg. %",
           "logBase": 1,
-          "max": null,
-          "min": null,
+          "max": "100",
+          "min": "0",
           "show": true
         },
         {
@@ -1635,6 +1643,7 @@
         "x": 12,
         "y": 16
       },
+      "hiddenSeries": false,
       "id": 17,
       "legend": {
         "alignAsTable": true,
@@ -1769,6 +1778,7 @@
         "x": 18,
         "y": 16
       },
+      "hiddenSeries": false,
       "id": 19,
       "legend": {
         "alignAsTable": false,
@@ -1921,8 +1931,8 @@
           "format": "percent",
           "label": "CPU Usage",
           "logBase": 1,
-          "max": null,
-          "min": null,
+          "max": "100",
+          "min": "0",
           "show": true
         },
         {
@@ -1941,6 +1951,7 @@
     },
     {
       "collapsed": false,
+      "datasource": "${DS_INFLUXDB}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1967,6 +1978,7 @@
         "x": 0,
         "y": 24
       },
+      "hiddenSeries": false,
       "id": 14,
       "legend": {
         "alignAsTable": false,
@@ -2071,8 +2083,8 @@
           "format": "percent",
           "label": "CPU Usage % per VM",
           "logBase": 1,
-          "max": null,
-          "min": null,
+          "max": "100",
+          "min": "0",
           "show": true
         },
         {
@@ -2103,6 +2115,7 @@
         "x": 6,
         "y": 24
       },
+      "hiddenSeries": false,
       "id": 13,
       "legend": {
         "alignAsTable": false,
@@ -2224,8 +2237,8 @@
           "format": "percent",
           "label": "Memory Usage Avg. %",
           "logBase": 1,
-          "max": null,
-          "min": null,
+          "max": "100",
+          "min": "0",
           "show": true
         },
         {
@@ -2256,6 +2269,7 @@
         "x": 12,
         "y": 24
       },
+      "hiddenSeries": false,
       "hideTimeOverride": false,
       "id": 10,
       "legend": {
@@ -2395,6 +2409,7 @@
         "x": 18,
         "y": 24
       },
+      "hiddenSeries": false,
       "id": 12,
       "legend": {
         "alignAsTable": false,
@@ -2532,6 +2547,7 @@
         "x": 0,
         "y": 31
       },
+      "hiddenSeries": false,
       "id": 3,
       "legend": {
         "alignAsTable": false,
@@ -2671,6 +2687,7 @@
         "x": 8,
         "y": 31
       },
+      "hiddenSeries": false,
       "id": 18,
       "legend": {
         "alignAsTable": false,
@@ -2810,6 +2827,7 @@
         "x": 16,
         "y": 31
       },
+      "hiddenSeries": false,
       "id": 9,
       "legend": {
         "alignAsTable": false,
@@ -2966,7 +2984,7 @@
       },
       "yaxes": [
         {
-          "format": "µs",
+          "format": "ms",
           "label": "Block Latency Total",
           "logBase": 1,
           "max": null,
@@ -2990,7 +3008,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 19,
+  "schemaVersion": 21,
   "style": "dark",
   "tags": [
     "VMware",
@@ -3004,6 +3022,7 @@
         "auto_count": 100,
         "auto_min": "30s",
         "current": {
+          "selected": true,
           "text": "auto",
           "value": "$__auto_interval_inter"
         },
@@ -3161,7 +3180,7 @@
         "useTags": false
       },
       {
-        "allValue": ".*",
+        "allValue": "",
         "current": {},
         "datasource": "${DS_INFLUXDB}",
         "definition": "SHOW TAG VALUES FROM vsphere_vm_cpu WITH KEY=vmname WHERE \"vcenter\" =~ /$vcenter/",
@@ -3185,7 +3204,7 @@
     ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -3216,5 +3235,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 24
+  "version": 27
 }
