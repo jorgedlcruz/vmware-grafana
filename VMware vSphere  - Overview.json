@@ -45,12 +45,6 @@
       "id": "singlestat",
       "name": "Singlestat",
       "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "text",
-      "name": "Text",
-      "version": ""
     }
   ],
   "annotations": {
@@ -71,7 +65,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1578488899931,
+  "iteration": 1578704430712,
   "links": [
     {
       "asDropdown": true,
@@ -482,8 +476,22 @@
     },
     {
       "cacheTimeout": null,
-      "content": "<div class=\"singlestat-panel\"><div class=\"singlestat-panel-value-container\"><span class=\"singlestat-panel-value\" style=\"font-size:26.599999999999998px\"> $totalvcenter </span></div></div>\n\n\n\n",
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
       "datasource": "${DS_INFLUXDB}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
       "gridPos": {
         "h": 4,
         "w": 3,
@@ -491,9 +499,43 @@
         "y": 1
       },
       "id": 135,
+      "interval": null,
       "links": [],
-      "mode": "html",
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
       "options": {},
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
       "targets": [
         {
           "groupBy": [
@@ -513,10 +555,10 @@
           "measurement": "vsphere_host_sys",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "show tag values cardinality from \"vsphere_cluster_cpu\" with key = \"clustername\"",
+          "query": "show tag values cardinality from \"vsphere_cluster_mem\" with key = \"vcenter\"",
           "rawQuery": true,
           "refId": "A",
-          "resultFormat": "time_series",
+          "resultFormat": "table",
           "select": [
             [
               {
@@ -546,13 +588,37 @@
           ]
         }
       ],
+      "thresholds": "",
       "title": "vCenter Summary",
-      "type": "text"
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
     },
     {
       "cacheTimeout": null,
-      "content": "<div class=\"singlestat-panel\"><div class=\"singlestat-panel-value-container\"><span class=\"singlestat-panel-value\" style=\"font-size:26.599999999999998px\"> $totalcluster </span></div></div>\n\n\n\n",
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
       "datasource": "${DS_INFLUXDB}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
       "gridPos": {
         "h": 4,
         "w": 3,
@@ -560,9 +626,43 @@
         "y": 1
       },
       "id": 139,
+      "interval": null,
       "links": [],
-      "mode": "html",
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
       "options": {},
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
       "targets": [
         {
           "groupBy": [
@@ -585,7 +685,7 @@
           "query": "show tag values cardinality from \"vsphere_cluster_cpu\" with key = \"clustername\"",
           "rawQuery": true,
           "refId": "A",
-          "resultFormat": "time_series",
+          "resultFormat": "table",
           "select": [
             [
               {
@@ -615,13 +715,37 @@
           ]
         }
       ],
+      "thresholds": "",
       "title": "Cluster Summary",
-      "type": "text"
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
     },
     {
       "cacheTimeout": null,
-      "content": "<div class=\"singlestat-panel\"><div class=\"singlestat-panel-value-container\"><span class=\"singlestat-panel-value\" style=\"font-size:26.599999999999998px\"> $totalesxi </span></div></div>\n\n\n\n",
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
       "datasource": "${DS_INFLUXDB}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
       "gridPos": {
         "h": 4,
         "w": 3,
@@ -629,9 +753,43 @@
         "y": 1
       },
       "id": 136,
+      "interval": null,
       "links": [],
-      "mode": "html",
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
       "options": {},
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
       "targets": [
         {
           "groupBy": [
@@ -651,10 +809,10 @@
           "measurement": "vsphere_host_sys",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "show tag values cardinality from \"vsphere_cluster_cpu\" with key = \"clustername\"",
+          "query": "show tag values cardinality from \"vsphere_host_cpu\" with key = \"esxhostname\"",
           "rawQuery": true,
           "refId": "A",
-          "resultFormat": "time_series",
+          "resultFormat": "table",
           "select": [
             [
               {
@@ -684,13 +842,37 @@
           ]
         }
       ],
+      "thresholds": "",
       "title": "ESXi Summary",
-      "type": "text"
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
     },
     {
       "cacheTimeout": null,
-      "content": "<div class=\"singlestat-panel\"><div class=\"singlestat-panel-value-container\"><span class=\"singlestat-panel-value\" style=\"font-size:26.599999999999998px\"> $totalvm </span></div></div>\n\n\n\n",
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
       "datasource": "${DS_INFLUXDB}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
       "gridPos": {
         "h": 4,
         "w": 3,
@@ -698,9 +880,43 @@
         "y": 1
       },
       "id": 137,
+      "interval": null,
       "links": [],
-      "mode": "html",
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
       "options": {},
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
       "targets": [
         {
           "groupBy": [
@@ -720,10 +936,10 @@
           "measurement": "vsphere_host_sys",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "show tag values cardinality from \"vsphere_cluster_cpu\" with key = \"clustername\"",
+          "query": "show tag values cardinality from \"vsphere_vm_cpu\" with key = \"vmname\"",
           "rawQuery": true,
           "refId": "A",
-          "resultFormat": "time_series",
+          "resultFormat": "table",
           "select": [
             [
               {
@@ -753,13 +969,37 @@
           ]
         }
       ],
+      "thresholds": "",
       "title": "VM Summary",
-      "type": "text"
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
     },
     {
       "cacheTimeout": null,
-      "content": "<div class=\"singlestat-panel\"><div class=\"singlestat-panel-value-container\"><span class=\"singlestat-panel-value\" style=\"font-size:26.599999999999998px\"> $totaldatastore </span></div></div>\n\n\n\n",
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
       "datasource": "${DS_INFLUXDB}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
       "gridPos": {
         "h": 4,
         "w": 3,
@@ -767,9 +1007,43 @@
         "y": 1
       },
       "id": 138,
+      "interval": null,
       "links": [],
-      "mode": "html",
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
       "options": {},
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
       "targets": [
         {
           "groupBy": [
@@ -789,10 +1063,10 @@
           "measurement": "vsphere_host_sys",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "show tag values cardinality from \"vsphere_cluster_cpu\" with key = \"clustername\"",
+          "query": "show tag values cardinality from \"vsphere_datastore_datastore\" with key = \"dsname\"",
           "rawQuery": true,
           "refId": "A",
-          "resultFormat": "time_series",
+          "resultFormat": "table",
           "select": [
             [
               {
@@ -822,8 +1096,18 @@
           ]
         }
       ],
+      "thresholds": "",
       "title": "Datastore Summary",
-      "type": "text"
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
     },
     {
       "aliasColors": {},
@@ -3551,121 +3835,11 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_INFLUXDB}",
-        "definition": "show tag values cardinality from \"vsphere_cluster_mem\" with key = \"vcenter\"",
-        "hide": 2,
-        "includeAll": false,
-        "label": null,
-        "multi": false,
-        "name": "totalvcenter",
-        "options": [],
-        "query": "show tag values cardinality from \"vsphere_cluster_mem\" with key = \"vcenter\"",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_INFLUXDB}",
-        "definition": "show tag values cardinality from \"vsphere_cluster_cpu\" with key = \"clustername\"",
-        "hide": 2,
-        "includeAll": false,
-        "label": null,
-        "multi": false,
-        "name": "totalcluster",
-        "options": [],
-        "query": "show tag values cardinality from \"vsphere_cluster_cpu\" with key = \"clustername\"",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_INFLUXDB}",
-        "definition": "show tag values cardinality from \"vsphere_vm_cpu\" with key = \"vmname\"",
-        "hide": 2,
-        "includeAll": false,
-        "label": null,
-        "multi": false,
-        "name": "totalvm",
-        "options": [],
-        "query": "show tag values cardinality from \"vsphere_vm_cpu\" with key = \"vmname\"",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_INFLUXDB}",
-        "definition": "show tag values cardinality from \"vsphere_host_cpu\" with key = \"esxhostname\"",
-        "hide": 2,
-        "includeAll": false,
-        "label": null,
-        "multi": false,
-        "name": "totalesxi",
-        "options": [],
-        "query": "show tag values cardinality from \"vsphere_host_cpu\" with key = \"esxhostname\"",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_INFLUXDB}",
-        "definition": "show tag values cardinality from \"vsphere_datastore_datastore\" with key = \"dsname\"",
-        "hide": 2,
-        "includeAll": false,
-        "label": null,
-        "multi": false,
-        "name": "totaldatastore",
-        "options": [],
-        "query": "show tag values cardinality from \"vsphere_datastore_datastore\" with key = \"dsname\"",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
       }
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -3696,5 +3870,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 28
+  "version": 29
 }
