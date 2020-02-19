@@ -2,7 +2,7 @@
   "__inputs": [
     {
       "name": "DS_INFLUXDB",
-      "label": "influxdb",
+      "label": "InfluxDB",
       "description": "",
       "type": "datasource",
       "pluginId": "influxdb",
@@ -14,25 +14,25 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.0.2"
+      "version": "6.6.1"
     },
     {
       "type": "panel",
       "id": "graph",
       "name": "Graph",
-      "version": "5.0.0"
+      "version": ""
     },
     {
       "type": "datasource",
       "id": "influxdb",
       "name": "InfluxDB",
-      "version": "5.0.0"
+      "version": "1.0.0"
     },
     {
       "type": "panel",
       "id": "singlestat",
       "name": "Singlestat",
-      "version": "5.0.0"
+      "version": ""
     }
   ],
   "annotations": {
@@ -50,10 +50,10 @@
   },
   "description": "VMware vSphere Dashboard using the new Telegraf plugin",
   "editable": true,
-  "gnetId": null,
+  "gnetId": 8165,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1554034719369,
+  "iteration": 1582110610899,
   "links": [
     {
       "asDropdown": true,
@@ -71,6 +71,7 @@
   "panels": [
     {
       "collapsed": false,
+      "datasource": "${DS_INFLUXDB}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -85,12 +86,12 @@
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
+      "colorBackground": true,
       "colorValue": false,
       "colors": [
-        "#299c46",
+        "#d44a3a",
         "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
+        "#1F60C4"
       ],
       "datasource": "${DS_INFLUXDB}",
       "decimals": 1,
@@ -125,6 +126,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -187,7 +189,7 @@
           ]
         }
       ],
-      "thresholds": "",
+      "thresholds": "0.001,0.002",
       "title": "Uptime",
       "type": "singlestat",
       "valueFontSize": "80%",
@@ -220,7 +222,7 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 7,
+        "h": 4,
         "w": 2,
         "x": 2,
         "y": 1
@@ -242,6 +244,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "MHz",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -308,7 +311,7 @@
       "thresholds": "",
       "title": "CPU Usage",
       "type": "singlestat",
-      "valueFontSize": "80%",
+      "valueFontSize": "70%",
       "valueMaps": [
         {
           "op": "=",
@@ -328,7 +331,7 @@
         "#d44a3a"
       ],
       "datasource": "${DS_INFLUXDB}",
-      "decimals": null,
+      "decimals": 2,
       "format": "deckbytes",
       "gauge": {
         "maxValue": 100,
@@ -338,7 +341,7 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 7,
+        "h": 4,
         "w": 2,
         "x": 4,
         "y": 1
@@ -360,6 +363,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -428,7 +432,7 @@
       "thresholds": "",
       "title": "RAM Usage",
       "type": "singlestat",
-      "valueFontSize": "80%",
+      "valueFontSize": "70%",
       "valueMaps": [
         {
           "op": "=",
@@ -445,12 +449,14 @@
       "dashes": false,
       "datasource": "${DS_INFLUXDB}",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 7,
         "w": 7,
         "x": 6,
         "y": 1
       },
+      "hiddenSeries": false,
       "id": 93,
       "legend": {
         "alignAsTable": false,
@@ -461,7 +467,7 @@
         "max": false,
         "min": false,
         "rightSide": false,
-        "show": true,
+        "show": false,
         "total": false,
         "values": false
       },
@@ -469,6 +475,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -480,19 +489,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "Core # $tag_cpu",
+          "alias": "",
           "groupBy": [
             {
               "params": [
                 "$__interval"
               ],
               "type": "time"
-            },
-            {
-              "params": [
-                "cpu"
-              ],
-              "type": "tag"
             },
             {
               "params": [
@@ -549,10 +552,11 @@
       },
       "yaxes": [
         {
+          "decimals": null,
           "format": "percent",
           "label": "% CPU Utilization Avg.",
           "logBase": 1,
-          "max": null,
+          "max": "100",
           "min": null,
           "show": true
         },
@@ -562,7 +566,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ],
       "yaxis": {
@@ -576,13 +580,15 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_INFLUXDB}",
-      "fill": 1,
+      "fill": 2,
+      "fillGradient": 7,
       "gridPos": {
         "h": 7,
         "w": 6,
         "x": 13,
         "y": 1
       },
+      "hiddenSeries": false,
       "id": 97,
       "legend": {
         "alignAsTable": false,
@@ -599,23 +605,21 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "Swap Consumed",
-          "color": "#C4162A"
-        }
-      ],
+      "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "alias": "Used",
+          "alias": "Usage percentage",
           "groupBy": [
             {
               "params": [
@@ -633,107 +637,19 @@
           "measurement": "vsphere_host_mem",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT last(\"totalCapacity_average\") * (last(\"usage_average\")) / 100 * 1024 FROM \"vsphere_host_mem\" WHERE (\"esxhostname\" =~ /^$esxi$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
-          "rawQuery": true,
-          "refId": "D",
+          "refId": "B",
           "resultFormat": "time_series",
           "select": [
             [
               {
                 "params": [
-                  "totalCapacity_average"
+                  "usage_average"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
                 "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "esxhostname",
-              "operator": "=~",
-              "value": "/^$esxi$/"
-            }
-          ]
-        },
-        {
-          "alias": "Active",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "vsphere_host_mem",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "active_average"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "esxhostname",
-              "operator": "=~",
-              "value": "/^$esxi$/"
-            }
-          ]
-        },
-        {
-          "alias": "Swap Consumed",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "none"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "vsphere_host_mem",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "swapin_average"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
               }
             ]
           ],
@@ -766,20 +682,21 @@
       },
       "yaxes": [
         {
-          "format": "deckbytes",
-          "label": "RAM Usage in GB",
+          "decimals": 1,
+          "format": "percent",
+          "label": "RAM Usage in %",
           "logBase": 1,
-          "max": null,
+          "max": "100",
           "min": null,
           "show": true
         },
         {
-          "format": "short",
-          "label": null,
+          "format": "percent",
+          "label": "",
           "logBase": 1,
-          "max": null,
+          "max": "100",
           "min": null,
-          "show": true
+          "show": false
         }
       ],
       "yaxis": {
@@ -794,12 +711,14 @@
       "dashes": false,
       "datasource": "${DS_INFLUXDB}",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 7,
         "w": 5,
         "x": 19,
         "y": 1
       },
+      "hiddenSeries": false,
       "id": 92,
       "legend": {
         "alignAsTable": false,
@@ -816,6 +735,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -912,6 +834,247 @@
       }
     },
     {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPrefix": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_INFLUXDB}",
+      "decimals": 0,
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 2,
+        "y": 5
+      },
+      "id": 101,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "alias": "",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "vsphere_host_cpu",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "usage_average"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "esxhostname",
+              "operator": "=~",
+              "value": "/^$esxi$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": "75,85",
+      "title": "CPU Usage in %",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_INFLUXDB}",
+      "decimals": null,
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 4,
+        "y": 5
+      },
+      "id": 102,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "alias": "",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "vsphere_host_mem",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"totalCapacity_average\") * (last(\"usage_average\")) / 100 * 1024 FROM \"vsphere_host_mem\" WHERE (\"esxhostname\" =~ /^$esxi$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "usage_average"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "esxhostname",
+              "operator": "=~",
+              "value": "/^$esxi$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": "75,85",
+      "title": "RAM Usage",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -919,12 +1082,14 @@
       "datasource": "${DS_INFLUXDB}",
       "decimals": null,
       "fill": 5,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
         "w": 13,
         "x": 0,
         "y": 8
       },
+      "hiddenSeries": false,
       "id": 99,
       "legend": {
         "alignAsTable": true,
@@ -943,6 +1108,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -1013,7 +1181,7 @@
             },
             {
               "params": [
-                "disk"
+                "interface"
               ],
               "type": "tag"
             },
@@ -1100,12 +1268,14 @@
       "dashes": false,
       "datasource": "${DS_INFLUXDB}",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
         "w": 6,
         "x": 13,
         "y": 8
       },
+      "hiddenSeries": false,
       "id": 98,
       "legend": {
         "alignAsTable": false,
@@ -1122,6 +1292,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -1279,12 +1452,14 @@
       "dashes": false,
       "datasource": "${DS_INFLUXDB}",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
         "w": 5,
         "x": 19,
         "y": 8
       },
+      "hiddenSeries": false,
       "id": 100,
       "legend": {
         "alignAsTable": false,
@@ -1301,6 +1476,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -1453,7 +1631,7 @@
     }
   ],
   "refresh": "5m",
-  "schemaVersion": 18,
+  "schemaVersion": 22,
   "style": "dark",
   "tags": [
     "VMware",
@@ -1467,20 +1645,21 @@
         "auto_count": 100,
         "auto_min": "30s",
         "current": {
-          "text": "1m",
-          "value": "1m"
+          "selected": false,
+          "text": "auto",
+          "value": "$__auto_interval_inter"
         },
         "hide": 0,
         "label": "Sampling",
         "name": "inter",
         "options": [
           {
-            "selected": false,
+            "selected": true,
             "text": "auto",
             "value": "$__auto_interval_inter"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "1m",
             "value": "1m"
           },
@@ -1561,14 +1740,14 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
-        "definition": "",
+        "definition": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=clustername WHERE \"vcenter\" =~ /$vcenter/",
         "hide": 0,
         "includeAll": true,
         "label": "Cluster",
         "multi": true,
         "name": "clustername",
         "options": [],
-        "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=clustername",
+        "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=clustername WHERE \"vcenter\" =~ /$vcenter/",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -1583,14 +1762,14 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
-        "definition": "",
+        "definition": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=esxhostname WHERE \"vcenter\" =~ /$vcenter/",
         "hide": 0,
         "includeAll": true,
         "label": "ESXi Server",
         "multi": true,
         "name": "esxi",
         "options": [],
-        "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=esxhostname",
+        "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=esxhostname WHERE \"vcenter\" =~ /$vcenter/",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
@@ -1605,16 +1784,16 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
-        "definition": "",
+        "definition": "SHOW TAG VALUES FROM vsphere_datastore_disk WITH KEY=source WHERE \"vcenter\" =~ /$vcenter/",
         "hide": 0,
         "includeAll": true,
         "label": "Datastore",
         "multi": true,
         "name": "datastore",
         "options": [],
-        "query": "SHOW TAG VALUES FROM vsphere_datastore_disk WITH KEY=source",
+        "query": "SHOW TAG VALUES FROM vsphere_datastore_disk WITH KEY=source WHERE \"vcenter\" =~ /$vcenter/",
         "refresh": 2,
-        "regex": "",
+        "regex": "/^(?!VeeamBackup_)/",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
@@ -1657,5 +1836,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Hosts",
   "uid": "MxqCLP0mk",
-  "version": 4
+  "version": 2
 }
