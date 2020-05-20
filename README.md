@@ -3,7 +3,7 @@ How to monitor a VMware vSphere Environment using Telegraf, InfluxDB and Grafana
 Once you import the Grafana Dashboards on your Environment, it should look all like these:
 
 *VMware vSphere Overview Dashboard*
-![VMware vSphere Overview Dashboard](https://www.jorgedelacruz.es/wp-content/uploads/2020/01/vsphere-grafana-summaries.png)
+![VMware vSphere Overview Dashboard](https://www.jorgedelacruz.es/wp-content/uploads/2018/10/vsphere-dashboard-grafana7.png)
 
 *VMware vSphere Hosts Dashboard*
 ![VMware vSphere Hosts Dashboard](https://www.jorgedelacruz.es/wp-content/uploads/2018/10/grafana-esxi-020.png)
