@@ -12,7 +12,7 @@ Once you import the Grafana Dashboards on your Environment, it should look all l
 ![VMware vSphere Datastores Dashboard](https://www.jorgedelacruz.es/wp-content/uploads/2018/10/grafana-esxi-019.png)
 
 *VMware vSphere VMs Dashboard*
-![VMware vSphere VMs Dashboard](https://www.jorgedelacruz.es/wp-content/uploads/2018/10/grafana-esxi-018.png)
+![VMware vSphere VMs Dashboard](https://jorgedelacruz.uk/wp-content/uploads/2018/10/vsphere-dashboard-vms-grafana7.png)
 
 ----------
 
