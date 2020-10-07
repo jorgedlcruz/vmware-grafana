@@ -6,10 +6,10 @@ Once you import the Grafana Dashboards on your Environment, it should look all l
 ![VMware vSphere Overview Dashboard](https://www.jorgedelacruz.es/wp-content/uploads/2018/10/vsphere-dashboard-grafana7.png)
 
 *VMware vSphere Hosts Dashboard*
-![VMware vSphere Hosts Dashboard](https://uc4cc3ee2e6208866ce08be08236.dl.dropboxusercontent.com/cd/0/get/BAxuR5o_1va27wPqM7iLLDvmPhx0ypmoh-KLvUzun7Srn5K_6Y_GPjHuSBR0xFCY2QxP1fDadSKucB_1ckcZk360kcZofntGWGEnPyNsKnrrzApCe1lyQvaVWmKGrSPZpSI/file?dl=1#)
+![VMware vSphere Hosts Dashboard](https://uc4cc3ee2e6208866ce08be08236.dl.dropboxusercontent.com/cd/0/get/BAxuR5o_1va27wPqM7iLLDvmPhx0ypmoh-KLvUzun7Srn5K_6Y_GPjHuSBR0xFCY2QxP1fDadSKucB_1ckcZk360kcZofntGWGEnPyNsKnrrzApCe1lyQvaVWmKGrSPZpSI/file?dl=1)
 
 *VMware vSphere Datastores Dashboard*
-![VMware vSphere Datastores Dashboard](https://ucb65c62caa8fea3edd80e0bf7ba.dl.dropboxusercontent.com/cd/0/get/BAyLshyN41DyEUPLHvsM3WeULENr2L6bDT20zYhYoDYwhV5OtjY04w37RXKLtiLnSWnEumMDDayp2Vv3PXiMQjFVSRk5VdhrXlUiA635f-NyQrTmwKJ8pFFefRunenuU7Do/file?dl=1#)
+![VMware vSphere Datastores Dashboard](https://ucb65c62caa8fea3edd80e0bf7ba.dl.dropboxusercontent.com/cd/0/get/BAyLshyN41DyEUPLHvsM3WeULENr2L6bDT20zYhYoDYwhV5OtjY04w37RXKLtiLnSWnEumMDDayp2Vv3PXiMQjFVSRk5VdhrXlUiA635f-NyQrTmwKJ8pFFefRunenuU7Do/file?dl=1)
 
 *VMware vSphere VMs Dashboard*
 ![VMware vSphere VMs Dashboard](https://jorgedelacruz.uk/wp-content/uploads/2018/10/vsphere-dashboard-vms-grafana7.png)
