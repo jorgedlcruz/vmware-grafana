@@ -14,7 +14,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "7.0.0"
+      "version": "7.1.3"
     },
     {
       "type": "panel",
@@ -53,7 +53,7 @@
   "gnetId": 8165,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1590711602954,
+  "iteration": 1603471076550,
   "links": [
     {
       "asDropdown": true,
@@ -251,10 +251,12 @@
           "calcs": [
             "lastNotNull"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.0",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
           "alias": "Uptime",
@@ -486,7 +488,8 @@
       "description": "CPU usage as a percentage during the interval.",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "links": []
         },
         "overrides": []
       },
@@ -517,11 +520,9 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -541,7 +542,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "20s"
               ],
               "type": "time"
             },
@@ -632,7 +633,8 @@
       "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "links": []
         },
         "overrides": []
       },
@@ -661,11 +663,9 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -685,7 +685,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "20s"
               ],
               "type": "time"
             },
@@ -744,6 +744,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:263",
           "decimals": 1,
           "format": "percent",
           "label": "RAM Usage in %",
@@ -753,6 +754,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:264",
           "format": "percent",
           "label": "",
           "logBase": 1,
@@ -775,7 +777,8 @@
       "description": "Time that the virtual machine was ready, but could not get scheduled to run on the physical CPU during last measurement interval.",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "links": []
         },
         "overrides": []
       },
@@ -804,11 +807,9 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -828,7 +829,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "20s"
               ],
               "type": "time"
             },
@@ -920,7 +921,8 @@
       "description": "Network utilization (combined transmit-rates and receive-rates) during the interval.",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "links": []
         },
         "overrides": []
       },
@@ -951,11 +953,9 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -969,7 +969,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "20s"
               ],
               "type": "time"
             },
@@ -1018,7 +1018,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "20s"
               ],
               "type": "time"
             },
@@ -1083,6 +1083,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:594",
           "format": "KBs",
           "label": "Network Usage",
           "logBase": 1,
@@ -1091,6 +1092,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:595",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1113,7 +1115,8 @@
       "description": "The average time a read, or write, from the virtual disk takes.",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "links": []
         },
         "overrides": []
       },
@@ -1142,11 +1145,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1160,7 +1161,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "20s"
               ],
               "type": "time"
             },
@@ -1209,7 +1210,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "20s"
               ],
               "type": "time"
             },
@@ -1274,6 +1275,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:741",
           "format": "none",
           "label": "KBps",
           "logBase": 1,
@@ -1282,6 +1284,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:742",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1304,7 +1307,8 @@
       "description": "The average time a read, or write, from the datastore takes.",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "links": []
         },
         "overrides": []
       },
@@ -1333,11 +1337,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1351,7 +1353,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "20s"
               ],
               "type": "time"
             },
@@ -1400,7 +1402,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "20s"
               ],
               "type": "time"
             },
@@ -1465,6 +1467,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:886",
           "format": "short",
           "label": "IOPS",
           "logBase": 1,
@@ -1473,6 +1476,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:887",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1488,7 +1492,7 @@
     }
   ],
   "refresh": "5m",
-  "schemaVersion": 25,
+  "schemaVersion": 26,
   "style": "dark",
   "tags": [
     "VMware",
@@ -1692,5 +1696,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Hosts",
   "uid": "MxqCLP0mk",
-  "version": 7
+  "version": 4
 }

@@ -14,7 +14,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "7.0.0"
+      "version": "7.1.3"
     },
     {
       "type": "panel",
@@ -53,7 +53,7 @@
   "gnetId": 8168,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1590668271207,
+  "iteration": 1603471078386,
   "links": [
     {
       "asDropdown": true,
@@ -251,10 +251,12 @@
           "calcs": [
             "lastNotNull"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.0",
+      "pluginVersion": "7.1.3",
       "targets": [
         {
           "alias": "Uptime",
@@ -484,7 +486,8 @@
       "description": "CPU usage as a percentage during the interval.",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "links": []
         },
         "overrides": []
       },
@@ -514,11 +517,9 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -544,7 +545,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "20s"
               ],
               "type": "time"
             },
@@ -593,7 +594,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "20s"
               ],
               "type": "time"
             },
@@ -691,7 +692,8 @@
       "description": "Amount of guest physical memory that is being actively read or written by guest. Activeness is estimated by ESXi.",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "links": []
         },
         "overrides": []
       },
@@ -720,11 +722,9 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -744,7 +744,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "20s"
               ],
               "type": "time"
             },
@@ -842,7 +842,8 @@
       "description": "Time that the virtual machine was ready, but could not get scheduled to run on the physical CPU during last measurement interval.",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "links": []
         },
         "overrides": []
       },
@@ -871,11 +872,9 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -895,7 +894,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "20s"
               ],
               "type": "time"
             },
@@ -1000,7 +999,8 @@
       "description": "Network utilization (combined transmit-rates and receive-rates) during the interval.",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "links": []
         },
         "overrides": []
       },
@@ -1031,11 +1031,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1049,7 +1047,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "20s"
               ],
               "type": "time"
             },
@@ -1098,7 +1096,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "20s"
               ],
               "type": "time"
             },
@@ -1196,7 +1194,8 @@
       "description": "The average time a read, or write, from the virtual disk takes.",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "links": []
         },
         "overrides": []
       },
@@ -1225,11 +1224,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1243,7 +1240,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "20s"
               ],
               "type": "time"
             },
@@ -1292,7 +1289,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "20s"
               ],
               "type": "time"
             },
@@ -1389,7 +1386,8 @@
       "description": "The average time a read, or write, from the datastore takes.",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "links": []
         },
         "overrides": []
       },
@@ -1418,11 +1416,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "paceLength": 10,
       "percentage": false,
+      "pluginVersion": "7.1.3",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1436,7 +1432,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "20s"
               ],
               "type": "time"
             },
@@ -1485,7 +1481,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "20s"
               ],
               "type": "time"
             },
@@ -1575,7 +1571,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 25,
+  "schemaVersion": 26,
   "style": "dark",
   "tags": [
     "VMware",
@@ -1766,40 +1762,40 @@
         "tagValuesQuery": "show tag values FROM vsphere_vm_cpu with key = vmname WHERE guest=$tag",
         "tags": [
           {
+            "selected": false,
             "text": "centos64"
           },
           {
+            "selected": false,
             "text": "freebsd64"
           },
           {
+            "selected": false,
             "text": "other3xLinux64"
           },
           {
+            "selected": false,
             "text": "otherGuest64"
           },
           {
-            "text": "otherLinux64"
-          },
-          {
+            "selected": false,
             "text": "ubuntu64"
           },
           {
-            "text": "vmkernel5"
-          },
-          {
+            "selected": false,
             "text": "vmkernel65"
           },
           {
+            "selected": false,
             "text": "vmkernel7"
           },
           {
-            "text": "windows7_64"
+            "selected": false,
+            "text": "vmwarePhoton64"
           },
           {
+            "selected": false,
             "text": "windows9Server64"
-          },
-          {
-            "text": "windows9_64"
           }
         ],
         "tagsQuery": "show tag values with key = guest",
@@ -1839,5 +1835,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - VMs",
   "uid": "hNDB_E0ik",
-  "version": 4
+  "version": 3
 }
