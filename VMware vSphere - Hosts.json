@@ -14,7 +14,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "7.1.3"
+      "version": "7.3.5"
     },
     {
       "type": "panel",
@@ -53,7 +53,7 @@
   "gnetId": 8165,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1603471076550,
+  "iteration": 1610398610769,
   "links": [
     {
       "asDropdown": true,
@@ -256,7 +256,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.3.5",
       "targets": [
         {
           "alias": "Uptime",
@@ -493,8 +493,8 @@
         },
         "overrides": []
       },
-      "fill": 1,
-      "fillGradient": 0,
+      "fill": 8,
+      "fillGradient": 7,
       "gridPos": {
         "h": 7,
         "w": 7,
@@ -517,34 +517,37 @@
         "values": false
       },
       "lines": true,
-      "linewidth": 2,
+      "linewidth": 3,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.3.5",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "$$hashKey": "object:699",
-          "alias": "CPU usage %",
-          "color": "rgb(133, 177, 236)"
-        }
-      ],
+      "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "alias": "CPU usage %",
+          "alias": "CPU usage % $tag_cpu",
           "groupBy": [
             {
               "params": [
                 "20s"
               ],
               "type": "time"
+            },
+            {
+              "params": [
+                "cpu"
+              ],
+              "type": "tag"
             },
             {
               "params": [
@@ -663,9 +666,12 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.3.5",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -791,7 +797,7 @@
         "y": 1
       },
       "hiddenSeries": false,
-      "id": 92,
+      "id": 106,
       "legend": {
         "alignAsTable": false,
         "avg": false,
@@ -807,9 +813,12 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.3.5",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -935,7 +944,7 @@
         "y": 8
       },
       "hiddenSeries": false,
-      "id": 99,
+      "id": 107,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -953,9 +962,12 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.3.5",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1129,7 +1141,7 @@
         "y": 8
       },
       "hiddenSeries": false,
-      "id": 98,
+      "id": 108,
       "legend": {
         "alignAsTable": false,
         "avg": false,
@@ -1145,9 +1157,12 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.3.5",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1321,7 +1336,7 @@
         "y": 8
       },
       "hiddenSeries": false,
-      "id": 100,
+      "id": 109,
       "legend": {
         "alignAsTable": false,
         "avg": false,
@@ -1337,9 +1352,12 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.3.5",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1489,6 +1507,1723 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "collapsed": true,
+      "datasource": "${DS_INFLUXDB}",
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 18
+      },
+      "id": 102,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "datasource": "${DS_INFLUXDB}",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "decimals": 1,
+              "mappings": [
+                {
+                  "id": 0,
+                  "op": "=",
+                  "text": "N/A",
+                  "type": 1,
+                  "value": "null"
+                }
+              ],
+              "nullValueMode": "connected",
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "dark-blue",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "CPU Usage MHz"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "none"
+                  },
+                  {
+                    "id": "decimals",
+                    "value": 0
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "RAM Usage"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "deckbytes"
+                  },
+                  {
+                    "id": "decimals",
+                    "value": 2
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "CPU Usage %"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "percent"
+                  },
+                  {
+                    "id": "thresholds",
+                    "value": {
+                      "mode": "absolute",
+                      "steps": [
+                        {
+                          "color": "dark-green",
+                          "value": null
+                        },
+                        {
+                          "color": "dark-yellow",
+                          "value": 75
+                        },
+                        {
+                          "color": "dark-red",
+                          "value": 90
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": "decimals",
+                    "value": 2
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "RAM Usage %"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "percent"
+                  },
+                  {
+                    "id": "thresholds",
+                    "value": {
+                      "mode": "absolute",
+                      "steps": [
+                        {
+                          "color": "dark-green",
+                          "value": null
+                        },
+                        {
+                          "color": "yellow",
+                          "value": 75
+                        },
+                        {
+                          "color": "dark-red",
+                          "value": 90
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": "decimals",
+                    "value": 2
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "CPU Temperature"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "celsius"
+                  },
+                  {
+                    "id": "thresholds",
+                    "value": {
+                      "mode": "absolute",
+                      "steps": [
+                        {
+                          "color": "dark-green",
+                          "value": null
+                        },
+                        {
+                          "color": "dark-orange",
+                          "value": 80
+                        },
+                        {
+                          "color": "dark-red",
+                          "value": 85
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": "noValue",
+                    "value": "No Data"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 0,
+            "y": 6
+          },
+          "id": 103,
+          "interval": null,
+          "links": [],
+          "maxDataPoints": 100,
+          "options": {
+            "colorMode": "background",
+            "fieldOptions": {
+              "calcs": [
+                "mean"
+              ]
+            },
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "value_and_name"
+          },
+          "pluginVersion": "7.3.5",
+          "scopedVars": {
+            "esxiarm": {
+              "selected": false,
+              "text": "esxi-zlon-rpi-001.jorgedelacruz.es",
+              "value": "esxi-zlon-rpi-001.jorgedelacruz.es"
+            }
+          },
+          "targets": [
+            {
+              "alias": "Uptime",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vsphere_host_sys",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "uptime_latest"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "esxhostname",
+                  "operator": "=~",
+                  "value": "/^$esxi$/"
+                }
+              ]
+            },
+            {
+              "alias": "CPU Usage MHz",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vsphere_host_cpu",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usagemhz_average"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "esxhostname",
+                  "operator": "=~",
+                  "value": "/^$esxi$/"
+                }
+              ]
+            },
+            {
+              "alias": "RAM Usage",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vsphere_host_mem",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT last(\"totalCapacity_average\") * (last(\"usage_average\")) / 100 * 1024 FROM \"vsphere_host_mem\" WHERE (\"esxhostname\" =~ /^$esxi$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+              "rawQuery": true,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "active_average"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "esxhostname",
+                  "operator": "=~",
+                  "value": "/^$esxi$/"
+                }
+              ]
+            },
+            {
+              "alias": "CPU Usage %",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vsphere_host_cpu",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "E",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage_average"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "esxhostname",
+                  "operator": "=~",
+                  "value": "/^$esxi$/"
+                }
+              ]
+            },
+            {
+              "alias": "RAM Usage %",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vsphere_host_mem",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage_average"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "esxhostname",
+                  "operator": "=~",
+                  "value": "/^$esxi$/"
+                }
+              ]
+            },
+            {
+              "alias": "CPU Temperature",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vsphere_esxi_arm",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "F",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "boardtemp"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$esxiarm$/"
+                }
+              ]
+            }
+          ],
+          "title": "ESXi VM Quick Overview",
+          "type": "stat"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_INFLUXDB}",
+          "description": "CPU usage as a percentage during the interval.",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "links": []
+            },
+            "overrides": []
+          },
+          "fill": 8,
+          "fillGradient": 7,
+          "gridPos": {
+            "h": 7,
+            "w": 6,
+            "x": 8,
+            "y": 6
+          },
+          "hiddenSeries": false,
+          "id": 104,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "paceLength": 10,
+          "percentage": false,
+          "pluginVersion": "7.3.5",
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "esxiarm": {
+              "selected": false,
+              "text": "esxi-zlon-rpi-001.jorgedelacruz.es",
+              "value": "esxi-zlon-rpi-001.jorgedelacruz.es"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "CPU usage % $tag_cpu",
+              "groupBy": [
+                {
+                  "params": [
+                    "20s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "cpu"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vsphere_host_cpu",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage_average"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "esxhostname",
+                  "operator": "=~",
+                  "value": "/^$esxi$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "CPU Utilization Avg %",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:676",
+              "decimals": null,
+              "format": "percent",
+              "label": "CPU Utilization %",
+              "logBase": 1,
+              "max": "100",
+              "min": null,
+              "show": true
+            },
+            {
+              "$$hashKey": "object:677",
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_INFLUXDB}",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "links": []
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 5,
+            "x": 14,
+            "y": 6
+          },
+          "hiddenSeries": false,
+          "id": 105,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "paceLength": 10,
+          "percentage": false,
+          "pluginVersion": "7.3.5",
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "esxiarm": {
+              "selected": false,
+              "text": "esxi-zlon-rpi-001.jorgedelacruz.es",
+              "value": "esxi-zlon-rpi-001.jorgedelacruz.es"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "$$hashKey": "object:815",
+              "alias": "RAM usage %",
+              "color": "rgb(133, 177, 236)"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "RAM usage %",
+              "groupBy": [
+                {
+                  "params": [
+                    "20s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vsphere_host_mem",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "usage_average"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "esxhostname",
+                  "operator": "=~",
+                  "value": "/^$esxi$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "RAM Utilization",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:263",
+              "decimals": 1,
+              "format": "percent",
+              "label": "RAM Usage in %",
+              "logBase": 1,
+              "max": "100",
+              "min": null,
+              "show": true
+            },
+            {
+              "$$hashKey": "object:264",
+              "format": "percent",
+              "label": "",
+              "logBase": 1,
+              "max": "100",
+              "min": null,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_INFLUXDB}",
+          "description": "CPU Temperature",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "links": [],
+              "unit": "celsius"
+            },
+            "overrides": []
+          },
+          "fill": 8,
+          "fillGradient": 7,
+          "gridPos": {
+            "h": 7,
+            "w": 5,
+            "x": 19,
+            "y": 6
+          },
+          "hiddenSeries": false,
+          "id": 110,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 3,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "paceLength": 10,
+          "percentage": false,
+          "pluginVersion": "7.3.5",
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "esxiarm": {
+              "selected": false,
+              "text": "esxi-zlon-rpi-001.jorgedelacruz.es",
+              "value": "esxi-zlon-rpi-001.jorgedelacruz.es"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "$$hashKey": "object:2948",
+              "alias": "CPU Temperature",
+              "color": "#8F3BB8"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "CPU Temperature",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vsphere_esxi_arm",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "boardtemp"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "hostname",
+                  "operator": "=~",
+                  "value": "/^$esxiarm$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "CPU Temperature",
+          "tooltip": {
+            "shared": false,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:676",
+              "decimals": 0,
+              "format": "celsius",
+              "label": "CPU Temperature in Celsius",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "$$hashKey": "object:677",
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_INFLUXDB}",
+          "decimals": null,
+          "description": "Network utilization (combined transmit-rates and receive-rates) during the interval.",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "links": []
+            },
+            "overrides": []
+          },
+          "fill": 5,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 8,
+            "x": 0,
+            "y": 13
+          },
+          "hiddenSeries": false,
+          "id": 99,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "paceLength": 10,
+          "percentage": false,
+          "pluginVersion": "7.3.5",
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "esxiarm": {
+              "selected": false,
+              "text": "esxi-zlon-rpi-001.jorgedelacruz.es",
+              "value": "esxi-zlon-rpi-001.jorgedelacruz.es"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_interface bytesRx",
+              "groupBy": [
+                {
+                  "params": [
+                    "20s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "interface"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vsphere_host_net",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "bytesRx_average"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "esxhostname",
+                  "operator": "=~",
+                  "value": "/^$esxi$/"
+                }
+              ]
+            },
+            {
+              "alias": "$tag_interface bytesTx",
+              "groupBy": [
+                {
+                  "params": [
+                    "20s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "interface"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vsphere_host_net",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "bytesTx_average"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "esxhostname",
+                  "operator": "=~",
+                  "value": "/^$esxi$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Network Usage",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:594",
+              "format": "KBs",
+              "label": "Network Usage",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "$$hashKey": "object:595",
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_INFLUXDB}",
+          "description": "The average time a read, or write, from the virtual disk takes.",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "links": []
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 6,
+            "x": 8,
+            "y": 13
+          },
+          "hiddenSeries": false,
+          "id": 98,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "paceLength": 10,
+          "percentage": false,
+          "pluginVersion": "7.3.5",
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "esxiarm": {
+              "selected": false,
+              "text": "esxi-zlon-rpi-001.jorgedelacruz.es",
+              "value": "esxi-zlon-rpi-001.jorgedelacruz.es"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Write - $tag_disk",
+              "groupBy": [
+                {
+                  "params": [
+                    "20s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "disk"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vsphere_host_disk",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "totalReadLatency_average"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "esxhostname",
+                  "operator": "=~",
+                  "value": "/^$esxi$/"
+                }
+              ]
+            },
+            {
+              "alias": "Read - $tag_disk",
+              "groupBy": [
+                {
+                  "params": [
+                    "20s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "disk"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vsphere_host_disk",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "totalWriteLatency_average"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "esxhostname",
+                  "operator": "=~",
+                  "value": "/^$esxi$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Total Disk Latency",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:741",
+              "format": "none",
+              "label": "KBps",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "$$hashKey": "object:742",
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_INFLUXDB}",
+          "description": "The average time a read, or write, from the datastore takes.",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "links": []
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 5,
+            "x": 14,
+            "y": 13
+          },
+          "hiddenSeries": false,
+          "id": 100,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "paceLength": 10,
+          "percentage": false,
+          "pluginVersion": "7.3.5",
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "esxiarm": {
+              "selected": false,
+              "text": "esxi-zlon-rpi-001.jorgedelacruz.es",
+              "value": "esxi-zlon-rpi-001.jorgedelacruz.es"
+            }
+          },
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_adapter Read",
+              "groupBy": [
+                {
+                  "params": [
+                    "20s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "adapter"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vsphere_host_storageAdapter",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "numberReadAveraged_average"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "esxhostname",
+                  "operator": "=~",
+                  "value": "/^$esxi$/"
+                }
+              ]
+            },
+            {
+              "alias": "$tag_adapter Write",
+              "groupBy": [
+                {
+                  "params": [
+                    "20s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "adapter"
+                  ],
+                  "type": "tag"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vsphere_host_storageAdapter",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "numberWriteAveraged_average"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "esxhostname",
+                  "operator": "=~",
+                  "value": "/^$esxi$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Storage Adapter IOPS",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:886",
+              "format": "short",
+              "label": "IOPS",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "$$hashKey": "object:887",
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_INFLUXDB}",
+          "description": "Time that the virtual machine was ready, but could not get scheduled to run on the physical CPU during last measurement interval.",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "links": []
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 6,
+            "w": 5,
+            "x": 19,
+            "y": 13
+          },
+          "hiddenSeries": false,
+          "id": 92,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": false,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "paceLength": 10,
+          "percentage": false,
+          "pluginVersion": "7.3.5",
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "scopedVars": {
+            "esxiarm": {
+              "selected": false,
+              "text": "esxi-zlon-rpi-001.jorgedelacruz.es",
+              "value": "esxi-zlon-rpi-001.jorgedelacruz.es"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "$$hashKey": "object:944",
+              "alias": "CPU Ready",
+              "color": "#C4162A"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "CPU Ready",
+              "groupBy": [
+                {
+                  "params": [
+                    "20s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "none"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "vsphere_host_cpu",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "ready_summation"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "esxhostname",
+                  "operator": "=~",
+                  "value": "/^$esxi$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "CPU Ready in miliseconds",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "$$hashKey": "object:928",
+              "format": "none",
+              "label": "ms",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "$$hashKey": "object:929",
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        }
+      ],
+      "repeat": "esxiarm",
+      "title": "ARM - $esxiarm",
+      "type": "row"
     }
   ],
   "refresh": "5m",
@@ -1506,10 +3241,11 @@
         "auto_count": 100,
         "auto_min": "30s",
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "auto",
           "value": "$__auto_interval_inter"
         },
+        "error": null,
         "hide": 0,
         "label": "Sampling",
         "name": "inter",
@@ -1579,15 +3315,15 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
-        "definition": "",
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "vCenter Server",
         "multi": true,
         "name": "vcenter",
         "options": [],
-        "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=vcenter",
-        "refresh": 1,
+        "query": "select DISTINCT(\"vcenter\") from (select \"usage_average\",\"vcenter\" from \"vsphere_host_cpu\" WHERE $timeFilter)",
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -1601,15 +3337,15 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
-        "definition": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=clustername WHERE \"vcenter\" =~ /$vcenter/",
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Cluster",
         "multi": true,
         "name": "clustername",
         "options": [],
-        "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=clustername WHERE \"vcenter\" =~ /$vcenter/",
-        "refresh": 1,
+        "query": "select DISTINCT(\"clustername\") from (select \"usage_average\",\"clustername\" from \"vsphere_host_cpu\" WHERE $timeFilter AND \"vcenter\" =~ /$vcenter/)",
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -1623,14 +3359,14 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
-        "definition": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=esxhostname WHERE \"vcenter\" =~ /$vcenter/",
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "ESXi Server",
         "multi": true,
         "name": "esxi",
         "options": [],
-        "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=esxhostname WHERE \"vcenter\" =~ /$vcenter/",
+        "query": "select DISTINCT(\"esxhostname\") from (select \"usage_average\",\"esxhostname\" from \"vsphere_host_cpu\" WHERE $timeFilter AND \"vcenter\" =~ /$vcenter/)",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
@@ -1645,16 +3381,39 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
-        "definition": "SHOW TAG VALUES FROM vsphere_datastore_disk WITH KEY=source WHERE \"vcenter\" =~ /$vcenter/",
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Datastore",
         "multi": true,
         "name": "datastore",
         "options": [],
-        "query": "SHOW TAG VALUES FROM vsphere_datastore_disk WITH KEY=source WHERE \"vcenter\" =~ /$vcenter/",
+        "query": "select DISTINCT(\"dsname\") from (select \"used_latest\",\"dsname\" from \"vsphere_datastore_disk\" WHERE $timeFilter AND \"vcenter\" =~ /$vcenter/)",
         "refresh": 2,
         "regex": "/^(?!VeeamBackup_)/",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_INFLUXDB}",
+        "definition": "",
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "ESXi ARM Server",
+        "multi": true,
+        "name": "esxiarm",
+        "options": [],
+        "query": "SHOW TAG VALUES FROM vsphere_esxi_arm WITH KEY=hostname",
+        "refresh": 2,
+        "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
@@ -1666,7 +3425,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-12h",
     "to": "now"
   },
   "timepicker": {
@@ -1696,5 +3455,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Hosts",
   "uid": "MxqCLP0mk",
-  "version": 4
+  "version": 10
 }

@@ -14,7 +14,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "7.1.3"
+      "version": "7.3.5"
     },
     {
       "type": "panel",
@@ -53,7 +53,7 @@
   "gnetId": 8168,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1603471078386,
+  "iteration": 1610398434159,
   "links": [
     {
       "asDropdown": true,
@@ -256,7 +256,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.3.5",
       "targets": [
         {
           "alias": "Uptime",
@@ -517,9 +517,12 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.3.5",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -722,9 +725,12 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.3.5",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -872,9 +878,12 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.3.5",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1031,9 +1040,12 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.3.5",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1224,9 +1236,12 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.3.5",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1416,9 +1431,12 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "paceLength": 10,
       "percentage": false,
-      "pluginVersion": "7.1.3",
+      "pluginVersion": "7.3.5",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1589,6 +1607,7 @@
           "text": "auto",
           "value": "$__auto_interval_inter"
         },
+        "error": null,
         "hide": 0,
         "label": "Sampling",
         "name": "inter",
@@ -1660,14 +1679,15 @@
         "current": {},
         "datasource": "${DS_INFLUXDB}",
         "definition": "",
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "vCenter Server",
         "multi": true,
         "name": "vcenter",
         "options": [],
-        "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=vcenter",
-        "refresh": 1,
+        "query": "select DISTINCT(\"vcenter\") from (select \"usage_average\",\"vcenter\" from \"vsphere_host_cpu\" WHERE $timeFilter)",
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -1681,15 +1701,15 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
-        "definition": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=clustername WHERE \"vcenter\" =~ /$vcenter/",
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Cluster",
         "multi": true,
         "name": "clustername",
         "options": [],
-        "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=clustername WHERE \"vcenter\" =~ /$vcenter/",
-        "refresh": 1,
+        "query": "select DISTINCT(\"clustername\") from (select \"usage_average\",\"clustername\" from \"vsphere_host_cpu\" WHERE $timeFilter AND \"vcenter\" =~ /$vcenter/)",
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -1703,15 +1723,15 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
-        "definition": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=esxhostname WHERE \"vcenter\" =~ /$vcenter/",
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "ESXi Server",
         "multi": true,
         "name": "esxi",
         "options": [],
-        "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=esxhostname WHERE \"vcenter\" =~ /$vcenter/",
-        "refresh": 1,
+        "query": "select DISTINCT(\"esxhostname\") from (select \"usage_average\",\"esxhostname\" from \"vsphere_host_cpu\" WHERE $timeFilter AND \"vcenter\" =~ /$vcenter/)",
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -1725,14 +1745,14 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
-        "definition": "SHOW TAG VALUES FROM vsphere_datastore_disk WITH KEY=source WHERE \"vcenter\" =~ /$vcenter/",
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Datastore",
         "multi": true,
         "name": "datastore",
         "options": [],
-        "query": "SHOW TAG VALUES FROM vsphere_datastore_disk WITH KEY=source WHERE \"vcenter\" =~ /$vcenter/",
+        "query": "select DISTINCT(\"dsname\") from (select \"used_latest\",\"dsname\" from \"vsphere_datastore_disk\" WHERE $timeFilter AND \"vcenter\" =~ /$vcenter/)",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
@@ -1747,14 +1767,14 @@
         "allValue": "",
         "current": {},
         "datasource": "${DS_INFLUXDB}",
-        "definition": "SHOW TAG VALUES FROM vsphere_vm_cpu WITH KEY=vmname WHERE \"vcenter\" =~ /$vcenter/ ",
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "VM",
         "multi": true,
         "name": "virtualmachine",
         "options": [],
-        "query": "SHOW TAG VALUES FROM vsphere_vm_cpu WITH KEY=vmname WHERE \"vcenter\" =~ /$vcenter/ ",
+        "query": "select DISTINCT(\"vmname\") from (select \"ready_summation\",\"vmname\" from \"vsphere_vm_cpu\" WHERE $timeFilter AND \"vcenter\" =~ /$vcenter/)",
         "refresh": 2,
         "regex": "/^(?![a-zA-Z0-9-_]+_)/",
         "skipUrlSync": false,
@@ -1771,11 +1791,19 @@
           },
           {
             "selected": false,
+            "text": "other26xLinux64"
+          },
+          {
+            "selected": false,
             "text": "other3xLinux64"
           },
           {
             "selected": false,
             "text": "otherGuest64"
+          },
+          {
+            "selected": false,
+            "text": "otherLinux64"
           },
           {
             "selected": false,
@@ -1787,15 +1815,11 @@
           },
           {
             "selected": false,
-            "text": "vmkernel7"
-          },
-          {
-            "selected": false,
-            "text": "vmwarePhoton64"
-          },
-          {
-            "selected": false,
             "text": "windows9Server64"
+          },
+          {
+            "selected": false,
+            "text": "windows9_64"
           }
         ],
         "tagsQuery": "show tag values with key = guest",
@@ -1835,5 +1859,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - VMs",
   "uid": "hNDB_E0ik",
-  "version": 3
+  "version": 4
 }

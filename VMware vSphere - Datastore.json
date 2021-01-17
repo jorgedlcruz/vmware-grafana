@@ -20,13 +20,13 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "7.0.0"
+      "version": "7.3.5"
     },
     {
       "type": "panel",
       "id": "grafana-piechart-panel",
       "name": "Pie Chart",
-      "version": "1.5.0"
+      "version": "1.6.1"
     },
     {
       "type": "datasource",
@@ -59,7 +59,7 @@
   "gnetId": 8162,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1590713463753,
+  "iteration": 1610398751786,
   "links": [
     {
       "asDropdown": true,
@@ -129,11 +129,12 @@
           "calcs": [
             "lastNotNull"
           ],
+          "fields": "",
           "values": false
         },
         "showUnfilled": true
       },
-      "pluginVersion": "7.0.0",
+      "pluginVersion": "7.3.5",
       "targets": [
         {
           "alias": "$tag_source",
@@ -249,10 +250,12 @@
           "calcs": [
             "lastNotNull"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.0",
+      "pluginVersion": "7.3.5",
       "targets": [
         {
           "alias": "Total Capacity",
@@ -509,7 +512,7 @@
     }
   ],
   "refresh": "5m",
-  "schemaVersion": 25,
+  "schemaVersion": 26,
   "style": "dark",
   "tags": [
     "VMware",
@@ -524,6 +527,7 @@
           "text": "default",
           "value": "default"
         },
+        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": null,
@@ -537,92 +541,18 @@
         "type": "datasource"
       },
       {
-        "auto": true,
-        "auto_count": 100,
-        "auto_min": "30s",
-        "current": {
-          "selected": true,
-          "text": "auto",
-          "value": "$__auto_interval_inter"
-        },
-        "hide": 0,
-        "label": "Sampling",
-        "name": "inter",
-        "options": [
-          {
-            "selected": true,
-            "text": "auto",
-            "value": "$__auto_interval_inter"
-          },
-          {
-            "selected": false,
-            "text": "1m",
-            "value": "1m"
-          },
-          {
-            "selected": false,
-            "text": "10m",
-            "value": "10m"
-          },
-          {
-            "selected": false,
-            "text": "30m",
-            "value": "30m"
-          },
-          {
-            "selected": false,
-            "text": "1h",
-            "value": "1h"
-          },
-          {
-            "selected": false,
-            "text": "6h",
-            "value": "6h"
-          },
-          {
-            "selected": false,
-            "text": "12h",
-            "value": "12h"
-          },
-          {
-            "selected": false,
-            "text": "1d",
-            "value": "1d"
-          },
-          {
-            "selected": false,
-            "text": "7d",
-            "value": "7d"
-          },
-          {
-            "selected": false,
-            "text": "14d",
-            "value": "14d"
-          },
-          {
-            "selected": false,
-            "text": "30d",
-            "value": "30d"
-          }
-        ],
-        "query": "1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
-        "refresh": 2,
-        "skipUrlSync": false,
-        "type": "interval"
-      },
-      {
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
-        "definition": "",
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "vCenter Server",
         "multi": true,
         "name": "vcenter",
         "options": [],
-        "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=vcenter",
-        "refresh": 1,
+        "query": "select DISTINCT(\"vcenter\") from (select \"usage_average\",\"vcenter\" from \"vsphere_host_cpu\" WHERE $timeFilter)",
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -636,15 +566,15 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
-        "definition": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=clustername WHERE \"vcenter\" =~ /$vcenter/",
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Cluster",
         "multi": true,
         "name": "clustername",
         "options": [],
-        "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=clustername WHERE \"vcenter\" =~ /$vcenter/",
-        "refresh": 1,
+        "query": "select DISTINCT(\"clustername\") from (select \"usage_average\",\"clustername\" from \"vsphere_host_cpu\" WHERE $timeFilter AND \"vcenter\" =~ /$vcenter/)",
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -658,15 +588,15 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
-        "definition": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=esxhostname WHERE \"vcenter\" =~ /$vcenter/",
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "ESXi Server",
         "multi": true,
         "name": "esxi",
         "options": [],
-        "query": "SHOW TAG VALUES FROM vsphere_host_cpu WITH KEY=esxhostname WHERE \"vcenter\" =~ /$vcenter/",
-        "refresh": 1,
+        "query": "select DISTINCT(\"esxhostname\") from (select \"usage_average\",\"esxhostname\" from \"vsphere_host_cpu\" WHERE $timeFilter AND \"vcenter\" =~ /$vcenter/)",
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -680,38 +610,16 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
-        "definition": "SHOW TAG VALUES FROM vsphere_datastore_disk WITH KEY=source WHERE \"vcenter\" =~ /$vcenter/",
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Datastore",
         "multi": true,
         "name": "datastore",
         "options": [],
-        "query": "SHOW TAG VALUES FROM vsphere_datastore_disk WITH KEY=source WHERE \"vcenter\" =~ /$vcenter/",
-        "refresh": 1,
+        "query": "select DISTINCT(\"dsname\") from (select \"used_latest\",\"dsname\" from \"vsphere_datastore_disk\" WHERE $timeFilter AND \"vcenter\" =~ /$vcenter/)",
+        "refresh": 2,
         "regex": "/^(?!VeeamBackup_)/",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": ".*",
-        "current": {},
-        "datasource": "${DS_INFLUXDB}",
-        "definition": "SHOW TAG VALUES FROM vsphere_vm_cpu WITH KEY=vmname WHERE \"vcenter\" =~ /$vcenter/",
-        "hide": 0,
-        "includeAll": true,
-        "label": "VM",
-        "multi": true,
-        "name": "virtualmachine",
-        "options": [],
-        "query": "SHOW TAG VALUES FROM vsphere_vm_cpu WITH KEY=vmname WHERE \"vcenter\" =~ /$vcenter/",
-        "refresh": 1,
-        "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
@@ -723,7 +631,7 @@
     ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-12h",
     "to": "now"
   },
   "timepicker": {
@@ -753,5 +661,5 @@
   "timezone": "browser",
   "title": "VMware vSphere - Datastore",
   "uid": "nr_QGP0iz",
-  "version": 5
+  "version": 2
 }
