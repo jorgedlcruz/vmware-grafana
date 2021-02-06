@@ -53,7 +53,7 @@
   "gnetId": 8168,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1610398434159,
+  "iteration": 1612637245554,
   "links": [
     {
       "asDropdown": true,
@@ -263,7 +263,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "$inter"
               ],
               "type": "time"
             },
@@ -306,7 +306,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "$inter"
               ],
               "type": "time"
             },
@@ -349,7 +349,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "$inter"
               ],
               "type": "time"
             },
@@ -392,7 +392,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "$inter"
               ],
               "type": "time"
             },
@@ -435,7 +435,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "$inter"
               ],
               "type": "time"
             },
@@ -548,7 +548,7 @@
           "groupBy": [
             {
               "params": [
-                "20s"
+                "$inter"
               ],
               "type": "time"
             },
@@ -597,7 +597,7 @@
           "groupBy": [
             {
               "params": [
-                "20s"
+                "$inter"
               ],
               "type": "time"
             },
@@ -750,7 +750,7 @@
           "groupBy": [
             {
               "params": [
-                "20s"
+                "$inter"
               ],
               "type": "time"
             },
@@ -818,7 +818,7 @@
           "$$hashKey": "object:2433",
           "decimals": null,
           "format": "percent",
-          "label": "RAM Usage in GB %",
+          "label": "RAM Usage in %",
           "logBase": 1,
           "max": "100",
           "min": null,
@@ -903,7 +903,7 @@
           "groupBy": [
             {
               "params": [
-                "20s"
+                "$inter"
               ],
               "type": "time"
             },
@@ -1059,7 +1059,7 @@
           "groupBy": [
             {
               "params": [
-                "20s"
+                "$inter"
               ],
               "type": "time"
             },
@@ -1108,7 +1108,7 @@
           "groupBy": [
             {
               "params": [
-                "20s"
+                "$inter"
               ],
               "type": "time"
             },
@@ -1255,7 +1255,7 @@
           "groupBy": [
             {
               "params": [
-                "20s"
+                "$inter"
               ],
               "type": "time"
             },
@@ -1304,7 +1304,7 @@
           "groupBy": [
             {
               "params": [
-                "20s"
+                "$inter"
               ],
               "type": "time"
             },
@@ -1450,7 +1450,7 @@
           "groupBy": [
             {
               "params": [
-                "20s"
+                "$inter"
               ],
               "type": "time"
             },
@@ -1499,7 +1499,7 @@
           "groupBy": [
             {
               "params": [
-                "20s"
+                "$inter"
               ],
               "type": "time"
             },
@@ -1601,9 +1601,9 @@
       {
         "auto": true,
         "auto_count": 100,
-        "auto_min": "30s",
+        "auto_min": "20s",
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "auto",
           "value": "$__auto_interval_inter"
         },
@@ -1616,6 +1616,11 @@
             "selected": true,
             "text": "auto",
             "value": "$__auto_interval_inter"
+          },
+          {
+            "selected": false,
+            "text": "20s",
+            "value": "20s"
           },
           {
             "selected": false,
@@ -1668,7 +1673,7 @@
             "value": "30d"
           }
         ],
-        "query": "1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
+        "query": "20s,1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
         "queryValue": "",
         "refresh": 2,
         "skipUrlSync": false,
@@ -1701,6 +1706,7 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
+        "definition": "",
         "error": null,
         "hide": 0,
         "includeAll": true,
@@ -1723,6 +1729,7 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
+        "definition": "",
         "error": null,
         "hide": 0,
         "includeAll": true,
@@ -1745,6 +1752,7 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
+        "definition": "",
         "error": null,
         "hide": 0,
         "includeAll": true,
@@ -1767,6 +1775,7 @@
         "allValue": "",
         "current": {},
         "datasource": "${DS_INFLUXDB}",
+        "definition": "",
         "error": null,
         "hide": 0,
         "includeAll": true,
@@ -1782,43 +1791,33 @@
         "tagValuesQuery": "show tag values FROM vsphere_vm_cpu with key = vmname WHERE guest=$tag",
         "tags": [
           {
-            "selected": false,
             "text": "centos64"
           },
           {
-            "selected": false,
             "text": "freebsd64"
           },
           {
-            "selected": false,
             "text": "other26xLinux64"
           },
           {
-            "selected": false,
             "text": "other3xLinux64"
           },
           {
-            "selected": false,
             "text": "otherGuest64"
           },
           {
-            "selected": false,
             "text": "otherLinux64"
           },
           {
-            "selected": false,
             "text": "ubuntu64"
           },
           {
-            "selected": false,
             "text": "vmkernel65"
           },
           {
-            "selected": false,
             "text": "windows9Server64"
           },
           {
-            "selected": false,
             "text": "windows9_64"
           }
         ],
@@ -1829,7 +1828,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -1859,5 +1858,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - VMs",
   "uid": "hNDB_E0ik",
-  "version": 4
+  "version": 6
 }

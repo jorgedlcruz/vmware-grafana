@@ -65,7 +65,7 @@
   "gnetId": 8159,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1610397613691,
+  "iteration": 1612636954278,
   "links": [
     {
       "asDropdown": true,
@@ -401,7 +401,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "$inter"
               ],
               "type": "time"
             },
@@ -438,7 +438,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "$inter"
               ],
               "type": "time"
             },
@@ -475,7 +475,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "$inter"
               ],
               "type": "time"
             },
@@ -512,7 +512,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "$inter"
               ],
               "type": "time"
             },
@@ -549,7 +549,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "$inter"
               ],
               "type": "time"
             },
@@ -735,7 +735,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "$inter"
               ],
               "type": "time"
             },
@@ -749,7 +749,7 @@
           "measurement": "vsphere_host_sys",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT last(\"uptime_latest\") AS \"Uptime\" FROM \"vsphere_host_sys\" WHERE (\"vcenter\" =~ /^$vcenter$/ AND \"clustername\" =~ /^$clustername$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "query": "SELECT last(\"uptime_latest\") AS \"Uptime\" FROM \"vsphere_host_sys\" WHERE (\"vcenter\" =~ /^$vcenter$/ AND \"clustername\" =~ /^$clustername$/) AND $timeFilter GROUP BY time($inter) fill(null)",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "table",
@@ -791,7 +791,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "$inter"
               ],
               "type": "time"
             },
@@ -805,7 +805,7 @@
           "measurement": "vsphere_host_cpu",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT last(\"usage_average\") FROM \"vsphere_host_cpu\" WHERE (\"vcenter\" =~ /^$vcenter$/ AND \"clustername\" =~ /^$clustername$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+          "query": "SELECT last(\"usage_average\") FROM \"vsphere_host_cpu\" WHERE (\"vcenter\" =~ /^$vcenter$/ AND \"clustername\" =~ /^$clustername$/) AND $timeFilter GROUP BY time($inter) fill(none)",
           "rawQuery": false,
           "refId": "D",
           "resultFormat": "table",
@@ -847,7 +847,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "$inter"
               ],
               "type": "time"
             },
@@ -861,7 +861,7 @@
           "measurement": "vsphere_host_mem",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT last(\"usage_average\") FROM \"vsphere_host_cpu\" WHERE (\"vcenter\" =~ /^$vcenter$/ AND \"clustername\" =~ /^$clustername$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+          "query": "SELECT last(\"usage_average\") FROM \"vsphere_host_cpu\" WHERE (\"vcenter\" =~ /^$vcenter$/ AND \"clustername\" =~ /^$clustername$/) AND $timeFilter GROUP BY time($inter) fill(none)",
           "rawQuery": false,
           "refId": "B",
           "resultFormat": "table",
@@ -961,7 +961,7 @@
           "groupBy": [
             {
               "params": [
-                "5m"
+                "$inter"
               ],
               "type": "time"
             },
@@ -981,7 +981,7 @@
           "measurement": "vsphere_host_cpu",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT last(\"usagemhz_average\") FROM \"vsphere_host_cpu\" WHERE (\"clustername\" =~ /^$clustername$/) AND $timeFilter GROUP BY time($__interval), \"clustername\" fill(none)",
+          "query": "SELECT last(\"usagemhz_average\") FROM \"vsphere_host_cpu\" WHERE (\"clustername\" =~ /^$clustername$/) AND $timeFilter GROUP BY time($inter), \"clustername\" fill(none)",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1029,7 +1029,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:258",
+          "$$hashKey": "object:312",
           "format": "percent",
           "label": "Usage Average %",
           "logBase": 1,
@@ -1038,7 +1038,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:259",
+          "$$hashKey": "object:313",
           "format": "short",
           "label": "Usage Avg. %",
           "logBase": 1,
@@ -1111,7 +1111,7 @@
           "groupBy": [
             {
               "params": [
-                "5m"
+                "$inter"
               ],
               "type": "time"
             },
@@ -1131,7 +1131,7 @@
           "measurement": "vsphere_host_mem",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT last(\"totalCapacity_average\") * (last(\"usage_average\")) / 100 * 1024 FROM \"vsphere_host_mem\" WHERE  (\"clustername\" =~ /^$clustername$/) AND $timeFilter GROUP BY time($__interval), \"clustername\"  fill(none)",
+          "query": "SELECT last(\"totalCapacity_average\") * (last(\"usage_average\")) / 100 * 1024 FROM \"vsphere_host_mem\" WHERE  (\"clustername\" =~ /^$clustername$/) AND $timeFilter GROUP BY time($inter), \"clustername\"  fill(none)",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1184,7 +1184,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:268",
+          "$$hashKey": "object:444",
           "decimals": 0,
           "format": "percent",
           "label": "Usage Average %",
@@ -1194,7 +1194,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:269",
+          "$$hashKey": "object:445",
           "format": "short",
           "label": "",
           "logBase": 1,
@@ -1274,7 +1274,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "$inter"
               ],
               "type": "time"
             },
@@ -1287,7 +1287,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT last(\"used_latest\") * (100 / last(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) , \"source\"  fill(none)",
+          "query": "SELECT last(\"used_latest\") * (100 / last(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) , \"source\"  fill(none)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1370,7 +1370,7 @@
           "groupBy": [
             {
               "params": [
-                "5m"
+                "$inter"
               ],
               "type": "time"
             },
@@ -1390,7 +1390,7 @@
           "measurement": "vsphere_host_net",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"usage_average\") FROM \"vsphere_host_cpu\" WHERE \"esxhostname\" = ($esxi) AND $timeFilter GROUP BY time($__interval), \"host\" fill(none)",
+          "query": "SELECT mean(\"usage_average\") FROM \"vsphere_host_cpu\" WHERE \"esxhostname\" = ($esxi) AND $timeFilter GROUP BY time($inter), \"host\" fill(none)",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1422,7 +1422,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "$inter"
               ],
               "type": "time"
             },
@@ -1442,7 +1442,7 @@
           "measurement": "vsphere_host_net",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"usage_average\") FROM \"vsphere_host_cpu\" WHERE \"esxhostname\" = ($esxi) AND $timeFilter GROUP BY time($__interval), \"host\" fill(none)",
+          "query": "SELECT mean(\"usage_average\") FROM \"vsphere_host_cpu\" WHERE \"esxhostname\" = ($esxi) AND $timeFilter GROUP BY time($inter), \"host\" fill(none)",
           "rawQuery": false,
           "refId": "B",
           "resultFormat": "time_series",
@@ -1489,7 +1489,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:409",
+          "$$hashKey": "object:607",
           "format": "KBs",
           "label": "Usage Network MBps",
           "logBase": 1,
@@ -1498,7 +1498,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:410",
+          "$$hashKey": "object:608",
           "format": "short",
           "label": "Usage Avg. %",
           "logBase": 1,
@@ -1569,7 +1569,7 @@
           "groupBy": [
             {
               "params": [
-                "5m"
+                "$inter"
               ],
               "type": "time"
             },
@@ -1589,7 +1589,7 @@
           "measurement": "vsphere_host_storageAdapter",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"usage_average\") FROM \"vsphere_host_cpu\" WHERE \"esxhostname\" = ($esxi) AND $timeFilter GROUP BY time($__interval), \"host\" fill(none)",
+          "query": "SELECT mean(\"usage_average\") FROM \"vsphere_host_cpu\" WHERE \"esxhostname\" = ($esxi) AND $timeFilter GROUP BY time($inter), \"host\" fill(none)",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1621,7 +1621,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "$inter"
               ],
               "type": "time"
             },
@@ -1641,7 +1641,7 @@
           "measurement": "vsphere_host_storageAdapter",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"usage_average\") FROM \"vsphere_host_cpu\" WHERE \"esxhostname\" = ($esxi) AND $timeFilter GROUP BY time($__interval), \"host\" fill(none)",
+          "query": "SELECT mean(\"usage_average\") FROM \"vsphere_host_cpu\" WHERE \"esxhostname\" = ($esxi) AND $timeFilter GROUP BY time($inter), \"host\" fill(none)",
           "rawQuery": false,
           "refId": "B",
           "resultFormat": "time_series",
@@ -1688,7 +1688,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:550",
+          "$$hashKey": "object:770",
           "decimals": 0,
           "format": "ms",
           "label": "ms",
@@ -1698,7 +1698,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:551",
+          "$$hashKey": "object:771",
           "format": "short",
           "label": "Usage Avg. %",
           "logBase": 1,
@@ -1793,7 +1793,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "$__interval"
+                    "$inter"
                   ],
                   "type": "time"
                 },
@@ -1807,7 +1807,7 @@
               "measurement": "vsphere_datastore_disk",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -1910,7 +1910,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "$__interval"
+                    "$inter"
                   ],
                   "type": "time"
                 },
@@ -1924,7 +1924,7 @@
               "measurement": "vsphere_datastore_disk",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -2027,7 +2027,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "$__interval"
+                    "$inter"
                   ],
                   "type": "time"
                 },
@@ -2041,7 +2041,7 @@
               "measurement": "vsphere_datastore_disk",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -2144,7 +2144,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "$__interval"
+                    "$inter"
                   ],
                   "type": "time"
                 },
@@ -2158,7 +2158,7 @@
               "measurement": "vsphere_datastore_disk",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -2261,7 +2261,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "$__interval"
+                    "$inter"
                   ],
                   "type": "time"
                 },
@@ -2275,7 +2275,7 @@
               "measurement": "vsphere_datastore_disk",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -2378,7 +2378,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "$__interval"
+                    "$inter"
                   ],
                   "type": "time"
                 },
@@ -2392,7 +2392,7 @@
               "measurement": "vsphere_datastore_disk",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -2495,7 +2495,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "$__interval"
+                    "$inter"
                   ],
                   "type": "time"
                 },
@@ -2509,7 +2509,7 @@
               "measurement": "vsphere_datastore_disk",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -2612,7 +2612,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "$__interval"
+                    "$inter"
                   ],
                   "type": "time"
                 },
@@ -2626,7 +2626,7 @@
               "measurement": "vsphere_datastore_disk",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -2729,7 +2729,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "$__interval"
+                    "$inter"
                   ],
                   "type": "time"
                 },
@@ -2743,7 +2743,7 @@
               "measurement": "vsphere_datastore_disk",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -2846,7 +2846,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "$__interval"
+                    "$inter"
                   ],
                   "type": "time"
                 },
@@ -2860,7 +2860,7 @@
               "measurement": "vsphere_datastore_disk",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -2963,7 +2963,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "$__interval"
+                    "$inter"
                   ],
                   "type": "time"
                 },
@@ -2977,7 +2977,7 @@
               "measurement": "vsphere_datastore_disk",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -3080,7 +3080,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "$__interval"
+                    "$inter"
                   ],
                   "type": "time"
                 },
@@ -3094,7 +3094,7 @@
               "measurement": "vsphere_datastore_disk",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -3197,7 +3197,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "$__interval"
+                    "$inter"
                   ],
                   "type": "time"
                 },
@@ -3211,7 +3211,7 @@
               "measurement": "vsphere_datastore_disk",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -3314,7 +3314,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "$__interval"
+                    "$inter"
                   ],
                   "type": "time"
                 },
@@ -3328,7 +3328,7 @@
               "measurement": "vsphere_datastore_disk",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -3431,7 +3431,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "$__interval"
+                    "$inter"
                   ],
                   "type": "time"
                 },
@@ -3445,7 +3445,7 @@
               "measurement": "vsphere_datastore_disk",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -3548,7 +3548,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "$__interval"
+                    "$inter"
                   ],
                   "type": "time"
                 },
@@ -3562,7 +3562,7 @@
               "measurement": "vsphere_datastore_disk",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -3665,7 +3665,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "$__interval"
+                    "$inter"
                   ],
                   "type": "time"
                 },
@@ -3679,7 +3679,7 @@
               "measurement": "vsphere_datastore_disk",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -3782,7 +3782,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "$__interval"
+                    "$inter"
                   ],
                   "type": "time"
                 },
@@ -3796,7 +3796,7 @@
               "measurement": "vsphere_datastore_disk",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -3899,7 +3899,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "$__interval"
+                    "$inter"
                   ],
                   "type": "time"
                 },
@@ -3913,7 +3913,7 @@
               "measurement": "vsphere_datastore_disk",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -4020,7 +4020,7 @@
           "groupBy": [
             {
               "params": [
-                "20s"
+                "$inter"
               ],
               "type": "time"
             },
@@ -4040,7 +4040,7 @@
           "measurement": "vsphere_host_cpu",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"usage_average\") FROM \"vsphere_host_cpu\" WHERE \"esxhostname\" = ($esxi) AND $timeFilter GROUP BY time($__interval), \"host\" fill(none)",
+          "query": "SELECT mean(\"usage_average\") FROM \"vsphere_host_cpu\" WHERE \"esxhostname\" = ($esxi) AND $timeFilter GROUP BY time($inter), \"host\" fill(none)",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -4087,7 +4087,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:929",
+          "$$hashKey": "object:911",
           "format": "percent",
           "label": "CPU Usage Avg. %",
           "logBase": 1,
@@ -4096,7 +4096,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:930",
+          "$$hashKey": "object:912",
           "format": "short",
           "label": "",
           "logBase": 1,
@@ -4167,7 +4167,7 @@
           "groupBy": [
             {
               "params": [
-                "20s"
+                "$inter"
               ],
               "type": "time"
             },
@@ -4232,7 +4232,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1027",
+          "$$hashKey": "object:1031",
           "format": "percent",
           "label": "Memory Usage Avg. %",
           "logBase": 1,
@@ -4241,7 +4241,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1028",
+          "$$hashKey": "object:1032",
           "format": "short",
           "label": "",
           "logBase": 1,
@@ -4312,7 +4312,7 @@
           "groupBy": [
             {
               "params": [
-                "20s"
+                "$inter"
               ],
               "type": "time"
             },
@@ -4377,7 +4377,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1129",
+          "$$hashKey": "object:1155",
           "format": "KBs",
           "label": "",
           "logBase": 1,
@@ -4386,7 +4386,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1130",
+          "$$hashKey": "object:1156",
           "format": "short",
           "label": "",
           "logBase": 1,
@@ -4457,7 +4457,7 @@
           "groupBy": [
             {
               "params": [
-                "20s"
+                "$inter"
               ],
               "type": "time"
             },
@@ -4507,7 +4507,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "$inter"
               ],
               "type": "time"
             },
@@ -4572,7 +4572,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1274",
+          "$$hashKey": "object:1322",
           "format": "percent",
           "label": "CPU Usage",
           "logBase": 1,
@@ -4581,7 +4581,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1275",
+          "$$hashKey": "object:1323",
           "format": "bytes",
           "label": "RAM Usage",
           "logBase": 1,
@@ -4669,7 +4669,7 @@
           "groupBy": [
             {
               "params": [
-                "20s"
+                "$inter"
               ],
               "type": "time"
             },
@@ -4734,7 +4734,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1372",
+          "$$hashKey": "object:1442",
           "format": "percent",
           "label": "CPU Usage % per VM",
           "logBase": 1,
@@ -4743,7 +4743,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1373",
+          "$$hashKey": "object:1443",
           "format": "short",
           "label": "",
           "logBase": 1,
@@ -4816,7 +4816,7 @@
           "groupBy": [
             {
               "params": [
-                "20s"
+                "$inter"
               ],
               "type": "time"
             },
@@ -4863,7 +4863,7 @@
       ],
       "thresholds": [
         {
-          "$$hashKey": "object:1502",
+          "$$hashKey": "object:1594",
           "colorMode": "warning",
           "fill": true,
           "line": true,
@@ -4872,7 +4872,7 @@
           "yaxis": "left"
         },
         {
-          "$$hashKey": "object:1503",
+          "$$hashKey": "object:1595",
           "colorMode": "critical",
           "fill": true,
           "line": true,
@@ -4900,7 +4900,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1474",
+          "$$hashKey": "object:1566",
           "format": "percent",
           "label": "Memory Usage Avg. %",
           "logBase": 1,
@@ -4909,7 +4909,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1475",
+          "$$hashKey": "object:1567",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -4982,7 +4982,7 @@
           "groupBy": [
             {
               "params": [
-                "20s"
+                "$inter"
               ],
               "type": "time"
             },
@@ -5002,7 +5002,7 @@
           "measurement": "vsphere_vm_cpu",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"ready_summation\") FROM \"vsphere_vm_cpu\" WHERE (\"vmname\" =~ /^$virtualmachine$/) AND $timeFilter GROUP BY time($__interval), \"vmname\" fill(none)",
+          "query": "SELECT mean(\"ready_summation\") FROM \"vsphere_vm_cpu\" WHERE (\"vmname\" =~ /^$virtualmachine$/) AND $timeFilter GROUP BY time($inter), \"vmname\" fill(none)",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -5049,7 +5049,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1698",
+          "$$hashKey": "object:1702",
           "decimals": null,
           "format": "ms",
           "label": "CPU READY in ms",
@@ -5059,7 +5059,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1699",
+          "$$hashKey": "object:1703",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -5133,7 +5133,7 @@
           "groupBy": [
             {
               "params": [
-                "20s"
+                "$inter"
               ],
               "type": "time"
             },
@@ -5198,7 +5198,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1800",
+          "$$hashKey": "object:1826",
           "format": "KBs",
           "label": "Net Usage Avg.",
           "logBase": 1,
@@ -5207,7 +5207,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1801",
+          "$$hashKey": "object:1827",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -5261,6 +5261,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "paceLength": 10,
       "percentage": false,
       "pluginVersion": "7.3.5",
@@ -5278,7 +5281,7 @@
           "groupBy": [
             {
               "params": [
-                "20s"
+                "$inter"
               ],
               "type": "time"
             },
@@ -5345,7 +5348,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1902",
+          "$$hashKey": "object:1950",
           "format": "iops",
           "label": "Block Read IOPS",
           "logBase": 1,
@@ -5354,7 +5357,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1903",
+          "$$hashKey": "object:1951",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -5408,6 +5411,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "paceLength": 10,
       "percentage": false,
       "pluginVersion": "7.3.5",
@@ -5425,7 +5431,7 @@
           "groupBy": [
             {
               "params": [
-                "20s"
+                "$inter"
               ],
               "type": "time"
             },
@@ -5492,7 +5498,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:2004",
+          "$$hashKey": "object:2074",
           "format": "iops",
           "label": "Block Write IOPS",
           "logBase": 1,
@@ -5501,7 +5507,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:2005",
+          "$$hashKey": "object:2075",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -5555,6 +5561,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "paceLength": 10,
       "percentage": false,
       "pluginVersion": "7.3.5",
@@ -5572,7 +5581,7 @@
           "groupBy": [
             {
               "params": [
-                "20s"
+                "$inter"
               ],
               "type": "time"
             },
@@ -5624,7 +5633,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "$inter"
               ],
               "type": "time"
             },
@@ -5691,7 +5700,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:2149",
+          "$$hashKey": "object:2241",
           "format": "ms",
           "label": "Block Latency Total",
           "logBase": 1,
@@ -5700,7 +5709,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:2150",
+          "$$hashKey": "object:2242",
           "decimals": null,
           "format": "short",
           "label": null,
@@ -5729,9 +5738,9 @@
       {
         "auto": true,
         "auto_count": 100,
-        "auto_min": "30s",
+        "auto_min": "20s",
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "auto",
           "value": "$__auto_interval_inter"
         },
@@ -5744,6 +5753,11 @@
             "selected": true,
             "text": "auto",
             "value": "$__auto_interval_inter"
+          },
+          {
+            "selected": false,
+            "text": "20s",
+            "value": "20s"
           },
           {
             "selected": false,
@@ -5796,7 +5810,8 @@
             "value": "30d"
           }
         ],
-        "query": "1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
+        "query": "20s,1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
+        "queryValue": "",
         "refresh": 2,
         "skipUrlSync": false,
         "type": "interval"
@@ -5949,5 +5964,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 5
+  "version": 8
 }
