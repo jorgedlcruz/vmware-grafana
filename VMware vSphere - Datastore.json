@@ -20,13 +20,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "7.3.5"
-    },
-    {
-      "type": "panel",
-      "id": "grafana-piechart-panel",
-      "name": "Pie Chart",
-      "version": "1.6.1"
+      "version": "7.5.3"
     },
     {
       "type": "datasource",
@@ -36,8 +30,20 @@
     },
     {
       "type": "panel",
+      "id": "piechart",
+      "name": "Pie chart v2",
+      "version": ""
+    },
+    {
+      "type": "panel",
       "id": "stat",
       "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
       "version": ""
     }
   ],
@@ -54,12 +60,12 @@
       }
     ]
   },
-  "description": "VMware vSphere Dashboard using the new Telegraf plugin (Grafana 7)",
+  "description": "VMware vSphere Dashboard - Datastore (Grafana 7.5 / new Time-Series Panel)",
   "editable": true,
   "gnetId": 8162,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1610398751786,
+  "iteration": 1618401923610,
   "links": [
     {
       "asDropdown": true,
@@ -82,7 +88,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "custom": {},
           "decimals": 0,
           "mappings": [],
           "max": 100,
@@ -132,9 +137,10 @@
           "fields": "",
           "values": false
         },
-        "showUnfilled": true
+        "showUnfilled": true,
+        "text": {}
       },
-      "pluginVersion": "7.3.5",
+      "pluginVersion": "7.5.3",
       "targets": [
         {
           "alias": "$tag_source",
@@ -199,7 +205,6 @@
       "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 2,
           "mappings": [
             {
@@ -211,7 +216,6 @@
             }
           ],
           "min": 0,
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -253,9 +257,10 @@
           "fields": "",
           "values": false
         },
+        "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.5",
+      "pluginVersion": "7.5.3",
       "targets": [
         {
           "alias": "Total Capacity",
@@ -363,26 +368,59 @@
       "type": "stat"
     },
     {
-      "aliasColors": {
-        "Free Space": "#5195ce",
-        "Used Space": "#ea6460"
-      },
-      "breakPoint": "50%",
       "cacheTimeout": null,
-      "combine": {
-        "label": "Others",
-        "threshold": 0
-      },
       "datasource": "${DS_INFLUXDB}",
-      "decimals": 2,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "color": {
+            "mode": "palette-classic"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "deckbytes"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Free Space"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Used Space"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
       },
-      "fontSize": "80%",
-      "format": "deckbytes",
       "gridPos": {
         "h": 8,
         "w": 15,
@@ -391,18 +429,32 @@
       },
       "id": 51,
       "interval": "1h",
-      "legend": {
-        "header": "",
-        "percentage": true,
-        "show": true,
-        "values": true
-      },
-      "legendType": "Right side",
       "links": [],
       "maxDataPoints": 3,
-      "nullPointMode": "connected",
-      "pieType": "donut",
-      "strokeWidth": "2",
+      "options": {
+        "displayLabels": [
+          "name",
+          "value"
+        ],
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "right",
+          "values": [
+            "value",
+            "percent"
+          ]
+        },
+        "pieType": "donut",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {}
+      },
       "targets": [
         {
           "alias": "Used Space",
@@ -507,12 +559,85 @@
       ],
       "timeFrom": "3h",
       "title": "Capacity Summary",
-      "type": "grafana-piechart-panel",
-      "valueName": "current"
+      "type": "piechart"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 93
+      },
+      "id": 151,
+      "panels": [],
+      "title": "Contact me:",
+      "type": "row"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 19,
+        "y": 94
+      },
+      "id": 149,
+      "options": {
+        "content": "<a href=\"https://www.jorgedelacruz.es\"><img src=\"https://www.jorgedelacruz.es/wp-content/uploads/2019/04/jorgedelacruz-banner_2efede4ef704c939e63a3763231f5961.png\"></a>",
+        "mode": "html"
+      },
+      "pluginVersion": "7.5.3",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "transparent": true,
+      "type": "text"
     }
   ],
   "refresh": "5m",
-  "schemaVersion": 26,
+  "schemaVersion": 27,
   "style": "dark",
   "tags": [
     "VMware",
@@ -527,6 +652,7 @@
           "text": "default",
           "value": "default"
         },
+        "description": null,
         "error": null,
         "hide": 0,
         "includeAll": false,
@@ -544,6 +670,8 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
+        "definition": "",
+        "description": null,
         "error": null,
         "hide": 0,
         "includeAll": true,
@@ -566,6 +694,8 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
+        "definition": "",
+        "description": null,
         "error": null,
         "hide": 0,
         "includeAll": true,
@@ -588,6 +718,8 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
+        "definition": "",
+        "description": null,
         "error": null,
         "hide": 0,
         "includeAll": true,
@@ -610,6 +742,8 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_INFLUXDB}",
+        "definition": "",
+        "description": null,
         "error": null,
         "hide": 0,
         "includeAll": true,
@@ -631,7 +765,7 @@
     ]
   },
   "time": {
-    "from": "now-12h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -661,5 +795,5 @@
   "timezone": "browser",
   "title": "VMware vSphere - Datastore",
   "uid": "nr_QGP0iz",
-  "version": 2
+  "version": 4
 }
