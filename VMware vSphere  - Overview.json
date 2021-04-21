@@ -71,7 +71,7 @@
   "gnetId": 8159,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1618394025634,
+  "iteration": 1619014738036,
   "links": [
     {
       "asDropdown": true,
@@ -995,6 +995,12 @@
             },
             {
               "params": [
+                "cpu"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
                 "none"
               ],
               "type": "fill"
@@ -1026,6 +1032,12 @@
               "key": "clustername",
               "operator": "=~",
               "value": "/^$clustername$/"
+            },
+            {
+              "condition": "AND",
+              "key": "cpu",
+              "operator": "=",
+              "value": "instance-total"
             }
           ]
         }
@@ -4003,6 +4015,12 @@
               "key": "esxhostname",
               "operator": "=~",
               "value": "/^$esxi$/"
+            },
+            {
+              "condition": "AND",
+              "key": "cpu",
+              "operator": "=",
+              "value": "instance-total"
             }
           ]
         }
@@ -4384,6 +4402,12 @@
               "key": "vcenter",
               "operator": "=~",
               "value": "/^$vcenter$/"
+            },
+            {
+              "condition": "AND",
+              "key": "cpu",
+              "operator": "=",
+              "value": "instance-total"
             }
           ]
         },
@@ -4545,6 +4569,12 @@
             },
             {
               "params": [
+                "cpu"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
                 "none"
               ],
               "type": "fill"
@@ -4574,6 +4604,12 @@
               "key": "vmname",
               "operator": "=~",
               "value": "/^$virtualmachine$/"
+            },
+            {
+              "condition": "AND",
+              "key": "cpu",
+              "operator": "=",
+              "value": "instance-total"
             }
           ]
         }
@@ -5460,7 +5496,7 @@
         "auto_count": 100,
         "auto_min": "20s",
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "auto",
           "value": "$__auto_interval_inter"
         },
@@ -5690,5 +5726,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 10
+  "version": 12
 }
