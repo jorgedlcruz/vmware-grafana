@@ -71,7 +71,7 @@
   "gnetId": 8159,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1619085932886,
+  "iteration": 1619098072100,
   "links": [
     {
       "asDropdown": true,
@@ -139,103 +139,18 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "CPU Usage"
+              "options": "vCenter Summary"
             },
             "properties": [
               {
                 "id": "unit",
-                "value": "percent"
+                "value": "locale"
               },
               {
-                "id": "thresholds",
+                "id": "color",
                 "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "semi-dark-green",
-                      "value": null
-                    },
-                    {
-                      "color": "dark-orange",
-                      "value": 70
-                    },
-                    {
-                      "color": "dark-red",
-                      "value": 85
-                    }
-                  ]
-                }
-              },
-              {
-                "id": "decimals",
-                "value": 2
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "RAM Usage"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "percent"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "semi-dark-green",
-                      "value": null
-                    },
-                    {
-                      "color": "dark-orange",
-                      "value": 70
-                    },
-                    {
-                      "color": "dark-red",
-                      "value": 85
-                    }
-                  ]
-                }
-              },
-              {
-                "id": "decimals",
-                "value": 2
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "vsphere_cluster_mem.vCenter"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "none"
-              },
-              {
-                "id": "decimals",
-                "value": 0
-              },
-              {
-                "id": "displayName",
-                "value": "vCenter Summary"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "dark-purple",
-                      "value": null
-                    }
-                  ]
+                  "fixedColor": "dark-purple",
+                  "mode": "fixed"
                 }
               }
             ]
@@ -243,31 +158,18 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "vsphere_cluster_cpu.Cluster"
+              "options": "ESXi Summary"
             },
             "properties": [
               {
                 "id": "unit",
-                "value": "none"
+                "value": "locale"
               },
               {
-                "id": "decimals",
-                "value": 0
-              },
-              {
-                "id": "displayName",
-                "value": "Cluster Summary"
-              },
-              {
-                "id": "thresholds",
+                "id": "color",
                 "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "dark-purple",
-                      "value": null
-                    }
-                  ]
+                  "fixedColor": "dark-purple",
+                  "mode": "fixed"
                 }
               }
             ]
@@ -275,63 +177,18 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "vsphere_host_cpu.ESXi"
+              "options": "VM Summary"
             },
             "properties": [
               {
                 "id": "unit",
-                "value": "none"
+                "value": "locale"
               },
               {
-                "id": "decimals",
-                "value": 0
-              },
-              {
-                "id": "thresholds",
+                "id": "color",
                 "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "dark-purple",
-                      "value": null
-                    }
-                  ]
-                }
-              },
-              {
-                "id": "displayName",
-                "value": "ESXi Summary"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "vsphere_vm_cpu.VM"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "none"
-              },
-              {
-                "id": "decimals",
-                "value": 0
-              },
-              {
-                "id": "displayName",
-                "value": "VM Summary"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "dark-purple",
-                      "value": null
-                    }
-                  ]
+                  "fixedColor": "dark-purple",
+                  "mode": "fixed"
                 }
               }
             ]
@@ -339,31 +196,37 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "vsphere_datastore_disk.Datastore"
+              "options": "Datastore Summary"
             },
             "properties": [
               {
                 "id": "unit",
-                "value": "none"
+                "value": "locale"
               },
               {
-                "id": "decimals",
-                "value": 0
-              },
-              {
-                "id": "displayName",
-                "value": "Datastore Summary"
-              },
-              {
-                "id": "thresholds",
+                "id": "color",
                 "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "dark-purple",
-                      "value": null
-                    }
-                  ]
+                  "fixedColor": "dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Cluster Summary"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "locale"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-purple",
+                  "mode": "fixed"
                 }
               }
             ]
@@ -403,6 +266,7 @@
       "pluginVersion": "7.5.3",
       "targets": [
         {
+          "alias": "vCenter Summary",
           "groupBy": [
             {
               "params": [
@@ -440,6 +304,7 @@
           "tags": []
         },
         {
+          "alias": "Cluster Summary",
           "groupBy": [
             {
               "params": [
@@ -456,7 +321,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT count(distinct(\"clustername\")) AS \"Cluster\"  FROM (SELECT \"overhead_average\", \"vcenter\" FROM  \"vsphere_cluster_mem\" WHERE $timeFilter)",
+          "query": "SELECT count(distinct(\"clustername\")) AS \"Cluster\"  FROM (SELECT \"totalmhz_average\", \"clustername\" FROM  \"vsphere_cluster_cpu\" WHERE $timeFilter)",
           "rawQuery": true,
           "refId": "E",
           "resultFormat": "time_series",
@@ -477,6 +342,7 @@
           "tags": []
         },
         {
+          "alias": "ESXi Summary",
           "groupBy": [
             {
               "params": [
@@ -514,6 +380,7 @@
           "tags": []
         },
         {
+          "alias": "VM Summary",
           "groupBy": [
             {
               "params": [
@@ -551,6 +418,7 @@
           "tags": []
         },
         {
+          "alias": "Datastore Summary",
           "groupBy": [
             {
               "params": [
@@ -5502,7 +5370,7 @@
         "auto_count": 100,
         "auto_min": "20s",
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "auto",
           "value": "$__auto_interval_inter"
         },
@@ -5732,5 +5600,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 14
+  "version": 15
 }
