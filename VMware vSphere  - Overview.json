@@ -71,7 +71,7 @@
   "gnetId": 8159,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1619014738036,
+  "iteration": 1619085932886,
   "links": [
     {
       "asDropdown": true,
@@ -823,7 +823,7 @@
               },
               {
                 "params": [],
-                "type": "last"
+                "type": "mean"
               },
               {
                 "params": [
@@ -844,6 +844,12 @@
               "key": "clustername",
               "operator": "=~",
               "value": "/^$clustername$/"
+            },
+            {
+              "condition": "AND",
+              "key": "cpu",
+              "operator": "=",
+              "value": "instance-total"
             }
           ]
         },
@@ -1023,7 +1029,7 @@
               },
               {
                 "params": [],
-                "type": "last"
+                "type": "mean"
               }
             ]
           ],
@@ -5496,7 +5502,7 @@
         "auto_count": 100,
         "auto_min": "20s",
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "auto",
           "value": "$__auto_interval_inter"
         },
@@ -5726,5 +5732,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 12
+  "version": 14
 }
