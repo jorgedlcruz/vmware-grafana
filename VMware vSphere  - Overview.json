@@ -1,58 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_INFLUXDB",
-      "label": "InfluxDB",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "influxdb",
-      "pluginName": "InfluxDB"
-    }
-  ],
-  "__requires": [
-    {
-      "type": "panel",
-      "id": "bargauge",
-      "name": "Bar gauge",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "gauge",
-      "name": "Gauge",
-      "version": ""
-    },
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "7.5.3"
-    },
-    {
-      "type": "datasource",
-      "id": "influxdb",
-      "name": "InfluxDB",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "text",
-      "name": "Text",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "timeseries",
-      "name": "Time series",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -62,16 +8,23 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
-  "description": "VMware vSphere Dashboard (Grafana 7.5 / new Time-Series Panel)",
+  "description": "VMware vSphere Dashboard (Grafana 8.3 / InfluxDB v2.0)",
   "editable": true,
+  "fiscalYearStartMonth": 0,
   "gnetId": 8159,
   "graphTooltip": 0,
-  "id": null,
-  "iteration": 1619098072100,
+  "id": 6,
+  "iteration": 1638664932752,
   "links": [
     {
       "asDropdown": true,
@@ -86,34 +39,38 @@
       "type": "dashboards"
     }
   ],
+  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
-      "datasource": "${DS_INFLUXDB}",
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
         "y": 0
       },
-      "id": 61,
+      "id": 171,
       "panels": [],
-      "title": "Cluster Status",
+      "title": "Datacenter Overview",
       "type": "row"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
-          "decimals": 1,
+          "color": {
+            "fixedColor": "dark-purple",
+            "mode": "fixed"
+          },
+          "decimals": 0,
           "mappings": [
             {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
             }
           ],
           "thresholds": {
@@ -122,112 +79,69 @@
               {
                 "color": "#d44a3a",
                 "value": null
-              },
-              {
-                "color": "rgba(237, 129, 40, 0.89)",
-                "value": 0.001
-              },
-              {
-                "color": "#1F60C4",
-                "value": 0.002
               }
             ]
           },
-          "unit": "s"
+          "unit": "none"
         },
         "overrides": [
           {
             "matcher": {
-              "id": "byName",
-              "options": "vCenter Summary"
+              "id": "byFrameRefID",
+              "options": "C"
             },
             "properties": [
               {
-                "id": "unit",
-                "value": "locale"
-              },
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-purple",
-                  "mode": "fixed"
-                }
+                "id": "displayName",
+                "value": "vCenter Summary"
               }
             ]
           },
           {
             "matcher": {
-              "id": "byName",
-              "options": "ESXi Summary"
+              "id": "byFrameRefID",
+              "options": "E"
             },
             "properties": [
               {
-                "id": "unit",
-                "value": "locale"
-              },
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-purple",
-                  "mode": "fixed"
-                }
+                "id": "displayName",
+                "value": "Cluster Summary"
               }
             ]
           },
           {
             "matcher": {
-              "id": "byName",
-              "options": "VM Summary"
+              "id": "byFrameRefID",
+              "options": "F"
             },
             "properties": [
               {
-                "id": "unit",
-                "value": "locale"
-              },
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-purple",
-                  "mode": "fixed"
-                }
+                "id": "displayName",
+                "value": "ESXi Summary"
               }
             ]
           },
           {
             "matcher": {
-              "id": "byName",
-              "options": "Datastore Summary"
+              "id": "byFrameRefID",
+              "options": "G"
             },
             "properties": [
               {
-                "id": "unit",
-                "value": "locale"
-              },
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-purple",
-                  "mode": "fixed"
-                }
+                "id": "displayName",
+                "value": "VM Summary"
               }
             ]
           },
           {
             "matcher": {
-              "id": "byName",
-              "options": "Cluster Summary"
+              "id": "byFrameRefID",
+              "options": "H"
             },
             "properties": [
               {
-                "id": "unit",
-                "value": "locale"
-              },
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-purple",
-                  "mode": "fixed"
-                }
+                "id": "displayName",
+                "value": "Datastore Summary"
               }
             ]
           }
@@ -240,7 +154,6 @@
         "y": 1
       },
       "id": 142,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -263,10 +176,14 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.3",
+      "pluginVersion": "8.3.0",
       "targets": [
         {
           "alias": "vCenter Summary",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "groupBy": [
             {
               "params": [
@@ -283,7 +200,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT count(distinct(\"vcenter\")) AS \"vCenter\" FROM (SELECT \"overhead_average\", \"vcenter\" FROM  \"vsphere_cluster_mem\" WHERE $timeFilter)",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> keep(columns: [\"vcenter\"])\r\n  |> distinct(column: \"vcenter\")\r\n  |> group()\r\n  |> count()\r\n",
           "rawQuery": true,
           "refId": "C",
           "resultFormat": "time_series",
@@ -305,6 +222,10 @@
         },
         {
           "alias": "Cluster Summary",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "groupBy": [
             {
               "params": [
@@ -321,7 +242,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT count(distinct(\"clustername\")) AS \"Cluster\"  FROM (SELECT \"totalmhz_average\", \"clustername\" FROM  \"vsphere_cluster_cpu\" WHERE $timeFilter)",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> keep(columns: [\"clustername\"])\r\n  |> distinct(column: \"clustername\")\r\n  |> group()\r\n  |> count()\r\n",
           "rawQuery": true,
           "refId": "E",
           "resultFormat": "time_series",
@@ -343,6 +264,10 @@
         },
         {
           "alias": "ESXi Summary",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "groupBy": [
             {
               "params": [
@@ -359,7 +284,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT count(distinct(\"esxhostname\")) AS \"ESXi\" FROM (SELECT \"coreUtilization_average\", \"esxhostname\" FROM  \"vsphere_host_cpu\" WHERE $timeFilter)",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> keep(columns: [\"esxhostname\"])\r\n  |> distinct(column: \"esxhostname\")\r\n  |> group()\r\n  |> count()",
           "rawQuery": true,
           "refId": "F",
           "resultFormat": "time_series",
@@ -381,6 +306,10 @@
         },
         {
           "alias": "VM Summary",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "groupBy": [
             {
               "params": [
@@ -397,7 +326,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT count(distinct(\"vmname\")) AS \"VM\" FROM (SELECT \"usage_average\", \"vmname\" FROM  \"vsphere_vm_cpu\" WHERE $timeFilter)",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_cpu\")\r\n  |> keep(columns: [\"vmname\"])\r\n  |> distinct(column: \"vmname\")\r\n  |> group()\r\n  |> count()",
           "rawQuery": true,
           "refId": "G",
           "resultFormat": "time_series",
@@ -419,6 +348,10 @@
         },
         {
           "alias": "Datastore Summary",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "groupBy": [
             {
               "params": [
@@ -435,7 +368,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT count(distinct(\"dsname\")) AS \"Datastore\" FROM (SELECT \"capacity_latest\", \"dsname\" FROM  \"vsphere_datastore_disk\" WHERE $timeFilter)",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_datastore_disk\")\r\n  |> keep(columns: [\"dsname\"])\r\n  |> distinct(column: \"dsname\")\r\n  |> group()\r\n  |> count()",
           "rawQuery": true,
           "refId": "H",
           "resultFormat": "time_series",
@@ -461,19 +394,30 @@
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "${DS_INFLUXDB}",
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "id": 176,
+      "title": "Cluster Overview",
+      "type": "row"
+    },
+    {
       "description": "",
       "fieldConfig": {
         "defaults": {
           "decimals": 1,
           "mappings": [
             {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
             }
           ],
           "thresholds": {
@@ -498,10 +442,14 @@
         "overrides": [
           {
             "matcher": {
-              "id": "byName",
-              "options": "CPU Usage"
+              "id": "byFrameRefID",
+              "options": "D"
             },
             "properties": [
+              {
+                "id": "displayName",
+                "value": "CPU Usage"
+              },
               {
                 "id": "unit",
                 "value": "percent"
@@ -525,19 +473,19 @@
                     }
                   ]
                 }
-              },
-              {
-                "id": "decimals",
-                "value": 2
               }
             ]
           },
           {
             "matcher": {
-              "id": "byName",
-              "options": "RAM Usage"
+              "id": "byFrameRefID",
+              "options": "B"
             },
             "properties": [
+              {
+                "id": "displayName",
+                "value": "RAM Usage"
+              },
               {
                 "id": "unit",
                 "value": "percent"
@@ -561,10 +509,18 @@
                     }
                   ]
                 }
-              },
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
               {
-                "id": "decimals",
-                "value": 2
+                "id": "displayName",
+                "value": "Uptime"
               }
             ]
           }
@@ -574,10 +530,9 @@
         "h": 4,
         "w": 8,
         "x": 0,
-        "y": 5
+        "y": 6
       },
       "id": 28,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -600,10 +555,14 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.5.3",
+      "pluginVersion": "8.3.0",
       "repeat": "clustername",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "groupBy": [
             {
               "params": [
@@ -621,7 +580,7 @@
           "measurement": "vsphere_host_sys",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT last(\"uptime_latest\") AS \"Uptime\" FROM \"vsphere_host_sys\" WHERE (\"vcenter\" =~ /^$vcenter$/ AND \"clustername\" =~ /^$clustername$/) AND $timeFilter GROUP BY time($inter) fill(null)",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_sys\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"uptime_latest\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] =~ /${vcenter:regex}/)\r\n  |> filter(fn: (r) => r[\"clustername\"] =~ /${clustername:regex}/)\r\n  |> group(columns: [\"clustername\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "table",
@@ -660,6 +619,10 @@
           ]
         },
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "groupBy": [
             {
               "params": [
@@ -677,7 +640,7 @@
           "measurement": "vsphere_host_cpu",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT last(\"usage_average\") FROM \"vsphere_host_cpu\" WHERE (\"vcenter\" =~ /^$vcenter$/ AND \"clustername\" =~ /^$clustername$/) AND $timeFilter GROUP BY time($inter) fill(none)",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"usage_average\")\r\n  |> filter(fn: (r) => r[\"cpu\"] == \"instance-total\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] =~ /${vcenter:regex}/)\r\n  |> filter(fn: (r) => r[\"clustername\"] =~ /${clustername:regex}/)\r\n  |> group(columns: [\"clustername\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "D",
           "resultFormat": "table",
@@ -722,6 +685,10 @@
           ]
         },
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "groupBy": [
             {
               "params": [
@@ -739,7 +706,7 @@
           "measurement": "vsphere_host_mem",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT last(\"usage_average\") FROM \"vsphere_host_cpu\" WHERE (\"vcenter\" =~ /^$vcenter$/ AND \"clustername\" =~ /^$clustername$/) AND $timeFilter GROUP BY time($inter) fill(none)",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_mem\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"usage_average\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] =~ /${vcenter:regex}/)\r\n  |> filter(fn: (r) => r[\"clustername\"] =~ /${clustername:regex}/)\r\n  |> group(columns: [\"clustername\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "B",
           "resultFormat": "table",
@@ -783,7 +750,23 @@
       "type": "stat"
     },
     {
-      "datasource": "${DS_INFLUXDB}",
+      "collapsed": false,
+      "datasource": {
+        "type": "influxdb",
+        "uid": "gK_s8WTMk"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 10
+      },
+      "id": 61,
+      "panels": [],
+      "title": "Cluster Status",
+      "type": "row"
+    },
+    {
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -799,7 +782,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -808,7 +792,14 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "max": 100,
@@ -834,9 +825,10 @@
         "h": 5,
         "w": 6,
         "x": 0,
-        "y": 9
+        "y": 11
       },
       "id": 23,
+      "interval": "5m",
       "links": [],
       "options": {
         "graph": {},
@@ -845,7 +837,7 @@
           "displayMode": "hidden",
           "placement": "bottom"
         },
-        "tooltipOptions": {
+        "tooltip": {
           "mode": "multi"
         }
       },
@@ -853,6 +845,10 @@
       "targets": [
         {
           "alias": "$tag_clustername",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -883,7 +879,7 @@
           "measurement": "vsphere_host_cpu",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT last(\"usagemhz_average\") FROM \"vsphere_host_cpu\" WHERE (\"clustername\" =~ /^$clustername$/) AND $timeFilter GROUP BY time($inter), \"clustername\" fill(none)",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"usage_average\")\r\n  |> filter(fn: (r) => r[\"cpu\"] == \"instance-total\")\r\n  |> filter(fn: (r) => r[\"clustername\"] =~ /${clustername:regex}/)\r\n  |> group(columns: [\"clustername\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -916,14 +912,11 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Cluster CPU Usage %",
       "transformations": [],
       "type": "timeseries"
     },
     {
-      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -939,7 +932,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -948,7 +942,14 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": false
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "decimals": 0,
           "mappings": [],
@@ -975,9 +976,10 @@
         "h": 5,
         "w": 7,
         "x": 6,
-        "y": 9
+        "y": 11
       },
       "id": 26,
+      "interval": "5m",
       "links": [],
       "options": {
         "graph": {},
@@ -986,7 +988,7 @@
           "displayMode": "hidden",
           "placement": "bottom"
         },
-        "tooltipOptions": {
+        "tooltip": {
           "mode": "multi"
         }
       },
@@ -994,6 +996,10 @@
       "targets": [
         {
           "alias": "$tag_clustername",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -1018,7 +1024,7 @@
           "measurement": "vsphere_host_mem",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT last(\"totalCapacity_average\") * (last(\"usage_average\")) / 100 * 1024 FROM \"vsphere_host_mem\" WHERE  (\"clustername\" =~ /^$clustername$/) AND $timeFilter GROUP BY time($inter), \"clustername\"  fill(none)",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_mem\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"usage_average\")\r\n  |> filter(fn: (r) => r[\"clustername\"] =~ /${clustername:regex}/)\r\n  |> group(columns: [\"clustername\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1051,13 +1057,10 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Cluster RAM Usage in %",
       "type": "timeseries"
     },
     {
-      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1096,7 +1099,7 @@
         "h": 9,
         "w": 11,
         "x": 13,
-        "y": 9
+        "y": 11
       },
       "hideTimeOverride": false,
       "id": 123,
@@ -1115,10 +1118,14 @@
         "showUnfilled": true,
         "text": {}
       },
-      "pluginVersion": "7.5.3",
+      "pluginVersion": "8.3.0",
       "targets": [
         {
           "alias": "$tag_source",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "groupBy": [
             {
               "params": [
@@ -1135,7 +1142,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT last(\"used_latest\") * (100 / last(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) , \"source\"  fill(none)",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_datastore_disk\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"capacity_latest\" or r[\"_field\"] == \"used_latest\")\r\n  |> filter(fn: (r) => r[\"source\"] =~ /${datastore:regex}/)\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> map(fn: (r) => ({ r with  _value: float(v: r.used_latest) / float(v: r.capacity_latest) * 100.0 }))\r\n  |> group(columns: [\"source\",\"_field\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1157,12 +1164,10 @@
         }
       ],
       "timeFrom": "3h",
-      "timeShift": null,
       "title": "Datastores - Usage Capacity",
       "type": "bargauge"
     },
     {
-      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1178,7 +1183,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -1187,7 +1193,14 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "thresholds": {
@@ -1211,9 +1224,10 @@
         "h": 4,
         "w": 6,
         "x": 0,
-        "y": 14
+        "y": 16
       },
       "id": 90,
+      "interval": "5m",
       "links": [],
       "options": {
         "graph": {},
@@ -1222,7 +1236,7 @@
           "displayMode": "hidden",
           "placement": "bottom"
         },
-        "tooltipOptions": {
+        "tooltip": {
           "mode": "multi"
         }
       },
@@ -1230,6 +1244,10 @@
       "targets": [
         {
           "alias": "$tag_clustername - Received",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -1254,7 +1272,7 @@
           "measurement": "vsphere_host_net",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"usage_average\") FROM \"vsphere_host_cpu\" WHERE \"esxhostname\" = ($esxi) AND $timeFilter GROUP BY time($inter), \"host\" fill(none)",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_net\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"bytesRx_average\")\r\n  |> filter(fn: (r) => r[\"clustername\"] =~ /${clustername:regex}/)\r\n  |> group(columns: [\"clustername\",\"_field\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1282,6 +1300,10 @@
         },
         {
           "alias": "$tag_clustername - Transmited",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -1306,7 +1328,7 @@
           "measurement": "vsphere_host_net",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"usage_average\") FROM \"vsphere_host_cpu\" WHERE \"esxhostname\" = ($esxi) AND $timeFilter GROUP BY time($inter), \"host\" fill(none)",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_net\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"bytesTx_average\")\r\n  |> filter(fn: (r) => r[\"clustername\"] =~ /${clustername:regex}/)\r\n  |> group(columns: [\"clustername\",\"_field\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")\r\n",
           "rawQuery": false,
           "refId": "B",
           "resultFormat": "time_series",
@@ -1333,13 +1355,10 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Cluster Network Usage",
       "type": "timeseries"
     },
     {
-      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1355,7 +1374,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -1364,9 +1384,16 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
-          "decimals": 0,
+          "decimals": 2,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1389,9 +1416,10 @@
         "h": 4,
         "w": 7,
         "x": 6,
-        "y": 14
+        "y": 16
       },
       "id": 91,
+      "interval": "5m",
       "links": [],
       "options": {
         "graph": {},
@@ -1400,7 +1428,7 @@
           "displayMode": "hidden",
           "placement": "bottom"
         },
-        "tooltipOptions": {
+        "tooltip": {
           "mode": "multi"
         }
       },
@@ -1408,6 +1436,10 @@
       "targets": [
         {
           "alias": "$tag_clustername - ReadAverage",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -1432,7 +1464,7 @@
           "measurement": "vsphere_host_storageAdapter",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"usage_average\") FROM \"vsphere_host_cpu\" WHERE \"esxhostname\" = ($esxi) AND $timeFilter GROUP BY time($inter), \"host\" fill(none)",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_storageAdapter\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"totalReadLatency_average\")\r\n  |> group(columns: [\"clustername\",\"_field\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1460,6 +1492,10 @@
         },
         {
           "alias": "$tag_clustername - WriteAverage",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -1484,7 +1520,7 @@
           "measurement": "vsphere_host_storageAdapter",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"usage_average\") FROM \"vsphere_host_cpu\" WHERE \"esxhostname\" = ($esxi) AND $timeFilter GROUP BY time($inter), \"host\" fill(none)",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_storageAdapter\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"totalWriteLatency_average\")\r\n  |> group(columns: [\"clustername\",\"_field\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "B",
           "resultFormat": "time_series",
@@ -1511,31 +1547,29 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Cluster Storage Adapter",
       "type": "timeseries"
     },
     {
       "collapsed": true,
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "gK_s8WTMk"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 18
+        "y": 20
       },
       "id": 25,
       "panels": [
         {
-          "cacheTimeout": null,
-          "datasource": "${DS_INFLUXDB}",
           "fieldConfig": {
             "defaults": {
               "color": {
                 "mode": "thresholds"
               },
-              "custom": {},
               "mappings": [],
               "max": 100,
               "min": 0,
@@ -1574,7 +1608,7 @@
             "orientation": "auto",
             "reduceOptions": {
               "calcs": [
-                "mean"
+                "lastNotNull"
               ],
               "fields": "",
               "values": false
@@ -1582,18 +1616,15 @@
             "showThresholdLabels": false,
             "showThresholdMarkers": true
           },
-          "pluginVersion": "7.1.3",
+          "pluginVersion": "8.3.0",
           "repeat": "datastore",
           "repeatDirection": "h",
-          "scopedVars": {
-            "datastore": {
-              "selected": false,
-              "text": "ISOS-OS",
-              "value": "ISOS-OS"
-            }
-          },
           "targets": [
             {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "gK_s8WTMk"
+              },
               "groupBy": [
                 {
                   "params": [
@@ -1611,2113 +1642,7 @@
               "measurement": "vsphere_datastore_disk",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "used_latest"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "source",
-                  "operator": "=",
-                  "value": "ZEXT-NETAPP-01"
-                }
-              ]
-            }
-          ],
-          "timeFrom": "3h",
-          "title": "$datastore",
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_INFLUXDB}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {},
-              "mappings": [],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-green",
-                    "value": null
-                  },
-                  {
-                    "color": "dark-orange",
-                    "value": 65
-                  },
-                  {
-                    "color": "dark-red",
-                    "value": 85
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 4,
-            "y": 21
-          },
-          "hideTimeOverride": true,
-          "id": 145,
-          "links": [],
-          "maxPerRow": 6,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "mean"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true
-          },
-          "pluginVersion": "7.1.3",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1603466459224,
-          "repeatPanelId": 34,
-          "scopedVars": {
-            "datastore": {
-              "selected": false,
-              "text": "VMS",
-              "value": "VMS"
-            }
-          },
-          "targets": [
-            {
-              "groupBy": [
-                {
-                  "params": [
-                    "$inter"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "vsphere_datastore_disk",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "used_latest"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "source",
-                  "operator": "=",
-                  "value": "ZEXT-NETAPP-01"
-                }
-              ]
-            }
-          ],
-          "timeFrom": "3h",
-          "title": "$datastore",
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_INFLUXDB}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {},
-              "mappings": [],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-green",
-                    "value": null
-                  },
-                  {
-                    "color": "dark-orange",
-                    "value": 65
-                  },
-                  {
-                    "color": "dark-red",
-                    "value": 85
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 8,
-            "y": 21
-          },
-          "hideTimeOverride": true,
-          "id": 146,
-          "links": [],
-          "maxPerRow": 6,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "mean"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true
-          },
-          "pluginVersion": "7.1.3",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1603466459224,
-          "repeatPanelId": 34,
-          "scopedVars": {
-            "datastore": {
-              "selected": false,
-              "text": "ZEXT-QNAP-001",
-              "value": "ZEXT-QNAP-001"
-            }
-          },
-          "targets": [
-            {
-              "groupBy": [
-                {
-                  "params": [
-                    "$inter"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "vsphere_datastore_disk",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "used_latest"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "source",
-                  "operator": "=",
-                  "value": "ZEXT-NETAPP-01"
-                }
-              ]
-            }
-          ],
-          "timeFrom": "3h",
-          "title": "$datastore",
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_INFLUXDB}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {},
-              "mappings": [],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-green",
-                    "value": null
-                  },
-                  {
-                    "color": "dark-orange",
-                    "value": 65
-                  },
-                  {
-                    "color": "dark-red",
-                    "value": 85
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 12,
-            "y": 21
-          },
-          "hideTimeOverride": true,
-          "id": 147,
-          "links": [],
-          "maxPerRow": 6,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "mean"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true
-          },
-          "pluginVersion": "7.1.3",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1603466459224,
-          "repeatPanelId": 34,
-          "scopedVars": {
-            "datastore": {
-              "selected": false,
-              "text": "ZEXT-VSA-001",
-              "value": "ZEXT-VSA-001"
-            }
-          },
-          "targets": [
-            {
-              "groupBy": [
-                {
-                  "params": [
-                    "$inter"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "vsphere_datastore_disk",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "used_latest"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "source",
-                  "operator": "=",
-                  "value": "ZEXT-NETAPP-01"
-                }
-              ]
-            }
-          ],
-          "timeFrom": "3h",
-          "title": "$datastore",
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_INFLUXDB}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {},
-              "mappings": [],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-green",
-                    "value": null
-                  },
-                  {
-                    "color": "dark-orange",
-                    "value": 65
-                  },
-                  {
-                    "color": "dark-red",
-                    "value": 85
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 16,
-            "y": 21
-          },
-          "hideTimeOverride": true,
-          "id": 148,
-          "links": [],
-          "maxPerRow": 6,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "mean"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true
-          },
-          "pluginVersion": "7.1.3",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1603466459224,
-          "repeatPanelId": 34,
-          "scopedVars": {
-            "datastore": {
-              "selected": false,
-              "text": "ZINT-ESXi-NVME-01",
-              "value": "ZINT-ESXi-NVME-01"
-            }
-          },
-          "targets": [
-            {
-              "groupBy": [
-                {
-                  "params": [
-                    "$inter"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "vsphere_datastore_disk",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "used_latest"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "source",
-                  "operator": "=",
-                  "value": "ZEXT-NETAPP-01"
-                }
-              ]
-            }
-          ],
-          "timeFrom": "3h",
-          "title": "$datastore",
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_INFLUXDB}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {},
-              "mappings": [],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-green",
-                    "value": null
-                  },
-                  {
-                    "color": "dark-orange",
-                    "value": 65
-                  },
-                  {
-                    "color": "dark-red",
-                    "value": 85
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 20,
-            "y": 21
-          },
-          "hideTimeOverride": true,
-          "id": 149,
-          "links": [],
-          "maxPerRow": 6,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "mean"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true
-          },
-          "pluginVersion": "7.1.3",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1603466459224,
-          "repeatPanelId": 34,
-          "scopedVars": {
-            "datastore": {
-              "selected": false,
-              "text": "ZINT-ESXi-NVME-02",
-              "value": "ZINT-ESXi-NVME-02"
-            }
-          },
-          "targets": [
-            {
-              "groupBy": [
-                {
-                  "params": [
-                    "$inter"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "vsphere_datastore_disk",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "used_latest"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "source",
-                  "operator": "=",
-                  "value": "ZEXT-NETAPP-01"
-                }
-              ]
-            }
-          ],
-          "timeFrom": "3h",
-          "title": "$datastore",
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_INFLUXDB}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {},
-              "mappings": [],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-green",
-                    "value": null
-                  },
-                  {
-                    "color": "dark-orange",
-                    "value": 65
-                  },
-                  {
-                    "color": "dark-red",
-                    "value": 85
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 0,
-            "y": 25
-          },
-          "hideTimeOverride": true,
-          "id": 150,
-          "links": [],
-          "maxPerRow": 6,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "mean"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true
-          },
-          "pluginVersion": "7.1.3",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1603466459224,
-          "repeatPanelId": 34,
-          "scopedVars": {
-            "datastore": {
-              "selected": false,
-              "text": "ZINT-ESXi0-01",
-              "value": "ZINT-ESXi0-01"
-            }
-          },
-          "targets": [
-            {
-              "groupBy": [
-                {
-                  "params": [
-                    "$inter"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "vsphere_datastore_disk",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "used_latest"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "source",
-                  "operator": "=",
-                  "value": "ZEXT-NETAPP-01"
-                }
-              ]
-            }
-          ],
-          "timeFrom": "3h",
-          "title": "$datastore",
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_INFLUXDB}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {},
-              "mappings": [],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-green",
-                    "value": null
-                  },
-                  {
-                    "color": "dark-orange",
-                    "value": 65
-                  },
-                  {
-                    "color": "dark-red",
-                    "value": 85
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 4,
-            "y": 25
-          },
-          "hideTimeOverride": true,
-          "id": 151,
-          "links": [],
-          "maxPerRow": 6,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "mean"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true
-          },
-          "pluginVersion": "7.1.3",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1603466459224,
-          "repeatPanelId": 34,
-          "scopedVars": {
-            "datastore": {
-              "selected": false,
-              "text": "ZINT-ESXi0-SSD-01",
-              "value": "ZINT-ESXi0-SSD-01"
-            }
-          },
-          "targets": [
-            {
-              "groupBy": [
-                {
-                  "params": [
-                    "$inter"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "vsphere_datastore_disk",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "used_latest"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "source",
-                  "operator": "=",
-                  "value": "ZEXT-NETAPP-01"
-                }
-              ]
-            }
-          ],
-          "timeFrom": "3h",
-          "title": "$datastore",
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_INFLUXDB}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {},
-              "mappings": [],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-green",
-                    "value": null
-                  },
-                  {
-                    "color": "dark-orange",
-                    "value": 65
-                  },
-                  {
-                    "color": "dark-red",
-                    "value": 85
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 8,
-            "y": 25
-          },
-          "hideTimeOverride": true,
-          "id": 152,
-          "links": [],
-          "maxPerRow": 6,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "mean"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true
-          },
-          "pluginVersion": "7.1.3",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1603466459224,
-          "repeatPanelId": 34,
-          "scopedVars": {
-            "datastore": {
-              "selected": false,
-              "text": "ZINT-ESXi1-SATADOM",
-              "value": "ZINT-ESXi1-SATADOM"
-            }
-          },
-          "targets": [
-            {
-              "groupBy": [
-                {
-                  "params": [
-                    "$inter"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "vsphere_datastore_disk",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "used_latest"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "source",
-                  "operator": "=",
-                  "value": "ZEXT-NETAPP-01"
-                }
-              ]
-            }
-          ],
-          "timeFrom": "3h",
-          "title": "$datastore",
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_INFLUXDB}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {},
-              "mappings": [],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-green",
-                    "value": null
-                  },
-                  {
-                    "color": "dark-orange",
-                    "value": 65
-                  },
-                  {
-                    "color": "dark-red",
-                    "value": 85
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 12,
-            "y": 25
-          },
-          "hideTimeOverride": true,
-          "id": 153,
-          "links": [],
-          "maxPerRow": 6,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "mean"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true
-          },
-          "pluginVersion": "7.1.3",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1603466459224,
-          "repeatPanelId": 34,
-          "scopedVars": {
-            "datastore": {
-              "selected": false,
-              "text": "ZINT-ESXi2-00",
-              "value": "ZINT-ESXi2-00"
-            }
-          },
-          "targets": [
-            {
-              "groupBy": [
-                {
-                  "params": [
-                    "$inter"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "vsphere_datastore_disk",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "used_latest"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "source",
-                  "operator": "=",
-                  "value": "ZEXT-NETAPP-01"
-                }
-              ]
-            }
-          ],
-          "timeFrom": "3h",
-          "title": "$datastore",
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_INFLUXDB}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {},
-              "mappings": [],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-green",
-                    "value": null
-                  },
-                  {
-                    "color": "dark-orange",
-                    "value": 65
-                  },
-                  {
-                    "color": "dark-red",
-                    "value": 85
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 16,
-            "y": 25
-          },
-          "hideTimeOverride": true,
-          "id": 154,
-          "links": [],
-          "maxPerRow": 6,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "mean"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true
-          },
-          "pluginVersion": "7.1.3",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1603466459224,
-          "repeatPanelId": 34,
-          "scopedVars": {
-            "datastore": {
-              "selected": false,
-              "text": "ZINT-ESXi2-01",
-              "value": "ZINT-ESXi2-01"
-            }
-          },
-          "targets": [
-            {
-              "groupBy": [
-                {
-                  "params": [
-                    "$inter"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "vsphere_datastore_disk",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "used_latest"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "source",
-                  "operator": "=",
-                  "value": "ZEXT-NETAPP-01"
-                }
-              ]
-            }
-          ],
-          "timeFrom": "3h",
-          "title": "$datastore",
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_INFLUXDB}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {},
-              "mappings": [],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-green",
-                    "value": null
-                  },
-                  {
-                    "color": "dark-orange",
-                    "value": 65
-                  },
-                  {
-                    "color": "dark-red",
-                    "value": 85
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 20,
-            "y": 25
-          },
-          "hideTimeOverride": true,
-          "id": 155,
-          "links": [],
-          "maxPerRow": 6,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "mean"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true
-          },
-          "pluginVersion": "7.1.3",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1603466459224,
-          "repeatPanelId": 34,
-          "scopedVars": {
-            "datastore": {
-              "selected": false,
-              "text": "ZINT-ESXi2-02",
-              "value": "ZINT-ESXi2-02"
-            }
-          },
-          "targets": [
-            {
-              "groupBy": [
-                {
-                  "params": [
-                    "$inter"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "vsphere_datastore_disk",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "used_latest"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "source",
-                  "operator": "=",
-                  "value": "ZEXT-NETAPP-01"
-                }
-              ]
-            }
-          ],
-          "timeFrom": "3h",
-          "title": "$datastore",
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_INFLUXDB}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {},
-              "mappings": [],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-green",
-                    "value": null
-                  },
-                  {
-                    "color": "dark-orange",
-                    "value": 65
-                  },
-                  {
-                    "color": "dark-red",
-                    "value": 85
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 0,
-            "y": 29
-          },
-          "hideTimeOverride": true,
-          "id": 156,
-          "links": [],
-          "maxPerRow": 6,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "mean"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true
-          },
-          "pluginVersion": "7.1.3",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1603466459224,
-          "repeatPanelId": 34,
-          "scopedVars": {
-            "datastore": {
-              "selected": false,
-              "text": "ZINT-ESXi2-SSD-01",
-              "value": "ZINT-ESXi2-SSD-01"
-            }
-          },
-          "targets": [
-            {
-              "groupBy": [
-                {
-                  "params": [
-                    "$inter"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "vsphere_datastore_disk",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "used_latest"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "source",
-                  "operator": "=",
-                  "value": "ZEXT-NETAPP-01"
-                }
-              ]
-            }
-          ],
-          "timeFrom": "3h",
-          "title": "$datastore",
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_INFLUXDB}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {},
-              "mappings": [],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-green",
-                    "value": null
-                  },
-                  {
-                    "color": "dark-orange",
-                    "value": 65
-                  },
-                  {
-                    "color": "dark-red",
-                    "value": 85
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 4,
-            "y": 29
-          },
-          "hideTimeOverride": true,
-          "id": 157,
-          "links": [],
-          "maxPerRow": 6,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "mean"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true
-          },
-          "pluginVersion": "7.1.3",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1603466459224,
-          "repeatPanelId": 34,
-          "scopedVars": {
-            "datastore": {
-              "selected": false,
-              "text": "ZINT-ESXi2-SSD-02",
-              "value": "ZINT-ESXi2-SSD-02"
-            }
-          },
-          "targets": [
-            {
-              "groupBy": [
-                {
-                  "params": [
-                    "$inter"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "vsphere_datastore_disk",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "used_latest"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "source",
-                  "operator": "=",
-                  "value": "ZEXT-NETAPP-01"
-                }
-              ]
-            }
-          ],
-          "timeFrom": "3h",
-          "title": "$datastore",
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_INFLUXDB}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {},
-              "mappings": [],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-green",
-                    "value": null
-                  },
-                  {
-                    "color": "dark-orange",
-                    "value": 65
-                  },
-                  {
-                    "color": "dark-red",
-                    "value": 85
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 8,
-            "y": 29
-          },
-          "hideTimeOverride": true,
-          "id": 158,
-          "links": [],
-          "maxPerRow": 6,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "mean"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true
-          },
-          "pluginVersion": "7.1.3",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1603466459224,
-          "repeatPanelId": 34,
-          "scopedVars": {
-            "datastore": {
-              "selected": false,
-              "text": "ZINT-ESXi3-01",
-              "value": "ZINT-ESXi3-01"
-            }
-          },
-          "targets": [
-            {
-              "groupBy": [
-                {
-                  "params": [
-                    "$inter"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "vsphere_datastore_disk",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "used_latest"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "source",
-                  "operator": "=",
-                  "value": "ZEXT-NETAPP-01"
-                }
-              ]
-            }
-          ],
-          "timeFrom": "3h",
-          "title": "$datastore",
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_INFLUXDB}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {},
-              "mappings": [],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-green",
-                    "value": null
-                  },
-                  {
-                    "color": "dark-orange",
-                    "value": 65
-                  },
-                  {
-                    "color": "dark-red",
-                    "value": 85
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 12,
-            "y": 29
-          },
-          "hideTimeOverride": true,
-          "id": 159,
-          "links": [],
-          "maxPerRow": 6,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "mean"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true
-          },
-          "pluginVersion": "7.1.3",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1603466459224,
-          "repeatPanelId": 34,
-          "scopedVars": {
-            "datastore": {
-              "selected": false,
-              "text": "ZINT-ESXi3-NVME-01",
-              "value": "ZINT-ESXi3-NVME-01"
-            }
-          },
-          "targets": [
-            {
-              "groupBy": [
-                {
-                  "params": [
-                    "$inter"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "vsphere_datastore_disk",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "used_latest"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "source",
-                  "operator": "=",
-                  "value": "ZEXT-NETAPP-01"
-                }
-              ]
-            }
-          ],
-          "timeFrom": "3h",
-          "title": "$datastore",
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_INFLUXDB}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {},
-              "mappings": [],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-green",
-                    "value": null
-                  },
-                  {
-                    "color": "dark-orange",
-                    "value": 65
-                  },
-                  {
-                    "color": "dark-red",
-                    "value": 85
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 16,
-            "y": 29
-          },
-          "hideTimeOverride": true,
-          "id": 160,
-          "links": [],
-          "maxPerRow": 6,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "mean"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true
-          },
-          "pluginVersion": "7.1.3",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1603466459224,
-          "repeatPanelId": 34,
-          "scopedVars": {
-            "datastore": {
-              "selected": false,
-              "text": "ZINT-ESXi3-SSD-01",
-              "value": "ZINT-ESXi3-SSD-01"
-            }
-          },
-          "targets": [
-            {
-              "groupBy": [
-                {
-                  "params": [
-                    "$inter"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "vsphere_datastore_disk",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "used_latest"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "source",
-                  "operator": "=",
-                  "value": "ZEXT-NETAPP-01"
-                }
-              ]
-            }
-          ],
-          "timeFrom": "3h",
-          "title": "$datastore",
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_INFLUXDB}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {},
-              "mappings": [],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-green",
-                    "value": null
-                  },
-                  {
-                    "color": "dark-orange",
-                    "value": 65
-                  },
-                  {
-                    "color": "dark-red",
-                    "value": 85
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 20,
-            "y": 29
-          },
-          "hideTimeOverride": true,
-          "id": 161,
-          "links": [],
-          "maxPerRow": 6,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "mean"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true
-          },
-          "pluginVersion": "7.1.3",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1603466459224,
-          "repeatPanelId": 34,
-          "scopedVars": {
-            "datastore": {
-              "selected": false,
-              "text": "ZINT-ESXi4-USB",
-              "value": "ZINT-ESXi4-USB"
-            }
-          },
-          "targets": [
-            {
-              "groupBy": [
-                {
-                  "params": [
-                    "$inter"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "vsphere_datastore_disk",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "used_latest"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "source",
-                  "operator": "=",
-                  "value": "ZEXT-NETAPP-01"
-                }
-              ]
-            }
-          ],
-          "timeFrom": "3h",
-          "title": "$datastore",
-          "type": "gauge"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "${DS_INFLUXDB}",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {},
-              "mappings": [],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-green",
-                    "value": null
-                  },
-                  {
-                    "color": "dark-orange",
-                    "value": 65
-                  },
-                  {
-                    "color": "dark-red",
-                    "value": 85
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 0,
-            "y": 33
-          },
-          "hideTimeOverride": true,
-          "id": 162,
-          "links": [],
-          "maxPerRow": 6,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "mean"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true
-          },
-          "pluginVersion": "7.1.3",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1603466459224,
-          "repeatPanelId": 34,
-          "scopedVars": {
-            "datastore": {
-              "selected": false,
-              "text": "vsanDatastore",
-              "value": "vsanDatastore"
-            }
-          },
-          "targets": [
-            {
-              "groupBy": [
-                {
-                  "params": [
-                    "$inter"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "vsphere_datastore_disk",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT mean(\"used_latest\") * (100 / mean(\"capacity_latest\"))  FROM \"vsphere_datastore_disk\" WHERE (\"source\" =~ /^$datastore$/) AND $timeFilter GROUP BY time($inter) fill(none)",
+              "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_datastore_disk\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"capacity_latest\" or r[\"_field\"] == \"used_latest\")\r\n  |> filter(fn: (r) => r[\"source\"] =~ /${datastore:regex}/)\r\n  |> group()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> map(fn: (r) => ({ r with  _value: float(v: r.used_latest) / float(v: r.capacity_latest) * 100.0 }))\r\n  |> group(columns: [\"source\",\"_field\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -3754,21 +1679,22 @@
     },
     {
       "collapsed": false,
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "gK_s8WTMk"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 19
+        "y": 21
       },
       "id": 20,
       "panels": [],
-      "repeat": null,
       "title": "Hypervisor Status",
       "type": "row"
     },
     {
-      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3784,7 +1710,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -3793,7 +1720,14 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "max": 100,
@@ -3819,7 +1753,7 @@
         "h": 7,
         "w": 6,
         "x": 0,
-        "y": 20
+        "y": 22
       },
       "id": 15,
       "links": [],
@@ -3834,7 +1768,7 @@
           "displayMode": "table",
           "placement": "bottom"
         },
-        "tooltipOptions": {
+        "tooltip": {
           "mode": "multi"
         }
       },
@@ -3842,6 +1776,10 @@
       "targets": [
         {
           "alias": "$tag_esxhostname",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -3866,7 +1804,7 @@
           "measurement": "vsphere_host_cpu",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"usage_average\") FROM \"vsphere_host_cpu\" WHERE \"esxhostname\" = ($esxi) AND $timeFilter GROUP BY time($inter), \"host\" fill(none)",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"usage_average\")\r\n  |> filter(fn: (r) => r[\"cpu\"] == \"instance-total\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> group(columns: [\"esxhostname\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -3899,13 +1837,10 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Hypervisor CPU",
       "type": "timeseries"
     },
     {
-      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3921,7 +1856,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -3930,7 +1866,14 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "max": 100,
@@ -3956,7 +1899,7 @@
         "h": 7,
         "w": 6,
         "x": 6,
-        "y": 20
+        "y": 22
       },
       "id": 16,
       "links": [],
@@ -3971,7 +1914,7 @@
           "displayMode": "table",
           "placement": "bottom"
         },
-        "tooltipOptions": {
+        "tooltip": {
           "mode": "multi"
         }
       },
@@ -3979,6 +1922,10 @@
       "targets": [
         {
           "alias": "$tag_esxhostname mem usage average",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -4003,6 +1950,7 @@
           "measurement": "vsphere_host_mem",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_mem\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"usage_average\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> group(columns: [\"esxhostname\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -4028,13 +1976,10 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Hypervisor Memory",
       "type": "timeseries"
     },
     {
-      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4050,7 +1995,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -4059,7 +2005,14 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "thresholds": {
@@ -4083,7 +2036,7 @@
         "h": 7,
         "w": 6,
         "x": 12,
-        "y": 20
+        "y": 22
       },
       "id": 17,
       "links": [],
@@ -4098,7 +2051,7 @@
           "displayMode": "table",
           "placement": "bottom"
         },
-        "tooltipOptions": {
+        "tooltip": {
           "mode": "multi"
         }
       },
@@ -4106,6 +2059,10 @@
       "targets": [
         {
           "alias": "$tag_esxhostname net usage average",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -4130,6 +2087,7 @@
           "measurement": "vsphere_host_net",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_net\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"usage_average\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> group(columns: [\"esxhostname\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -4155,13 +2113,10 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Hypervisor Net Usage",
       "type": "timeseries"
     },
     {
-      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4177,7 +2132,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -4186,7 +2142,14 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "max": 100,
@@ -4212,7 +2175,7 @@
         "h": 7,
         "w": 6,
         "x": 18,
-        "y": 20
+        "y": 22
       },
       "id": 19,
       "links": [],
@@ -4223,7 +2186,7 @@
           "displayMode": "hidden",
           "placement": "bottom"
         },
-        "tooltipOptions": {
+        "tooltip": {
           "mode": "multi"
         }
       },
@@ -4231,6 +2194,10 @@
       "targets": [
         {
           "alias": "$tag_vcenter CPU",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -4255,6 +2222,7 @@
           "measurement": "vsphere_vm_cpu",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_cpu\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"usage_average\")\r\n  |> filter(fn: (r) => r[\"guesthostname\"] =~ /${vcenter:regex}/)\r\n  |> group(columns: [\"vmname\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -4287,6 +2255,10 @@
         },
         {
           "alias": "$tag_vcenter RAM",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -4311,6 +2283,7 @@
           "measurement": "vsphere_vm_mem",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_mem\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"usage_average\")\r\n  |> filter(fn: (r) => r[\"guesthostname\"] =~ /${vcenter:regex}/)\r\n  |> group(columns: [\"vmname\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "B",
           "resultFormat": "time_series",
           "select": [
@@ -4336,28 +2309,27 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "vCenter CPU/RAM",
       "type": "timeseries"
     },
     {
       "collapsed": false,
-      "datasource": "${DS_INFLUXDB}",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "gK_s8WTMk"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 27
+        "y": 29
       },
       "id": 21,
       "panels": [],
-      "repeat": null,
       "title": "Virtual Machine Status",
       "type": "row"
     },
     {
-      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4373,17 +2345,29 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 2,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
+          "decimals": 2,
           "mappings": [],
           "max": 100,
           "min": 0,
@@ -4408,7 +2392,7 @@
         "h": 7,
         "w": 6,
         "x": 0,
-        "y": 28
+        "y": 30
       },
       "id": 14,
       "links": [],
@@ -4416,10 +2400,10 @@
         "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "list",
+          "displayMode": "hidden",
           "placement": "bottom"
         },
-        "tooltipOptions": {
+        "tooltip": {
           "mode": "multi"
         }
       },
@@ -4427,6 +2411,10 @@
       "targets": [
         {
           "alias": "$tag_vmname",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -4457,6 +2445,7 @@
           "measurement": "vsphere_vm_cpu",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_cpu\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"usage_average\")\r\n  |> filter(fn: (r) => r[\"cpu\"] == \"instance-total\")\r\n  |> filter(fn: (r) => r[\"vmname\"] =~ /${virtualmachine:regex}/)\r\n  |> group(columns: [\"vmname\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -4488,13 +2477,10 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Virtual Machine CPU Usage in %",
       "type": "timeseries"
     },
     {
-      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4510,7 +2496,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -4519,10 +2506,18 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
+          "decimals": 2,
           "mappings": [],
-          "max": 100,
+          "max": 104,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -4545,7 +2540,7 @@
         "h": 7,
         "w": 6,
         "x": 6,
-        "y": 28
+        "y": 30
       },
       "id": 13,
       "links": [],
@@ -4553,10 +2548,10 @@
         "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "list",
+          "displayMode": "hidden",
           "placement": "bottom"
         },
-        "tooltipOptions": {
+        "tooltip": {
           "mode": "multi"
         }
       },
@@ -4564,6 +2559,10 @@
       "targets": [
         {
           "alias": "$tag_vmname",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -4588,6 +2587,7 @@
           "measurement": "vsphere_vm_mem",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_mem\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"usage_average\")\r\n  |> filter(fn: (r) => r[\"vmname\"] =~ /${virtualmachine:regex}/)\r\n  |> group(columns: [\"vmname\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -4613,13 +2613,10 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Virtual Machine Memory Usage Avg.",
       "type": "timeseries"
     },
     {
-      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4635,7 +2632,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -4644,7 +2642,14 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "thresholds": {
@@ -4668,7 +2673,7 @@
         "h": 7,
         "w": 6,
         "x": 12,
-        "y": 28
+        "y": 30
       },
       "hideTimeOverride": false,
       "id": 10,
@@ -4677,10 +2682,10 @@
         "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "list",
+          "displayMode": "hidden",
           "placement": "bottom"
         },
-        "tooltipOptions": {
+        "tooltip": {
           "mode": "multi"
         }
       },
@@ -4688,6 +2693,10 @@
       "targets": [
         {
           "alias": "$tag_vmname",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -4712,7 +2721,7 @@
           "measurement": "vsphere_vm_cpu",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"ready_summation\") FROM \"vsphere_vm_cpu\" WHERE (\"vmname\" =~ /^$virtualmachine$/) AND $timeFilter GROUP BY time($inter), \"vmname\" fill(none)",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_cpu\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"ready_summation\")\r\n  |> filter(fn: (r) => r[\"vmname\"] =~ /${virtualmachine:regex}/)\r\n  |> group(columns: [\"vmname\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -4739,13 +2748,10 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Virtual Machine CPU READY ms",
       "type": "timeseries"
     },
     {
-      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4761,7 +2767,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -4770,8 +2777,16 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
+          "decimals": 2,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -4794,7 +2809,7 @@
         "h": 7,
         "w": 6,
         "x": 18,
-        "y": 28
+        "y": 30
       },
       "id": 12,
       "links": [],
@@ -4802,10 +2817,10 @@
         "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "list",
+          "displayMode": "hidden",
           "placement": "bottom"
         },
-        "tooltipOptions": {
+        "tooltip": {
           "mode": "multi"
         }
       },
@@ -4813,6 +2828,10 @@
       "targets": [
         {
           "alias": "$tag_vmname",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -4837,6 +2856,7 @@
           "measurement": "vsphere_vm_net",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_net\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"usage_average\")\r\n  |> filter(fn: (r) => r[\"vmname\"] =~ /${virtualmachine:regex}/)\r\n  |> group(columns: [\"vmname\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -4862,13 +2882,10 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Virtual Machine Network Usage Avg (Kbps)",
       "type": "timeseries"
     },
     {
-      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4884,7 +2901,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -4893,7 +2911,14 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "thresholds": {
@@ -4917,7 +2942,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 35
+        "y": 37
       },
       "id": 3,
       "links": [],
@@ -4925,10 +2950,10 @@
         "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "list",
+          "displayMode": "hidden",
           "placement": "bottom"
         },
-        "tooltipOptions": {
+        "tooltip": {
           "mode": "multi"
         }
       },
@@ -4936,6 +2961,10 @@
       "targets": [
         {
           "alias": "$tag_vmname",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -4961,6 +2990,8 @@
           "measurement": "vsphere_vm_virtualDisk",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_virtualDisk\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"numberReadAveraged_average\")\r\n  |> filter(fn: (r) => r[\"vmname\"] =~ /${virtualmachine:regex}/)\r\n  |> group(columns: [\"vmname\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -4987,13 +3018,10 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Virtual Machine Disk Performance (Read VMFS Block IOPS)",
       "type": "timeseries"
     },
     {
-      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -5009,7 +3037,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -5018,7 +3047,14 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "thresholds": {
@@ -5042,7 +3078,7 @@
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 35
+        "y": 37
       },
       "id": 18,
       "links": [],
@@ -5050,10 +3086,10 @@
         "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "list",
+          "displayMode": "hidden",
           "placement": "bottom"
         },
-        "tooltipOptions": {
+        "tooltip": {
           "mode": "multi"
         }
       },
@@ -5061,6 +3097,10 @@
       "targets": [
         {
           "alias": "$tag_vmname",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -5086,6 +3126,7 @@
           "measurement": "vsphere_vm_virtualDisk",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_virtualDisk\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"numberWriteAveraged_average\")\r\n  |> filter(fn: (r) => r[\"vmname\"] =~ /${virtualmachine:regex}/)\r\n  |> group(columns: [\"vmname\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -5112,13 +3153,10 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Virtual Machine Disk Performance (Write VMFS Block IOPS)",
       "type": "timeseries"
     },
     {
-      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -5134,7 +3172,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -5143,7 +3182,14 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "thresholds": {
@@ -5167,7 +3213,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 35
+        "y": 37
       },
       "id": 9,
       "links": [],
@@ -5178,7 +3224,7 @@
           "displayMode": "hidden",
           "placement": "bottom"
         },
-        "tooltipOptions": {
+        "tooltip": {
           "mode": "multi"
         }
       },
@@ -5186,6 +3232,10 @@
       "targets": [
         {
           "alias": "$tag_vmname",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -5211,6 +3261,7 @@
           "measurement": "vsphere_vm_virtualDisk",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_virtualDisk\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"totalReadLatency_average\")\r\n  |> filter(fn: (r) => r[\"vmname\"] =~ /${virtualmachine:regex}/)\r\n  |> group(columns: [\"vmname\",\"_field\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -5238,6 +3289,10 @@
         },
         {
           "alias": "$tag_vmname",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
           "dsType": "influxdb",
           "groupBy": [
             {
@@ -5263,6 +3318,7 @@
           "measurement": "vsphere_vm_virtualDisk",
           "orderByTime": "ASC",
           "policy": "default",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_virtualDisk\" )\r\n  |> filter(fn: (r) => r[\"_field\"] == \"totalWriteLatency_average\")\r\n  |> group(columns: [\"vmname\",\"_field\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "B",
           "resultFormat": "time_series",
           "select": [
@@ -5289,29 +3345,22 @@
           ]
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Virtual Machine Disk Performance (Block Latency Total)",
       "type": "timeseries"
     },
     {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 3,
         "w": 5,
         "x": 19,
-        "y": 42
+        "y": 44
       },
       "id": 166,
       "options": {
         "content": "<a href=\"https://www.jorgedelacruz.es\"><img src=\"https://www.jorgedelacruz.es/wp-content/uploads/2019/04/jorgedelacruz-banner_2efede4ef704c939e63a3763231f5961.png\"></a>",
         "mode": "html"
       },
-      "pluginVersion": "7.5.3",
+      "pluginVersion": "8.3.0",
       "targets": [
         {
           "groupBy": [
@@ -5349,14 +3398,12 @@
           "tags": []
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "transparent": true,
       "type": "text"
     }
   ],
   "refresh": false,
-  "schemaVersion": 27,
+  "schemaVersion": 33,
   "style": "dark",
   "tags": [
     "VMware",
@@ -5374,8 +3421,6 @@
           "text": "auto",
           "value": "$__auto_interval_inter"
         },
-        "description": null,
-        "error": null,
         "hide": 0,
         "label": "Sampling",
         "name": "inter",
@@ -5448,121 +3493,153 @@
         "type": "interval"
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_INFLUXDB}",
-        "definition": "",
-        "description": null,
-        "error": null,
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> keep(columns: [\"vcenter\"])\r\n  |> distinct(column: \"vcenter\")\r\n  |> group()",
         "hide": 0,
         "includeAll": true,
         "label": "vCenter Server",
         "multi": true,
         "name": "vcenter",
         "options": [],
-        "query": "select DISTINCT(\"vcenter\") from (select \"usage_average\",\"vcenter\" from \"vsphere_host_cpu\" WHERE $timeFilter)",
+        "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> keep(columns: [\"vcenter\"])\r\n  |> distinct(column: \"vcenter\")\r\n  |> group()",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_INFLUXDB}",
-        "definition": "",
-        "description": null,
-        "error": null,
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "influxdb",
+          "uid": "gK_s8WTMk"
+        },
+        "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_cluster_cpu\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"clustername\"])\r\n  |> distinct(column: \"clustername\")\r\n  |> group()\r\n",
         "hide": 0,
         "includeAll": true,
         "label": "Cluster",
         "multi": true,
         "name": "clustername",
         "options": [],
-        "query": "select DISTINCT(\"clustername\") from (select \"usage_average\",\"clustername\" from \"vsphere_host_cpu\" WHERE $timeFilter AND \"vcenter\" =~ /$vcenter/)",
+        "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_cluster_cpu\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"clustername\"])\r\n  |> distinct(column: \"clustername\")\r\n  |> group()\r\n",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_INFLUXDB}",
-        "definition": "",
-        "description": null,
-        "error": null,
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "influxdb",
+          "uid": "gK_s8WTMk"
+        },
+        "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"esxhostname\"])\r\n  |> distinct(column: \"esxhostname\")\r\n  |> group()",
         "hide": 0,
         "includeAll": true,
         "label": "ESXi Server",
         "multi": true,
         "name": "esxi",
         "options": [],
-        "query": "select DISTINCT(\"esxhostname\") from (select \"usage_average\",\"esxhostname\" from \"vsphere_host_cpu\" WHERE $timeFilter AND \"vcenter\" =~ /$vcenter/)",
+        "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"esxhostname\"])\r\n  |> distinct(column: \"esxhostname\")\r\n  |> group()",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_INFLUXDB}",
-        "definition": "",
-        "description": null,
-        "error": null,
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "influxdb",
+          "uid": "gK_s8WTMk"
+        },
+        "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_datastore_disk\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"dsname\"])\r\n  |> distinct(column: \"dsname\")\r\n  |> group()",
         "hide": 0,
         "includeAll": true,
         "label": "Datastore",
         "multi": true,
         "name": "datastore",
         "options": [],
-        "query": "select DISTINCT(\"dsname\") from (select \"used_latest\",\"dsname\" from \"vsphere_datastore_disk\" WHERE $timeFilter AND \"vcenter\" =~ /$vcenter/)",
+        "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_datastore_disk\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"dsname\"])\r\n  |> distinct(column: \"dsname\")\r\n  |> group()",
         "refresh": 2,
         "regex": "/^(?!VeeamBackup_)/",
         "skipUrlSync": false,
         "sort": 1,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
         "allValue": "",
-        "current": {},
-        "datasource": "${DS_INFLUXDB}",
-        "definition": "",
-        "description": null,
-        "error": null,
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "influxdb",
+          "uid": "gK_s8WTMk"
+        },
+        "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_cpu\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"vmname\"])\r\n  |> distinct(column: \"vmname\")\r\n  |> group()",
         "hide": 0,
         "includeAll": true,
         "label": "VM",
         "multi": true,
         "name": "virtualmachine",
         "options": [],
-        "query": "select DISTINCT(\"vmname\") from (select \"ready_summation\",\"vmname\" from \"vsphere_vm_cpu\" WHERE $timeFilter AND \"vcenter\" =~ /$vcenter/)",
+        "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_cpu\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"vmname\"])\r\n  |> distinct(column: \"vmname\")\r\n  |> group()",
         "refresh": 2,
-        "regex": "/^(?![a-zA-Z0-9-_]+_)/",
+        "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -5600,5 +3677,6 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 15
+  "version": 21,
+  "weekStart": ""
 }
