@@ -67,13 +67,13 @@
       }
     ]
   },
-  "description": "VMware vSphere Dashboard (Grafana 8.3 / InfluxDB v2.0)",
+  "description": "VMware vSphere Dashboard (Grafana 8.x / InfluxDB v2.0)",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "gnetId": 8159,
   "graphTooltip": 0,
   "id": 6,
-  "iteration": 1638664932752,
+  "iteration": 1638819970098,
   "links": [
     {
       "asDropdown": true,
@@ -92,6 +92,10 @@
   "panels": [
     {
       "collapsed": false,
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -231,7 +235,7 @@
           "alias": "vCenter Summary",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -273,7 +277,7 @@
           "alias": "Cluster Summary",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -315,7 +319,7 @@
           "alias": "ESXi Summary",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -357,7 +361,7 @@
           "alias": "VM Summary",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -399,7 +403,7 @@
           "alias": "Datastore Summary",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -610,7 +614,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -670,7 +674,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -736,7 +740,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -802,7 +806,7 @@
       "collapsed": false,
       "datasource": {
         "type": "influxdb",
-        "uid": "gK_s8WTMk"
+        "uid": "${DS_INFLUXDB}"
       },
       "gridPos": {
         "h": 1,
@@ -896,7 +900,7 @@
           "alias": "$tag_clustername",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -1047,7 +1051,7 @@
           "alias": "$tag_clustername",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -1173,7 +1177,7 @@
           "alias": "$tag_source",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "groupBy": [
             {
@@ -1295,7 +1299,7 @@
           "alias": "$tag_clustername - Received",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -1351,7 +1355,7 @@
           "alias": "$tag_clustername - Transmited",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -1487,7 +1491,7 @@
           "alias": "$tag_clustername - ReadAverage",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -1543,7 +1547,7 @@
           "alias": "$tag_clustername - WriteAverage",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -1603,7 +1607,7 @@
       "collapsed": true,
       "datasource": {
         "type": "influxdb",
-        "uid": "gK_s8WTMk"
+        "uid": "${DS_INFLUXDB}"
       },
       "gridPos": {
         "h": 1,
@@ -1626,8 +1630,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "dark-green",
-                    "value": null
+                    "color": "dark-green"
                   },
                   {
                     "color": "dark-orange",
@@ -1672,7 +1675,7 @@
             {
               "datasource": {
                 "type": "influxdb",
-                "uid": "gK_s8WTMk"
+                "uid": "${DS_INFLUXDB}"
               },
               "groupBy": [
                 {
@@ -1730,7 +1733,7 @@
       "collapsed": false,
       "datasource": {
         "type": "influxdb",
-        "uid": "gK_s8WTMk"
+        "uid": "${DS_INFLUXDB}"
       },
       "gridPos": {
         "h": 1,
@@ -1827,7 +1830,7 @@
           "alias": "$tag_esxhostname",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -1973,7 +1976,7 @@
           "alias": "$tag_esxhostname mem usage average",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -2110,7 +2113,7 @@
           "alias": "$tag_esxhostname net usage average",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -2245,7 +2248,7 @@
           "alias": "$tag_vcenter CPU",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -2306,7 +2309,7 @@
           "alias": "$tag_vcenter RAM",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -2365,7 +2368,7 @@
       "collapsed": false,
       "datasource": {
         "type": "influxdb",
-        "uid": "gK_s8WTMk"
+        "uid": "${DS_INFLUXDB}"
       },
       "gridPos": {
         "h": 1,
@@ -2462,7 +2465,7 @@
           "alias": "$tag_vmname",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -2610,7 +2613,7 @@
           "alias": "$tag_vmname",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -2744,7 +2747,7 @@
           "alias": "$tag_vmname",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -2879,7 +2882,7 @@
           "alias": "$tag_vmname",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -3012,7 +3015,7 @@
           "alias": "$tag_vmname",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -3148,7 +3151,7 @@
           "alias": "$tag_vmname",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -3283,7 +3286,7 @@
           "alias": "$tag_vmname",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -3340,7 +3343,7 @@
           "alias": "$tag_vmname",
           "datasource": {
             "type": "influxdb",
-            "uid": "gK_s8WTMk"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -3457,8 +3460,7 @@
   "tags": [
     "VMware",
     "vSphere Overview",
-    "vSphere Telegraf",
-    "influxdb v2.0"
+    "vSphere Telegraf"
   ],
   "templating": {
     "list": [
@@ -3467,7 +3469,7 @@
         "auto_count": 100,
         "auto_min": "20s",
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "auto",
           "value": "$__auto_interval_inter"
         },
@@ -3544,7 +3546,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": [
             "All"
           ],
@@ -3581,7 +3583,7 @@
         },
         "datasource": {
           "type": "influxdb",
-          "uid": "gK_s8WTMk"
+          "uid": "${DS_INFLUXDB}"
         },
         "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_cluster_cpu\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"clustername\"])\r\n  |> distinct(column: \"clustername\")\r\n  |> group()\r\n",
         "hide": 0,
@@ -3602,7 +3604,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": [
             "All"
           ],
@@ -3612,7 +3614,7 @@
         },
         "datasource": {
           "type": "influxdb",
-          "uid": "gK_s8WTMk"
+          "uid": "${DS_INFLUXDB}"
         },
         "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"esxhostname\"])\r\n  |> distinct(column: \"esxhostname\")\r\n  |> group()",
         "hide": 0,
@@ -3633,7 +3635,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": [
             "All"
           ],
@@ -3643,7 +3645,7 @@
         },
         "datasource": {
           "type": "influxdb",
-          "uid": "gK_s8WTMk"
+          "uid": "${DS_INFLUXDB}"
         },
         "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_datastore_disk\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"dsname\"])\r\n  |> distinct(column: \"dsname\")\r\n  |> group()",
         "hide": 0,
@@ -3665,7 +3667,7 @@
       {
         "allValue": "",
         "current": {
-          "selected": true,
+          "selected": false,
           "text": [
             "All"
           ],
@@ -3675,7 +3677,7 @@
         },
         "datasource": {
           "type": "influxdb",
-          "uid": "gK_s8WTMk"
+          "uid": "${DS_INFLUXDB}"
         },
         "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_cpu\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"vmname\"])\r\n  |> distinct(column: \"vmname\")\r\n  |> group()",
         "hide": 0,
@@ -3697,7 +3699,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {
@@ -3727,6 +3729,6 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 21,
+  "version": 22,
   "weekStart": ""
 }
