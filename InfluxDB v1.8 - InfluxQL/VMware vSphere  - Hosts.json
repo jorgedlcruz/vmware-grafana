@@ -9,18 +9,17 @@
       "pluginName": "InfluxDB"
     }
   ],
-  "__elements": [],
   "__requires": [
     {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "8.3.0"
+      "version": "7.5.3"
     },
     {
       "type": "panel",
       "id": "graph",
-      "name": "Graph (old)",
+      "name": "Graph",
       "version": ""
     },
     {
@@ -57,23 +56,16 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
-        "target": {
-          "limit": 100,
-          "matchAny": false,
-          "tags": [],
-          "type": "dashboard"
-        },
         "type": "dashboard"
       }
     ]
   },
-  "description": "VMware vSphere Dashboard - Hosts (Grafana 8.x / InfluxDB v2.0)",
+  "description": "VMware vSphere Dashboard - Hosts (Grafana 7.5 / new Time-Series Panel)",
   "editable": true,
-  "fiscalYearStartMonth": 0,
   "gnetId": 8165,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1638782513375,
+  "iteration": 1618394097203,
   "links": [
     {
       "asDropdown": true,
@@ -88,14 +80,10 @@
       "type": "dashboards"
     }
   ],
-  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
-      "datasource": {
-        "type": "influxdb",
-        "uid": "${DS_INFLUXDB}"
-      },
+      "datasource": "${DS_INFLUXDB}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -109,18 +97,18 @@
       "type": "row"
     },
     {
+      "cacheTimeout": null,
+      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "decimals": 1,
           "mappings": [
             {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
             }
           ],
           "thresholds": {
@@ -145,26 +133,10 @@
         "overrides": [
           {
             "matcher": {
-              "id": "byFrameRefID",
-              "options": "A"
+              "id": "byName",
+              "options": "CPU Usage MHz"
             },
             "properties": [
-              {
-                "id": "displayName",
-                "value": "Uptime"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byFrameRefID",
-              "options": "B"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "CPU Usage in MHz"
-              },
               {
                 "id": "unit",
                 "value": "none"
@@ -177,106 +149,85 @@
           },
           {
             "matcher": {
-              "id": "byFrameRefID",
-              "options": "D"
+              "id": "byName",
+              "options": "RAM Usage"
             },
             "properties": [
-              {
-                "id": "displayName",
-                "value": "CPU Usage percentage"
-              },
-              {
-                "id": "unit",
-                "value": "percent"
-              },
-              {
-                "id": "decimals",
-                "value": 2
-              },
-              {
-                "id": "color",
-                "value": {
-                  "mode": "thresholds"
-                }
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "semi-dark-green",
-                      "value": null
-                    },
-                    {
-                      "color": "dark-orange",
-                      "value": 70
-                    },
-                    {
-                      "color": "dark-red",
-                      "value": 85
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byFrameRefID",
-              "options": "E"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "RAM Usage"
-              },
-              {
-                "id": "unit",
-                "value": "percent"
-              },
-              {
-                "id": "decimals",
-                "value": 2
-              },
-              {
-                "id": "color"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "semi-dark-green",
-                      "value": null
-                    },
-                    {
-                      "color": "dark-orange",
-                      "value": 70
-                    },
-                    {
-                      "color": "dark-red",
-                      "value": 85
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byFrameRefID",
-              "options": "C"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "RAM Usage"
-              },
               {
                 "id": "unit",
                 "value": "deckbytes"
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CPU Usage %"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "semi-dark-green",
+                      "value": null
+                    },
+                    {
+                      "color": "dark-orange",
+                      "value": 70
+                    },
+                    {
+                      "color": "dark-red",
+                      "value": 85
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "decimals",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "RAM Usage %"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "dark-orange",
+                      "value": 70
+                    },
+                    {
+                      "color": "dark-red",
+                      "value": 85
+                    }
+                  ]
+                }
               },
               {
                 "id": "decimals",
@@ -293,6 +244,7 @@
         "y": 1
       },
       "id": 28,
+      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -315,57 +267,231 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.3.0",
+      "pluginVersion": "7.5.3",
       "targets": [
         {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
-          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_sys\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"uptime_latest\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> group(columns: [\"esxhostname\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
-          "refId": "A"
+          "alias": "Uptime",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "vsphere_host_sys",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "uptime_latest"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "esxhostname",
+              "operator": "=~",
+              "value": "/^$esxi$/"
+            }
+          ]
         },
         {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
-          "hide": false,
-          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"usagemhz_average\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> group(columns: [\"esxhostname\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
-          "refId": "B"
+          "alias": "CPU Usage MHz",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "vsphere_host_cpu",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "usagemhz_average"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "esxhostname",
+              "operator": "=~",
+              "value": "/^$esxi$/"
+            }
+          ]
         },
         {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
-          "hide": false,
-          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_mem\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"usage_average\" or r[\"_field\"] == \"totalCapacity_average\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> map(fn: (r) => ({ r with  _value: float(v: r.usage_average) * float(v: r.totalCapacity_average) / 100.00 * 1024.00 }))\r\n  |> group(columns: [\"esxhostname\",\"_field\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n",
-          "refId": "C"
+          "alias": "RAM Usage",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "vsphere_host_mem",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"totalCapacity_average\") * (last(\"usage_average\")) / 100 * 1024 FROM \"vsphere_host_mem\" WHERE (\"esxhostname\" =~ /^$esxi$/) AND $timeFilter GROUP BY time($__interval) fill(none)",
+          "rawQuery": true,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "active_average"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "esxhostname",
+              "operator": "=~",
+              "value": "/^$esxi$/"
+            }
+          ]
         },
         {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
-          "hide": false,
-          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"usage_average\")\r\n  |> filter(fn: (r) => r[\"cpu\"] == \"instance-total\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> group(columns: [\"esxhostname\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
-          "refId": "D"
+          "alias": "CPU Usage %",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "vsphere_host_cpu",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "E",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "usage_average"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "esxhostname",
+              "operator": "=~",
+              "value": "/^$esxi$/"
+            }
+          ]
         },
         {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
-          "hide": false,
-          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_mem\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"usage_average\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> group(columns: [\"esxhostname\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
-          "refId": "E"
+          "alias": "RAM Usage %",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "vsphere_host_mem",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "usage_average"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "esxhostname",
+              "operator": "=~",
+              "value": "/^$esxi$/"
+            }
+          ]
         }
       ],
       "title": "ESXi VM Quick Overview",
       "type": "stat"
     },
     {
+      "datasource": "${DS_INFLUXDB}",
       "description": "CPU usage as a percentage during the interval.",
       "fieldConfig": {
         "defaults": {
@@ -382,8 +508,7 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false,
-              "viz": false
+              "tooltip": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -392,14 +517,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "spanNulls": true
           },
           "mappings": [],
           "max": 100,
@@ -435,7 +553,7 @@
           "displayMode": "hidden",
           "placement": "bottom"
         },
-        "tooltip": {
+        "tooltipOptions": {
           "mode": "single"
         }
       },
@@ -443,10 +561,6 @@
       "targets": [
         {
           "alias": "CPU usage % $tag_cpu",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
           "groupBy": [
             {
               "params": [
@@ -470,7 +584,6 @@
           "measurement": "vsphere_host_cpu",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"usage_average\")\r\n  |> filter(fn: (r) => r[\"cpu\"] == \"instance-total\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> group(columns: [\"esxhostname\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -496,10 +609,13 @@
           ]
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "CPU Utilization Avg %",
       "type": "timeseries"
     },
     {
+      "datasource": "${DS_INFLUXDB}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -508,7 +624,6 @@
           "custom": {
             "axisLabel": "RAM Usage in %",
             "axisPlacement": "auto",
-            "axisSoftMin": 0,
             "barAlignment": 0,
             "drawStyle": "line",
             "fillOpacity": 30,
@@ -516,8 +631,7 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false,
-              "viz": false
+              "tooltip": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -526,14 +640,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "line"
-            }
+            "spanNulls": true
           },
           "mappings": [],
           "max": 100,
@@ -545,12 +652,8 @@
                 "value": null
               },
               {
-                "color": "dark-orange",
-                "value": 75
-              },
-              {
-                "color": "dark-red",
-                "value": 90
+                "color": "red",
+                "value": 80
               }
             ]
           },
@@ -559,18 +662,14 @@
         "overrides": [
           {
             "matcher": {
-              "id": "byFrameRefID",
-              "options": "B"
+              "id": "byName",
+              "options": "RAM usage %"
             },
             "properties": [
               {
-                "id": "displayName",
-                "value": "RAM usage %"
-              },
-              {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#85b1ec",
+                  "fixedColor": "rgb(133, 177, 236)",
                   "mode": "fixed"
                 }
               }
@@ -593,7 +692,7 @@
           "displayMode": "list",
           "placement": "bottom"
         },
-        "tooltip": {
+        "tooltipOptions": {
           "mode": "single"
         }
       },
@@ -601,10 +700,6 @@
       "targets": [
         {
           "alias": "RAM usage %",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
           "groupBy": [
             {
               "params": [
@@ -622,7 +717,6 @@
           "measurement": "vsphere_host_mem",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_mem\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"usage_average\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> group(columns: [\"esxhostname\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "B",
           "resultFormat": "time_series",
           "select": [
@@ -648,10 +742,13 @@
           ]
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "RAM Utilization",
       "type": "timeseries"
     },
     {
+      "datasource": "${DS_INFLUXDB}",
       "description": "Time that the virtual machine was ready, but could not get scheduled to run on the physical CPU during last measurement interval.",
       "fieldConfig": {
         "defaults": {
@@ -668,8 +765,7 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false,
-              "viz": false
+              "tooltip": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -678,14 +774,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "spanNulls": true
           },
           "mappings": [],
           "thresholds": {
@@ -701,23 +790,19 @@
               }
             ]
           },
-          "unit": "dtdurationms"
+          "unit": "none"
         },
         "overrides": [
           {
             "matcher": {
-              "id": "byFrameRefID",
-              "options": "A"
+              "id": "byName",
+              "options": "CPU Ready"
             },
             "properties": [
               {
-                "id": "displayName",
-                "value": "CPU Ready"
-              },
-              {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#C4162A",
+                  "fixedColor": "#c4162a",
                   "mode": "fixed"
                 }
               }
@@ -740,7 +825,7 @@
           "displayMode": "hidden",
           "placement": "bottom"
         },
-        "tooltip": {
+        "tooltipOptions": {
           "mode": "multi"
         }
       },
@@ -748,10 +833,6 @@
       "targets": [
         {
           "alias": "CPU Ready",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
           "groupBy": [
             {
               "params": [
@@ -769,7 +850,6 @@
           "measurement": "vsphere_host_cpu",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"ready_summation\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> group(columns: [\"esxhostname\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -795,10 +875,13 @@
           ]
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "CPU Ready in miliseconds",
       "type": "timeseries"
     },
     {
+      "datasource": "${DS_INFLUXDB}",
       "description": "Network utilization (combined transmit-rates and receive-rates) during the interval.",
       "fieldConfig": {
         "defaults": {
@@ -815,8 +898,7 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false,
-              "viz": false
+              "tooltip": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -825,14 +907,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "spanNulls": true
           },
           "mappings": [],
           "thresholds": {
@@ -871,7 +946,7 @@
           "displayMode": "table",
           "placement": "right"
         },
-        "tooltip": {
+        "tooltipOptions": {
           "mode": "multi"
         }
       },
@@ -879,10 +954,6 @@
       "targets": [
         {
           "alias": "$tag_interface bytesRx",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
           "groupBy": [
             {
               "params": [
@@ -906,7 +977,6 @@
           "measurement": "vsphere_host_net",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_net\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"bytesRx_average\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> group(columns: [\"_field\",\"interface\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -933,10 +1003,6 @@
         },
         {
           "alias": "$tag_interface bytesTx",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
           "groupBy": [
             {
               "params": [
@@ -960,7 +1026,6 @@
           "measurement": "vsphere_host_net",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_net\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"bytesTx_average\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> group(columns: [\"_field\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "B",
           "resultFormat": "time_series",
           "select": [
@@ -986,10 +1051,13 @@
           ]
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "Network Usage",
       "type": "timeseries"
     },
     {
+      "datasource": "${DS_INFLUXDB}",
       "description": "The average time a read, or write, from the virtual disk takes.",
       "fieldConfig": {
         "defaults": {
@@ -1006,8 +1074,7 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false,
-              "viz": false
+              "tooltip": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -1016,14 +1083,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "spanNulls": true
           },
           "mappings": [],
           "thresholds": {
@@ -1058,7 +1118,7 @@
           "displayMode": "hidden",
           "placement": "bottom"
         },
-        "tooltip": {
+        "tooltipOptions": {
           "mode": "multi"
         }
       },
@@ -1066,10 +1126,6 @@
       "targets": [
         {
           "alias": "Write - $tag_disk",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
           "groupBy": [
             {
               "params": [
@@ -1093,7 +1149,6 @@
           "measurement": "vsphere_host_disk",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_disk\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"totalReadLatency_average\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> group(columns: [\"_field\",\"disk\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")\r\n  ",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1120,10 +1175,6 @@
         },
         {
           "alias": "Read - $tag_disk",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
           "groupBy": [
             {
               "params": [
@@ -1147,7 +1198,6 @@
           "measurement": "vsphere_host_disk",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_disk\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"totalWriteLatency_average\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> group(columns: [\"_field\",\"disk\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")\r\n  ",
           "refId": "B",
           "resultFormat": "time_series",
           "select": [
@@ -1173,10 +1223,13 @@
           ]
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "Total Disk Latency",
       "type": "timeseries"
     },
     {
+      "datasource": "${DS_INFLUXDB}",
       "description": "The average time a read, or write, from the datastore takes.",
       "fieldConfig": {
         "defaults": {
@@ -1193,8 +1246,7 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false,
-              "viz": false
+              "tooltip": false
             },
             "lineInterpolation": "smooth",
             "lineWidth": 2,
@@ -1203,14 +1255,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
+            "spanNulls": true
           },
           "mappings": [],
           "thresholds": {
@@ -1242,10 +1287,10 @@
         "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
+          "displayMode": "list",
           "placement": "bottom"
         },
-        "tooltip": {
+        "tooltipOptions": {
           "mode": "multi"
         }
       },
@@ -1253,10 +1298,6 @@
       "targets": [
         {
           "alias": "$tag_adapter Read",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
           "groupBy": [
             {
               "params": [
@@ -1280,7 +1321,6 @@
           "measurement": "vsphere_host_storageAdapter",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_storageAdapter\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"numberReadAveraged_average\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> group(columns: [\"_field\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")\r\n  ",
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1307,10 +1347,6 @@
         },
         {
           "alias": "$tag_adapter Write",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
           "groupBy": [
             {
               "params": [
@@ -1334,7 +1370,6 @@
           "measurement": "vsphere_host_storageAdapter",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_storageAdapter\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"numberWriteAveraged_average\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> group(columns: [\"_field\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
           "refId": "B",
           "resultFormat": "time_series",
           "select": [
@@ -1360,11 +1395,14 @@
           ]
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "title": "Storage Adapter IOPS",
       "type": "timeseries"
     },
     {
       "collapsed": true,
+      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1374,23 +1412,19 @@
       "id": 102,
       "panels": [
         {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
+          "cacheTimeout": null,
+          "datasource": "${DS_INFLUXDB}",
           "fieldConfig": {
             "defaults": {
               "custom": {},
               "decimals": 1,
               "mappings": [
                 {
-                  "options": {
-                    "match": "null",
-                    "result": {
-                      "text": "N/A"
-                    }
-                  },
-                  "type": "special"
+                  "id": 0,
+                  "op": "=",
+                  "text": "N/A",
+                  "type": 1,
+                  "value": "null"
                 }
               ],
               "nullValueMode": "connected",
@@ -1398,7 +1432,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "dark-blue"
+                    "color": "dark-blue",
+                    "value": null
                   }
                 ]
               },
@@ -1453,7 +1488,8 @@
                       "mode": "absolute",
                       "steps": [
                         {
-                          "color": "dark-green"
+                          "color": "dark-green",
+                          "value": null
                         },
                         {
                           "color": "dark-yellow",
@@ -1488,7 +1524,8 @@
                       "mode": "absolute",
                       "steps": [
                         {
-                          "color": "dark-green"
+                          "color": "dark-green",
+                          "value": null
                         },
                         {
                           "color": "yellow",
@@ -1523,7 +1560,8 @@
                       "mode": "absolute",
                       "steps": [
                         {
-                          "color": "dark-green"
+                          "color": "dark-green",
+                          "value": null
                         },
                         {
                           "color": "dark-orange",
@@ -1551,6 +1589,7 @@
             "y": 6
           },
           "id": 103,
+          "interval": null,
           "links": [],
           "maxDataPoints": 100,
           "options": {
@@ -1573,6 +1612,13 @@
             "textMode": "value_and_name"
           },
           "pluginVersion": "7.3.5",
+          "scopedVars": {
+            "esxiarm": {
+              "selected": false,
+              "text": "esxi-zlon-rpi-001.jorgedelacruz.es",
+              "value": "esxi-zlon-rpi-001.jorgedelacruz.es"
+            }
+          },
           "targets": [
             {
               "alias": "Uptime",
@@ -1843,10 +1889,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
+          "datasource": "${DS_INFLUXDB}",
           "description": "CPU usage as a percentage during the interval.",
           "fieldConfig": {
             "defaults": {
@@ -1891,6 +1934,13 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
+          "scopedVars": {
+            "esxiarm": {
+              "selected": false,
+              "text": "esxi-zlon-rpi-001.jorgedelacruz.es",
+              "value": "esxi-zlon-rpi-001.jorgedelacruz.es"
+            }
+          },
           "seriesOverrides": [],
           "spaceLength": 10,
           "stack": false,
@@ -1947,7 +1997,9 @@
             }
           ],
           "thresholds": [],
+          "timeFrom": null,
           "timeRegions": [],
+          "timeShift": null,
           "title": "CPU Utilization Avg %",
           "tooltip": {
             "shared": true,
@@ -1956,28 +2008,36 @@
           },
           "type": "graph",
           "xaxis": {
+            "buckets": null,
             "mode": "time",
+            "name": null,
             "show": true,
             "values": []
           },
           "yaxes": [
             {
               "$$hashKey": "object:676",
+              "decimals": null,
               "format": "percent",
               "label": "CPU Utilization %",
               "logBase": 1,
               "max": "100",
+              "min": null,
               "show": true
             },
             {
               "$$hashKey": "object:677",
               "format": "short",
+              "label": null,
               "logBase": 1,
+              "max": null,
+              "min": null,
               "show": false
             }
           ],
           "yaxis": {
-            "align": false
+            "align": false,
+            "alignLevel": null
           }
         },
         {
@@ -1985,10 +2045,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
+          "datasource": "${DS_INFLUXDB}",
           "fieldConfig": {
             "defaults": {
               "custom": {},
@@ -2030,6 +2087,13 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
+          "scopedVars": {
+            "esxiarm": {
+              "selected": false,
+              "text": "esxi-zlon-rpi-001.jorgedelacruz.es",
+              "value": "esxi-zlon-rpi-001.jorgedelacruz.es"
+            }
+          },
           "seriesOverrides": [
             {
               "$$hashKey": "object:815",
@@ -2086,7 +2150,9 @@
             }
           ],
           "thresholds": [],
+          "timeFrom": null,
           "timeRegions": [],
+          "timeShift": null,
           "title": "RAM Utilization",
           "tooltip": {
             "shared": true,
@@ -2095,7 +2161,9 @@
           },
           "type": "graph",
           "xaxis": {
+            "buckets": null,
             "mode": "time",
+            "name": null,
             "show": true,
             "values": []
           },
@@ -2107,6 +2175,7 @@
               "label": "RAM Usage in %",
               "logBase": 1,
               "max": "100",
+              "min": null,
               "show": true
             },
             {
@@ -2115,11 +2184,13 @@
               "label": "",
               "logBase": 1,
               "max": "100",
+              "min": null,
               "show": false
             }
           ],
           "yaxis": {
-            "align": false
+            "align": false,
+            "alignLevel": null
           }
         },
         {
@@ -2127,10 +2198,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
+          "datasource": "${DS_INFLUXDB}",
           "description": "CPU Temperature",
           "fieldConfig": {
             "defaults": {
@@ -2176,6 +2244,13 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
+          "scopedVars": {
+            "esxiarm": {
+              "selected": false,
+              "text": "esxi-zlon-rpi-001.jorgedelacruz.es",
+              "value": "esxi-zlon-rpi-001.jorgedelacruz.es"
+            }
+          },
           "seriesOverrides": [
             {
               "$$hashKey": "object:2948",
@@ -2232,7 +2307,9 @@
             }
           ],
           "thresholds": [],
+          "timeFrom": null,
           "timeRegions": [],
+          "timeShift": null,
           "title": "CPU Temperature",
           "tooltip": {
             "shared": false,
@@ -2241,7 +2318,9 @@
           },
           "type": "graph",
           "xaxis": {
+            "buckets": null,
             "mode": "time",
+            "name": null,
             "show": true,
             "values": []
           },
@@ -2252,17 +2331,23 @@
               "format": "celsius",
               "label": "CPU Temperature in Celsius",
               "logBase": 1,
+              "max": null,
+              "min": null,
               "show": true
             },
             {
               "$$hashKey": "object:677",
               "format": "short",
+              "label": null,
               "logBase": 1,
+              "max": null,
+              "min": null,
               "show": false
             }
           ],
           "yaxis": {
-            "align": false
+            "align": false,
+            "alignLevel": null
           }
         },
         {
@@ -2270,10 +2355,8 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
+          "datasource": "${DS_INFLUXDB}",
+          "decimals": null,
           "description": "Network utilization (combined transmit-rates and receive-rates) during the interval.",
           "fieldConfig": {
             "defaults": {
@@ -2318,6 +2401,13 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
+          "scopedVars": {
+            "esxiarm": {
+              "selected": false,
+              "text": "esxi-zlon-rpi-001.jorgedelacruz.es",
+              "value": "esxi-zlon-rpi-001.jorgedelacruz.es"
+            }
+          },
           "seriesOverrides": [],
           "spaceLength": 10,
           "stack": false,
@@ -2423,7 +2513,9 @@
             }
           ],
           "thresholds": [],
+          "timeFrom": null,
           "timeRegions": [],
+          "timeShift": null,
           "title": "Network Usage",
           "tooltip": {
             "shared": true,
@@ -2432,7 +2524,9 @@
           },
           "type": "graph",
           "xaxis": {
+            "buckets": null,
             "mode": "time",
+            "name": null,
             "show": true,
             "values": []
           },
@@ -2442,17 +2536,23 @@
               "format": "KBs",
               "label": "Network Usage",
               "logBase": 1,
+              "max": null,
+              "min": null,
               "show": true
             },
             {
               "$$hashKey": "object:595",
               "format": "short",
+              "label": null,
               "logBase": 1,
+              "max": null,
+              "min": null,
               "show": true
             }
           ],
           "yaxis": {
-            "align": false
+            "align": false,
+            "alignLevel": null
           }
         },
         {
@@ -2460,10 +2560,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
+          "datasource": "${DS_INFLUXDB}",
           "description": "The average time a read, or write, from the virtual disk takes.",
           "fieldConfig": {
             "defaults": {
@@ -2506,6 +2603,13 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
+          "scopedVars": {
+            "esxiarm": {
+              "selected": false,
+              "text": "esxi-zlon-rpi-001.jorgedelacruz.es",
+              "value": "esxi-zlon-rpi-001.jorgedelacruz.es"
+            }
+          },
           "seriesOverrides": [],
           "spaceLength": 10,
           "stack": false,
@@ -2611,7 +2715,9 @@
             }
           ],
           "thresholds": [],
+          "timeFrom": null,
           "timeRegions": [],
+          "timeShift": null,
           "title": "Total Disk Latency",
           "tooltip": {
             "shared": true,
@@ -2620,7 +2726,9 @@
           },
           "type": "graph",
           "xaxis": {
+            "buckets": null,
             "mode": "time",
+            "name": null,
             "show": true,
             "values": []
           },
@@ -2630,17 +2738,23 @@
               "format": "none",
               "label": "KBps",
               "logBase": 1,
+              "max": null,
+              "min": null,
               "show": true
             },
             {
               "$$hashKey": "object:742",
               "format": "short",
+              "label": null,
               "logBase": 1,
+              "max": null,
+              "min": null,
               "show": true
             }
           ],
           "yaxis": {
-            "align": false
+            "align": false,
+            "alignLevel": null
           }
         },
         {
@@ -2648,10 +2762,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
+          "datasource": "${DS_INFLUXDB}",
           "description": "The average time a read, or write, from the datastore takes.",
           "fieldConfig": {
             "defaults": {
@@ -2694,6 +2805,13 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
+          "scopedVars": {
+            "esxiarm": {
+              "selected": false,
+              "text": "esxi-zlon-rpi-001.jorgedelacruz.es",
+              "value": "esxi-zlon-rpi-001.jorgedelacruz.es"
+            }
+          },
           "seriesOverrides": [],
           "spaceLength": 10,
           "stack": false,
@@ -2799,7 +2917,9 @@
             }
           ],
           "thresholds": [],
+          "timeFrom": null,
           "timeRegions": [],
+          "timeShift": null,
           "title": "Storage Adapter IOPS",
           "tooltip": {
             "shared": true,
@@ -2808,7 +2928,9 @@
           },
           "type": "graph",
           "xaxis": {
+            "buckets": null,
             "mode": "time",
+            "name": null,
             "show": true,
             "values": []
           },
@@ -2818,17 +2940,23 @@
               "format": "short",
               "label": "IOPS",
               "logBase": 1,
+              "max": null,
+              "min": null,
               "show": true
             },
             {
               "$$hashKey": "object:887",
               "format": "short",
+              "label": null,
               "logBase": 1,
+              "max": null,
+              "min": null,
               "show": true
             }
           ],
           "yaxis": {
-            "align": false
+            "align": false,
+            "alignLevel": null
           }
         },
         {
@@ -2836,10 +2964,7 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
+          "datasource": "${DS_INFLUXDB}",
           "description": "Time that the virtual machine was ready, but could not get scheduled to run on the physical CPU during last measurement interval.",
           "fieldConfig": {
             "defaults": {
@@ -2882,6 +3007,13 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
+          "scopedVars": {
+            "esxiarm": {
+              "selected": false,
+              "text": "esxi-zlon-rpi-001.jorgedelacruz.es",
+              "value": "esxi-zlon-rpi-001.jorgedelacruz.es"
+            }
+          },
           "seriesOverrides": [
             {
               "$$hashKey": "object:944",
@@ -2938,7 +3070,9 @@
             }
           ],
           "thresholds": [],
+          "timeFrom": null,
           "timeRegions": [],
+          "timeShift": null,
           "title": "CPU Ready in miliseconds",
           "tooltip": {
             "shared": true,
@@ -2947,7 +3081,9 @@
           },
           "type": "graph",
           "xaxis": {
+            "buckets": null,
             "mode": "time",
+            "name": null,
             "show": true,
             "values": []
           },
@@ -2957,17 +3093,23 @@
               "format": "none",
               "label": "ms",
               "logBase": 1,
+              "max": null,
+              "min": null,
               "show": true
             },
             {
               "$$hashKey": "object:929",
               "format": "short",
+              "label": null,
               "logBase": 1,
+              "max": null,
+              "min": null,
               "show": true
             }
           ],
           "yaxis": {
-            "align": false
+            "align": false,
+            "alignLevel": null
           }
         }
       ],
@@ -2977,6 +3119,7 @@
     },
     {
       "collapsed": false,
+      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2989,6 +3132,11 @@
       "type": "row"
     },
     {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "gridPos": {
         "h": 3,
         "w": 5,
@@ -3000,7 +3148,7 @@
         "content": "<a href=\"https://www.jorgedelacruz.es\"><img src=\"https://www.jorgedelacruz.es/wp-content/uploads/2019/04/jorgedelacruz-banner_2efede4ef704c939e63a3763231f5961.png\"></a>",
         "mode": "html"
       },
-      "pluginVersion": "8.3.0",
+      "pluginVersion": "7.5.3",
       "targets": [
         {
           "groupBy": [
@@ -3038,18 +3186,19 @@
           "tags": []
         }
       ],
+      "timeFrom": null,
+      "timeShift": null,
       "transparent": true,
       "type": "text"
     }
   ],
   "refresh": "5m",
-  "schemaVersion": 33,
+  "schemaVersion": 27,
   "style": "dark",
   "tags": [
     "VMware",
     "vSphere Hosts",
-    "vSphere Telegraf",
-    "influxdb v2.0"
+    "vSphere Telegraf"
   ],
   "templating": {
     "list": [
@@ -3062,6 +3211,8 @@
           "text": "auto",
           "value": "$__auto_interval_inter"
         },
+        "description": null,
+        "error": null,
         "hide": 0,
         "label": "Sampling",
         "name": "inter",
@@ -3133,116 +3284,121 @@
         "type": "interval"
       },
       {
+        "allValue": null,
         "current": {},
-        "datasource": {
-          "type": "influxdb",
-          "uid": "${DS_INFLUXDB}"
-        },
-        "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> keep(columns: [\"vcenter\"])\r\n  |> distinct(column: \"vcenter\")\r\n  |> group()",
+        "datasource": "${DS_INFLUXDB}",
+        "definition": "",
+        "description": null,
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "vCenter Server",
         "multi": true,
         "name": "vcenter",
         "options": [],
-        "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> keep(columns: [\"vcenter\"])\r\n  |> distinct(column: \"vcenter\")\r\n  |> group()",
+        "query": "select DISTINCT(\"vcenter\") from (select \"usage_average\",\"vcenter\" from \"vsphere_host_cpu\" WHERE $timeFilter)",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
+        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
+        "allValue": null,
         "current": {},
-        "datasource": {
-          "type": "influxdb",
-          "uid": "${DS_INFLUXDB}"
-        },
-        "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_cluster_cpu\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"clustername\"])\r\n  |> distinct(column: \"clustername\")\r\n  |> group()\r\n",
+        "datasource": "${DS_INFLUXDB}",
+        "definition": "",
+        "description": null,
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Cluster",
         "multi": true,
         "name": "clustername",
         "options": [],
-        "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_cluster_cpu\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"clustername\"])\r\n  |> distinct(column: \"clustername\")\r\n  |> group()\r\n",
+        "query": "select DISTINCT(\"clustername\") from (select \"usage_average\",\"clustername\" from \"vsphere_host_cpu\" WHERE $timeFilter AND \"vcenter\" =~ /$vcenter/)",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
+        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
+        "allValue": null,
         "current": {},
-        "datasource": {
-          "type": "influxdb",
-          "uid": "${DS_INFLUXDB}"
-        },
-        "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"esxhostname\"])\r\n  |> distinct(column: \"esxhostname\")\r\n  |> group()",
+        "datasource": "${DS_INFLUXDB}",
+        "definition": "",
+        "description": null,
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "ESXi Server",
         "multi": true,
         "name": "esxi",
         "options": [],
-        "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"esxhostname\"])\r\n  |> distinct(column: \"esxhostname\")\r\n  |> group()",
+        "query": "select DISTINCT(\"esxhostname\") from (select \"usage_average\",\"esxhostname\" from \"vsphere_host_cpu\" WHERE $timeFilter AND \"vcenter\" =~ /$vcenter/)",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
+        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
+        "allValue": null,
         "current": {},
-        "datasource": {
-          "type": "influxdb",
-          "uid": "${DS_INFLUXDB}"
-        },
-        "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_datastore_disk\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"dsname\"])\r\n  |> distinct(column: \"dsname\")\r\n  |> group()",
+        "datasource": "${DS_INFLUXDB}",
+        "definition": "",
+        "description": null,
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "Datastore",
         "multi": true,
         "name": "datastore",
         "options": [],
-        "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_datastore_disk\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"dsname\"])\r\n  |> distinct(column: \"dsname\")\r\n  |> group()",
+        "query": "select DISTINCT(\"dsname\") from (select \"used_latest\",\"dsname\" from \"vsphere_datastore_disk\" WHERE $timeFilter AND \"vcenter\" =~ /$vcenter/)",
         "refresh": 2,
         "regex": "/^(?!VeeamBackup_)/",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
+        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
       },
       {
+        "allValue": null,
         "current": {},
-        "datasource": {
-          "type": "influxdb",
-          "uid": "${DS_INFLUXDB}"
-        },
-        "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_esxi_arm\")\r\n  |> keep(columns: [\"hostname\"])\r\n  |> distinct(column: \"hostname\")\r\n  |> group()",
+        "datasource": "${DS_INFLUXDB}",
+        "definition": "",
+        "description": null,
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": "ESXi ARM Server",
         "multi": true,
         "name": "esxiarm",
         "options": [],
-        "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_esxi_arm\")\r\n  |> keep(columns: [\"hostname\"])\r\n  |> distinct(column: \"hostname\")\r\n  |> group()",
+        "query": "SHOW TAG VALUES FROM vsphere_esxi_arm WITH KEY=hostname",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
+        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -3280,6 +3436,5 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Hosts",
   "uid": "MxqCLP0mk",
-  "version": 17,
-  "weekStart": ""
+  "version": 14
 }
