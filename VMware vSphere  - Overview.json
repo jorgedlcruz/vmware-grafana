@@ -72,8 +72,8 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 8159,
   "graphTooltip": 0,
-  "id": 6,
-  "iteration": 1638819970098,
+  "id": 51,
+  "iteration": 1638998531039,
   "links": [
     {
       "asDropdown": true,
@@ -886,8 +886,11 @@
       "options": {
         "graph": {},
         "legend": {
-          "calcs": [],
-          "displayMode": "hidden",
+          "calcs": [
+            "lastNotNull",
+            "first"
+          ],
+          "displayMode": "table",
           "placement": "bottom"
         },
         "tooltip": {
@@ -3454,7 +3457,7 @@
       "type": "text"
     }
   ],
-  "refresh": false,
+  "refresh": "",
   "schemaVersion": 33,
   "style": "dark",
   "tags": [
@@ -3469,7 +3472,7 @@
         "auto_count": 100,
         "auto_min": "20s",
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "auto",
           "value": "$__auto_interval_inter"
         },
@@ -3546,7 +3549,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": [
             "All"
           ],
@@ -3585,14 +3588,14 @@
           "type": "influxdb",
           "uid": "${DS_INFLUXDB}"
         },
-        "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_cluster_cpu\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"clustername\"])\r\n  |> distinct(column: \"clustername\")\r\n  |> group()\r\n",
+        "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_cluster_cpu\")\r\n  |> filter(fn: (r) => r[\"clustername\"] != \"\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"clustername\"])\r\n  |> distinct(column: \"clustername\")\r\n  |> group()\r\n",
         "hide": 0,
         "includeAll": true,
         "label": "Cluster",
         "multi": true,
         "name": "clustername",
         "options": [],
-        "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_cluster_cpu\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"clustername\"])\r\n  |> distinct(column: \"clustername\")\r\n  |> group()\r\n",
+        "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_cluster_cpu\")\r\n  |> filter(fn: (r) => r[\"clustername\"] != \"\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"clustername\"])\r\n  |> distinct(column: \"clustername\")\r\n  |> group()\r\n",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
@@ -3604,7 +3607,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": [
             "All"
           ],
@@ -3616,14 +3619,14 @@
           "type": "influxdb",
           "uid": "${DS_INFLUXDB}"
         },
-        "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"esxhostname\"])\r\n  |> distinct(column: \"esxhostname\")\r\n  |> group()",
+        "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] != \"\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"esxhostname\"])\r\n  |> distinct(column: \"esxhostname\")\r\n  |> group()",
         "hide": 0,
         "includeAll": true,
         "label": "ESXi Server",
         "multi": true,
         "name": "esxi",
         "options": [],
-        "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"esxhostname\"])\r\n  |> distinct(column: \"esxhostname\")\r\n  |> group()",
+        "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] != \"\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"esxhostname\"])\r\n  |> distinct(column: \"esxhostname\")\r\n  |> group()",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
@@ -3635,7 +3638,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": [
             "All"
           ],
@@ -3647,14 +3650,14 @@
           "type": "influxdb",
           "uid": "${DS_INFLUXDB}"
         },
-        "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_datastore_disk\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"dsname\"])\r\n  |> distinct(column: \"dsname\")\r\n  |> group()",
+        "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_datastore_disk\")\r\n  |> filter(fn: (r) => r[\"dsname\"] != \"\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"dsname\"])\r\n  |> distinct(column: \"dsname\")\r\n  |> group()",
         "hide": 0,
         "includeAll": true,
         "label": "Datastore",
         "multi": true,
         "name": "datastore",
         "options": [],
-        "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_datastore_disk\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"dsname\"])\r\n  |> distinct(column: \"dsname\")\r\n  |> group()",
+        "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_datastore_disk\")\r\n  |> filter(fn: (r) => r[\"dsname\"] != \"\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"dsname\"])\r\n  |> distinct(column: \"dsname\")\r\n  |> group()",
         "refresh": 2,
         "regex": "/^(?!VeeamBackup_)/",
         "skipUrlSync": false,
@@ -3667,7 +3670,7 @@
       {
         "allValue": "",
         "current": {
-          "selected": false,
+          "selected": true,
           "text": [
             "All"
           ],
@@ -3679,14 +3682,14 @@
           "type": "influxdb",
           "uid": "${DS_INFLUXDB}"
         },
-        "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_cpu\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"vmname\"])\r\n  |> distinct(column: \"vmname\")\r\n  |> group()",
+        "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_cpu\")\r\n  |> filter(fn: (r) => r[\"vmname\"] != \"\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"vmname\"])\r\n  |> distinct(column: \"vmname\")\r\n  |> group()",
         "hide": 0,
         "includeAll": true,
         "label": "VM",
         "multi": true,
         "name": "virtualmachine",
         "options": [],
-        "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_cpu\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"vmname\"])\r\n  |> distinct(column: \"vmname\")\r\n  |> group()",
+        "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_cpu\")\r\n  |> filter(fn: (r) => r[\"vmname\"] != \"\")\r\n  |> filter(fn: (r) => r[\"vcenter\"] == \"${vcenter}\")\r\n  |> keep(columns: [\"vmname\"])\r\n  |> distinct(column: \"vmname\")\r\n  |> group()",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
@@ -3729,6 +3732,6 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 22,
+  "version": 2,
   "weekStart": ""
 }
