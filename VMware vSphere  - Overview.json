@@ -76,7 +76,7 @@
       }
     ]
   },
-  "description": "VMware vSphere Dashboard (Grafana 8.x / InfluxDB v2.0)",
+  "description": "VMware vSphere Dashboard (Grafana 9.x / InfluxDB v2.0)",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "gnetId": 8159,
@@ -3922,6 +3922,6 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
