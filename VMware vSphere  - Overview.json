@@ -9,19 +9,25 @@
       "pluginName": "InfluxDB"
     }
   ],
-  "__elements": [],
+  "__elements": {},
   "__requires": [
+    {
+      "type": "panel",
+      "id": "bargauge",
+      "name": "Bar gauge",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
     {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "8.3.0"
-    },
-    {
-      "type": "panel",
-      "id": "graph",
-      "name": "Graph (old)",
-      "version": ""
+      "version": "9.1.3"
     },
     {
       "type": "datasource",
@@ -52,7 +58,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -72,8 +81,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 8159,
   "graphTooltip": 0,
-  "id": 51,
-  "iteration": 1638998531039,
+  "id": null,
   "links": [
     {
       "asDropdown": true,
@@ -94,7 +102,7 @@
       "collapsed": false,
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_INFLUXDB}"
+        "uid": "InfluxDB"
       },
       "gridPos": {
         "h": 1,
@@ -104,10 +112,23 @@
       },
       "id": 171,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "InfluxDB"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Datacenter Overview",
       "type": "row"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -207,6 +228,7 @@
         "y": 1
       },
       "id": 142,
+      "interval": "$inter",
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -229,7 +251,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.3.0",
+      "pluginVersion": "9.1.3",
       "targets": [
         {
           "alias": "vCenter Summary",
@@ -447,6 +469,10 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "gK_s8WTMk"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -454,10 +480,23 @@
         "y": 5
       },
       "id": 176,
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Cluster Overview",
       "type": "row"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -586,6 +625,7 @@
         "y": 6
       },
       "id": 28,
+      "interval": "$inter",
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -608,7 +648,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.3.0",
+      "pluginVersion": "9.1.3",
       "repeat": "clustername",
       "targets": [
         {
@@ -806,7 +846,7 @@
       "collapsed": false,
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_INFLUXDB}"
+        "uid": "InfluxDB"
       },
       "gridPos": {
         "h": 1,
@@ -816,16 +856,31 @@
       },
       "id": 61,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "InfluxDB"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Cluster Status",
       "type": "row"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "Usage Average %",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -881,7 +936,7 @@
         "y": 11
       },
       "id": 23,
-      "interval": "5m",
+      "interval": "$inter",
       "links": [],
       "options": {
         "graph": {},
@@ -891,10 +946,12 @@
             "first"
           ],
           "displayMode": "table",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.5.3",
@@ -973,12 +1030,18 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "Usage Average %",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -1035,17 +1098,19 @@
         "y": 11
       },
       "id": 26,
-      "interval": "5m",
+      "interval": "$inter",
       "links": [],
       "options": {
         "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.5.3",
@@ -1117,6 +1182,10 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1159,10 +1228,12 @@
       },
       "hideTimeOverride": false,
       "id": 123,
-      "interval": "1h",
+      "interval": "$inter",
       "links": [],
       "options": {
         "displayMode": "lcd",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -1174,7 +1245,7 @@
         "showUnfilled": true,
         "text": {}
       },
-      "pluginVersion": "8.3.0",
+      "pluginVersion": "9.1.3",
       "targets": [
         {
           "alias": "$tag_source",
@@ -1224,12 +1295,18 @@
       "type": "bargauge"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "Usage Network MBps",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -1283,17 +1360,19 @@
         "y": 16
       },
       "id": 90,
-      "interval": "5m",
+      "interval": "$inter",
       "links": [],
       "options": {
         "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.5.3",
@@ -1415,12 +1494,18 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "ms",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -1475,17 +1560,19 @@
         "y": 16
       },
       "id": 91,
-      "interval": "5m",
+      "interval": "$inter",
       "links": [],
       "options": {
         "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.5.3",
@@ -1607,10 +1694,10 @@
       "type": "timeseries"
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_INFLUXDB}"
+        "uid": "InfluxDB"
       },
       "gridPos": {
         "h": 1,
@@ -1619,143 +1706,172 @@
         "y": 20
       },
       "id": 25,
-      "panels": [
+      "panels": [],
+      "targets": [
         {
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-green"
-                  },
-                  {
-                    "color": "dark-orange",
-                    "value": 65
-                  },
-                  {
-                    "color": "dark-red",
-                    "value": 85
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
+          "datasource": {
+            "type": "influxdb",
+            "uid": "InfluxDB"
           },
-          "gridPos": {
-            "h": 4,
-            "w": 4,
-            "x": 0,
-            "y": 21
-          },
-          "hideTimeOverride": true,
-          "id": 34,
-          "links": [],
-          "maxPerRow": 6,
-          "options": {
-            "orientation": "auto",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true
-          },
-          "pluginVersion": "8.3.0",
-          "repeat": "datastore",
-          "repeatDirection": "h",
-          "targets": [
-            {
-              "datasource": {
-                "type": "influxdb",
-                "uid": "${DS_INFLUXDB}"
-              },
-              "groupBy": [
-                {
-                  "params": [
-                    "$inter"
-                  ],
-                  "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
-                }
-              ],
-              "measurement": "vsphere_datastore_disk",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_datastore_disk\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"capacity_latest\" or r[\"_field\"] == \"used_latest\")\r\n  |> filter(fn: (r) => r[\"source\"] =~ /${datastore:regex}/)\r\n  |> group()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> map(fn: (r) => ({ r with  _value: float(v: r.used_latest) / float(v: r.capacity_latest) * 100.0 }))\r\n  |> group(columns: [\"source\",\"_field\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "used_latest"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  }
-                ]
-              ],
-              "tags": [
-                {
-                  "key": "source",
-                  "operator": "=",
-                  "value": "ZEXT-NETAPP-01"
-                }
-              ]
-            }
-          ],
-          "timeFrom": "3h",
-          "title": "$datastore",
-          "type": "gauge"
+          "refId": "A"
         }
       ],
       "title": "Datastore Status",
       "type": "row"
     },
     {
-      "collapsed": false,
       "datasource": {
         "type": "influxdb",
         "uid": "${DS_INFLUXDB}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": null
+              },
+              {
+                "color": "dark-orange",
+                "value": 65
+              },
+              {
+                "color": "dark-red",
+                "value": 85
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 21
+      },
+      "hideTimeOverride": true,
+      "id": 34,
+      "interval": "$inter",
+      "links": [],
+      "maxPerRow": 6,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "9.1.3",
+      "repeat": "datastore",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$inter"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "vsphere_datastore_disk",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_datastore_disk\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"capacity_latest\" or r[\"_field\"] == \"used_latest\")\r\n  |> filter(fn: (r) => r[\"source\"] =~ /${datastore:regex}/)\r\n  |> group()\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> map(fn: (r) => ({ r with  _value: float(v: r.used_latest) / float(v: r.capacity_latest) * 100.0 }))\r\n  |> group(columns: [\"source\",\"_field\"])\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "used_latest"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "source",
+              "operator": "=",
+              "value": "ZEXT-NETAPP-01"
+            }
+          ]
+        }
+      ],
+      "timeFrom": "3h",
+      "title": "$datastore",
+      "type": "gauge"
+    },
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "influxdb",
+        "uid": "InfluxDB"
       },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 21
+        "y": 33
       },
       "id": 20,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "InfluxDB"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Hypervisor Status",
       "type": "row"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "CPU Usage Avg. %",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -1808,9 +1924,10 @@
         "h": 7,
         "w": 6,
         "x": 0,
-        "y": 22
+        "y": 34
       },
       "id": 15,
+      "interval": "$inter",
       "links": [],
       "options": {
         "graph": {},
@@ -1821,10 +1938,12 @@
             "max"
           ],
           "displayMode": "table",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.5.3",
@@ -1896,12 +2015,18 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "Memory Usage Avg. %",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -1954,9 +2079,10 @@
         "h": 7,
         "w": 6,
         "x": 6,
-        "y": 22
+        "y": 34
       },
       "id": 16,
+      "interval": "$inter",
       "links": [],
       "options": {
         "graph": {},
@@ -1967,10 +2093,12 @@
             "max"
           ],
           "displayMode": "table",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.5.3",
@@ -2035,12 +2163,18 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -2091,9 +2225,10 @@
         "h": 7,
         "w": 6,
         "x": 12,
-        "y": 22
+        "y": 34
       },
       "id": 17,
+      "interval": "$inter",
       "links": [],
       "options": {
         "graph": {},
@@ -2104,10 +2239,12 @@
             "max"
           ],
           "displayMode": "table",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.5.3",
@@ -2172,12 +2309,18 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "CPU Usage",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -2230,19 +2373,22 @@
         "h": 7,
         "w": 6,
         "x": 18,
-        "y": 22
+        "y": 34
       },
       "id": 19,
+      "interval": "$inter",
       "links": [],
       "options": {
         "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.5.3",
@@ -2371,26 +2517,41 @@
       "collapsed": false,
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_INFLUXDB}"
+        "uid": "InfluxDB"
       },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 29
+        "y": 41
       },
       "id": 21,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "InfluxDB"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Virtual Machine Status",
       "type": "row"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "CPU Usage % per VM",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -2447,19 +2608,22 @@
         "h": 7,
         "w": 6,
         "x": 0,
-        "y": 30
+        "y": 42
       },
       "id": 14,
+      "interval": "$inter",
       "links": [],
       "options": {
         "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.5.3",
@@ -2536,12 +2700,18 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "Memory Usage Avg. %",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -2595,19 +2765,22 @@
         "h": 7,
         "w": 6,
         "x": 6,
-        "y": 30
+        "y": 42
       },
       "id": 13,
+      "interval": "$inter",
       "links": [],
       "options": {
         "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.5.3",
@@ -2672,12 +2845,18 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "CPU READY in ms",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -2728,20 +2907,23 @@
         "h": 7,
         "w": 6,
         "x": 12,
-        "y": 30
+        "y": 42
       },
       "hideTimeOverride": false,
       "id": 10,
+      "interval": "$inter",
       "links": [],
       "options": {
         "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.5.3",
@@ -2807,12 +2989,18 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "Net Usage Avg.",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -2864,19 +3052,22 @@
         "h": 7,
         "w": 6,
         "x": 18,
-        "y": 30
+        "y": 42
       },
       "id": 12,
+      "interval": "$inter",
       "links": [],
       "options": {
         "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.5.3",
@@ -2941,12 +3132,18 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "Block Read IOPS",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -2997,19 +3194,22 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 37
+        "y": 49
       },
       "id": 3,
+      "interval": "$inter",
       "links": [],
       "options": {
         "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.5.3",
@@ -3077,12 +3277,18 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "Block Write IOPS",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -3133,19 +3339,22 @@
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 37
+        "y": 49
       },
       "id": 18,
+      "interval": "$inter",
       "links": [],
       "options": {
         "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.5.3",
@@ -3212,12 +3421,18 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "Block Latency Total",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -3268,19 +3483,22 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 37
+        "y": 49
       },
       "id": 9,
+      "interval": "$inter",
       "links": [],
       "options": {
         "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.5.3",
@@ -3404,20 +3622,28 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "gridPos": {
         "h": 3,
         "w": 5,
         "x": 19,
-        "y": 44
+        "y": 56
       },
       "id": 166,
       "options": {
         "content": "<a href=\"https://www.jorgedelacruz.es\"><img src=\"https://www.jorgedelacruz.es/wp-content/uploads/2019/04/jorgedelacruz-banner_2efede4ef704c939e63a3763231f5961.png\"></a>",
         "mode": "html"
       },
-      "pluginVersion": "8.3.0",
+      "pluginVersion": "9.1.3",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
           "groupBy": [
             {
               "params": [
@@ -3458,7 +3684,7 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 33,
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [
     "VMware",
@@ -3548,14 +3774,10 @@
         "type": "interval"
       },
       {
-        "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
+        "current": {},
+        "datasource": {
+          "type": "influxdb",
+          "uid": "${DS_INFLUXDB}"
         },
         "definition": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> keep(columns: [\"vcenter\"])\r\n  |> distinct(column: \"vcenter\")\r\n  |> group()",
         "hide": 0,
@@ -3575,15 +3797,7 @@
         "useTags": false
       },
       {
-        "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
+        "current": {},
         "datasource": {
           "type": "influxdb",
           "uid": "${DS_INFLUXDB}"
@@ -3606,15 +3820,7 @@
         "useTags": false
       },
       {
-        "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
+        "current": {},
         "datasource": {
           "type": "influxdb",
           "uid": "${DS_INFLUXDB}"
@@ -3637,15 +3843,7 @@
         "useTags": false
       },
       {
-        "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
+        "current": {},
         "datasource": {
           "type": "influxdb",
           "uid": "${DS_INFLUXDB}"
@@ -3669,15 +3867,7 @@
       },
       {
         "allValue": "",
-        "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
+        "current": {},
         "datasource": {
           "type": "influxdb",
           "uid": "${DS_INFLUXDB}"
@@ -3702,7 +3892,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -3732,6 +3922,6 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }
