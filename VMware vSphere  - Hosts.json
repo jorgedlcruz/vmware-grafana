@@ -9,13 +9,13 @@
       "pluginName": "InfluxDB"
     }
   ],
-  "__elements": [],
+  "__elements": {},
   "__requires": [
     {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "8.3.0"
+      "version": "9.1.3"
     },
     {
       "type": "panel",
@@ -52,7 +52,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -67,13 +70,12 @@
       }
     ]
   },
-  "description": "VMware vSphere Dashboard - Hosts (Grafana 8.x / InfluxDB v2.0)",
+  "description": "VMware vSphere Dashboard - Hosts (Grafana 9.x / InfluxDB v2.0)",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "gnetId": 8165,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1638782513375,
   "links": [
     {
       "asDropdown": true,
@@ -94,7 +96,7 @@
       "collapsed": false,
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_INFLUXDB}"
+        "uid": "gK_s8WTMk"
       },
       "gridPos": {
         "h": 1,
@@ -105,10 +107,23 @@
       "id": 76,
       "panels": [],
       "repeat": "esxi",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "$esxi",
       "type": "row"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "fieldConfig": {
         "defaults": {
           "decimals": 1,
@@ -293,6 +308,7 @@
         "y": 1
       },
       "id": 28,
+      "interval": "$inter",
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -315,7 +331,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.3.0",
+      "pluginVersion": "9.1.3",
       "targets": [
         {
           "datasource": {
@@ -366,6 +382,10 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "description": "CPU usage as a percentage during the interval.",
       "fieldConfig": {
         "defaults": {
@@ -373,6 +393,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "CPU Utilization %",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -427,16 +449,19 @@
         "y": 1
       },
       "id": 93,
+      "interval": "$inter",
       "links": [],
       "options": {
         "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.5.3",
@@ -500,12 +525,18 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "RAM Usage in %",
             "axisPlacement": "auto",
             "axisSoftMin": 0,
@@ -585,16 +616,19 @@
         "y": 1
       },
       "id": 97,
+      "interval": "$inter",
       "links": [],
       "options": {
         "graph": {},
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.5.3",
@@ -652,6 +686,10 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "description": "Time that the virtual machine was ready, but could not get scheduled to run on the physical CPU during last measurement interval.",
       "fieldConfig": {
         "defaults": {
@@ -659,6 +697,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "ms",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -732,16 +772,19 @@
         "y": 1
       },
       "id": 106,
+      "interval": "$inter",
       "links": [],
       "options": {
         "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.5.3",
@@ -799,6 +842,10 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "description": "Network utilization (combined transmit-rates and receive-rates) during the interval.",
       "fieldConfig": {
         "defaults": {
@@ -806,6 +853,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "Network Usage",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -859,6 +908,7 @@
         "y": 8
       },
       "id": 107,
+      "interval": "$inter",
       "links": [],
       "options": {
         "graph": {},
@@ -869,10 +919,12 @@
             "max"
           ],
           "displayMode": "table",
-          "placement": "right"
+          "placement": "right",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.5.3",
@@ -990,6 +1042,10 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "description": "The average time a read, or write, from the virtual disk takes.",
       "fieldConfig": {
         "defaults": {
@@ -997,6 +1053,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "KBps",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -1050,16 +1108,19 @@
         "y": 8
       },
       "id": 108,
+      "interval": "$inter",
       "links": [],
       "options": {
         "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.5.3",
@@ -1177,6 +1238,10 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "description": "The average time a read, or write, from the datastore takes.",
       "fieldConfig": {
         "defaults": {
@@ -1184,6 +1249,8 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "IOPS",
             "axisPlacement": "auto",
             "barAlignment": 0,
@@ -1237,16 +1304,19 @@
         "y": 8
       },
       "id": 109,
+      "interval": "$inter",
       "links": [],
       "options": {
         "graph": {},
         "legend": {
           "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.5.3",
@@ -1365,11 +1435,15 @@
     },
     {
       "collapsed": true,
+      "datasource": {
+        "type": "influxdb",
+        "uid": "gK_s8WTMk"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 70
+        "y": 56
       },
       "id": 102,
       "panels": [
@@ -1576,6 +1650,10 @@
           "targets": [
             {
               "alias": "Uptime",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_INFLUXDB}"
+              },
               "groupBy": [
                 {
                   "params": [
@@ -1619,6 +1697,10 @@
             },
             {
               "alias": "CPU Usage MHz",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_INFLUXDB}"
+              },
               "groupBy": [
                 {
                   "params": [
@@ -1662,6 +1744,10 @@
             },
             {
               "alias": "RAM Usage",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_INFLUXDB}"
+              },
               "groupBy": [
                 {
                   "params": [
@@ -1707,6 +1793,10 @@
             },
             {
               "alias": "CPU Usage %",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_INFLUXDB}"
+              },
               "groupBy": [
                 {
                   "params": [
@@ -1750,6 +1840,10 @@
             },
             {
               "alias": "RAM Usage %",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_INFLUXDB}"
+              },
               "groupBy": [
                 {
                   "params": [
@@ -1793,6 +1887,10 @@
             },
             {
               "alias": "CPU Temperature",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_INFLUXDB}"
+              },
               "groupBy": [
                 {
                   "params": [
@@ -1898,6 +1996,10 @@
           "targets": [
             {
               "alias": "CPU usage % $tag_cpu",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_INFLUXDB}"
+              },
               "groupBy": [
                 {
                   "params": [
@@ -2043,6 +2145,10 @@
           "targets": [
             {
               "alias": "RAM usage %",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_INFLUXDB}"
+              },
               "groupBy": [
                 {
                   "params": [
@@ -2189,6 +2295,10 @@
           "targets": [
             {
               "alias": "CPU Temperature",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_INFLUXDB}"
+              },
               "groupBy": [
                 {
                   "params": [
@@ -2325,6 +2435,10 @@
           "targets": [
             {
               "alias": "$tag_interface bytesRx",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_INFLUXDB}"
+              },
               "groupBy": [
                 {
                   "params": [
@@ -2374,6 +2488,10 @@
             },
             {
               "alias": "$tag_interface bytesTx",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_INFLUXDB}"
+              },
               "groupBy": [
                 {
                   "params": [
@@ -2513,6 +2631,10 @@
           "targets": [
             {
               "alias": "Write - $tag_disk",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_INFLUXDB}"
+              },
               "groupBy": [
                 {
                   "params": [
@@ -2562,6 +2684,10 @@
             },
             {
               "alias": "Read - $tag_disk",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_INFLUXDB}"
+              },
               "groupBy": [
                 {
                   "params": [
@@ -2701,6 +2827,10 @@
           "targets": [
             {
               "alias": "$tag_adapter Read",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_INFLUXDB}"
+              },
               "groupBy": [
                 {
                   "params": [
@@ -2750,6 +2880,10 @@
             },
             {
               "alias": "$tag_adapter Write",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_INFLUXDB}"
+              },
               "groupBy": [
                 {
                   "params": [
@@ -2895,6 +3029,10 @@
           "targets": [
             {
               "alias": "CPU Ready",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "${DS_INFLUXDB}"
+              },
               "groupBy": [
                 {
                   "params": [
@@ -2972,37 +3110,67 @@
         }
       ],
       "repeat": "esxiarm",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "ARM - $esxiarm",
       "type": "row"
     },
     {
       "collapsed": false,
+      "datasource": {
+        "type": "influxdb",
+        "uid": "gK_s8WTMk"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 71
+        "y": 57
       },
       "id": 178,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "gK_s8WTMk"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Contact me:",
       "type": "row"
     },
     {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
       "gridPos": {
         "h": 3,
         "w": 5,
         "x": 19,
-        "y": 72
+        "y": 58
       },
       "id": 144,
       "options": {
         "content": "<a href=\"https://www.jorgedelacruz.es\"><img src=\"https://www.jorgedelacruz.es/wp-content/uploads/2019/04/jorgedelacruz-banner_2efede4ef704c939e63a3763231f5961.png\"></a>",
         "mode": "html"
       },
-      "pluginVersion": "8.3.0",
+      "pluginVersion": "9.1.3",
       "targets": [
         {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
           "groupBy": [
             {
               "params": [
@@ -3043,7 +3211,7 @@
     }
   ],
   "refresh": "5m",
-  "schemaVersion": 33,
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [
     "VMware",
@@ -3280,6 +3448,6 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Hosts",
   "uid": "MxqCLP0mk",
-  "version": 17,
+  "version": 18,
   "weekStart": ""
 }
