@@ -7,10 +7,22 @@
       "type": "datasource",
       "pluginId": "influxdb",
       "pluginName": "InfluxDB"
+    },
+    {
+      "name": "DS_EXPRESSION",
+      "label": "Expression",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "__expr__"
     }
   ],
   "__elements": {},
   "__requires": [
+    {
+      "type": "datasource",
+      "id": "__expr__",
+      "version": "1.0.0"
+    },
     {
       "type": "panel",
       "id": "bargauge",
@@ -27,7 +39,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "9.1.3"
+      "version": "9.5.2"
     },
     {
       "type": "datasource",
@@ -251,7 +263,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.3",
+      "pluginVersion": "9.5.2",
       "targets": [
         {
           "alias": "vCenter Summary",
@@ -620,7 +632,7 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 8,
+        "w": 12,
         "x": 0,
         "y": 6
       },
@@ -648,7 +660,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.3",
+      "pluginVersion": "9.5.2",
       "repeat": "clustername",
       "targets": [
         {
@@ -844,6 +856,260 @@
     },
     {
       "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 10
+      },
+      "id": 193,
+      "panels": [],
+      "title": "Overprovisioned",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Total CPU"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#54aad8",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Provisioned vCPU"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#4588a9",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "C"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "xTimes Overprovisioned"
+              },
+              {
+                "id": "color"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "dark-green",
+                      "value": null
+                    },
+                    {
+                      "color": "dark-green",
+                      "value": 2.5
+                    },
+                    {
+                      "color": "dark-yellow",
+                      "value": 3
+                    },
+                    {
+                      "color": "dark-orange",
+                      "value": 4
+                    },
+                    {
+                      "color": "dark-red",
+                      "value": 6
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 8,
+        "x": 0,
+        "y": 11
+      },
+      "id": 210,
+      "interval": "$inter",
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.2",
+      "repeat": "esxi",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$inter"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "vsphere_host_sys",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> filter(fn: (r) => r[\"cpu\"] != \"instance-total\")\r\n  |> keep(columns: [\"cpu\"])\r\n  |> distinct(column: \"cpu\")\r\n  |> group()\r\n  |> count()",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "uptime_latest"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Uptime"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "vcenter",
+              "operator": "=~",
+              "value": "/^$vcenter$/"
+            },
+            {
+              "condition": "AND",
+              "key": "clustername",
+              "operator": "=~",
+              "value": "/^$clustername$/"
+            }
+          ]
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "hide": false,
+          "query": "from(bucket: \"telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_cpu\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> keep(columns: [\"cpu\",\"vmname\"])\r\n  |> filter(fn: (r) => r[\"cpu\"] != \"instance-total\")\r\n  |> group(columns: [\"vmname\"])\r\n  |> distinct(column: \"cpu\")\r\n  |> group()\r\n  |> count()",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "__expr__",
+            "uid": "${DS_EXPRESSION}"
+          },
+          "expression": "$B/$A",
+          "hide": false,
+          "refId": "C",
+          "type": "math"
+        }
+      ],
+      "title": "$esxi Overprovisioned",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
       "datasource": {
         "type": "influxdb",
         "uid": "InfluxDB"
@@ -852,7 +1118,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 10
+        "y": 15
       },
       "id": 61,
       "panels": [],
@@ -933,7 +1199,7 @@
         "h": 5,
         "w": 6,
         "x": 0,
-        "y": 11
+        "y": 16
       },
       "id": 23,
       "interval": "$inter",
@@ -1095,7 +1361,7 @@
         "h": 5,
         "w": 7,
         "x": 6,
-        "y": 11
+        "y": 16
       },
       "id": 26,
       "interval": "$inter",
@@ -1224,7 +1490,7 @@
         "h": 9,
         "w": 11,
         "x": 13,
-        "y": 11
+        "y": 16
       },
       "hideTimeOverride": false,
       "id": 123,
@@ -1243,9 +1509,10 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "9.1.3",
+      "pluginVersion": "9.5.2",
       "targets": [
         {
           "alias": "$tag_source",
@@ -1357,7 +1624,7 @@
         "h": 4,
         "w": 6,
         "x": 0,
-        "y": 16
+        "y": 21
       },
       "id": 90,
       "interval": "$inter",
@@ -1557,7 +1824,7 @@
         "h": 4,
         "w": 7,
         "x": 6,
-        "y": 16
+        "y": 21
       },
       "id": 91,
       "interval": "$inter",
@@ -1703,7 +1970,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 20
+        "y": 25
       },
       "id": 25,
       "panels": [],
@@ -1757,7 +2024,7 @@
         "h": 4,
         "w": 4,
         "x": 0,
-        "y": 21
+        "y": 26
       },
       "hideTimeOverride": true,
       "id": 34,
@@ -1776,7 +2043,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.1.3",
+      "pluginVersion": "9.5.2",
       "repeat": "datastore",
       "repeatDirection": "h",
       "targets": [
@@ -1843,7 +2110,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 33
+        "y": 38
       },
       "id": 20,
       "panels": [],
@@ -1924,7 +2191,7 @@
         "h": 7,
         "w": 6,
         "x": 0,
-        "y": 34
+        "y": 39
       },
       "id": 15,
       "interval": "$inter",
@@ -2079,7 +2346,7 @@
         "h": 7,
         "w": 6,
         "x": 6,
-        "y": 34
+        "y": 39
       },
       "id": 16,
       "interval": "$inter",
@@ -2225,7 +2492,7 @@
         "h": 7,
         "w": 6,
         "x": 12,
-        "y": 34
+        "y": 39
       },
       "id": 17,
       "interval": "$inter",
@@ -2373,7 +2640,7 @@
         "h": 7,
         "w": 6,
         "x": 18,
-        "y": 34
+        "y": 39
       },
       "id": 19,
       "interval": "$inter",
@@ -2523,7 +2790,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 41
+        "y": 46
       },
       "id": 21,
       "panels": [],
@@ -2608,7 +2875,7 @@
         "h": 7,
         "w": 6,
         "x": 0,
-        "y": 42
+        "y": 47
       },
       "id": 14,
       "interval": "$inter",
@@ -2765,7 +3032,7 @@
         "h": 7,
         "w": 6,
         "x": 6,
-        "y": 42
+        "y": 47
       },
       "id": 13,
       "interval": "$inter",
@@ -2907,7 +3174,7 @@
         "h": 7,
         "w": 6,
         "x": 12,
-        "y": 42
+        "y": 47
       },
       "hideTimeOverride": false,
       "id": 10,
@@ -3052,7 +3319,7 @@
         "h": 7,
         "w": 6,
         "x": 18,
-        "y": 42
+        "y": 47
       },
       "id": 12,
       "interval": "$inter",
@@ -3194,7 +3461,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 49
+        "y": 54
       },
       "id": 3,
       "interval": "$inter",
@@ -3339,7 +3606,7 @@
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 49
+        "y": 54
       },
       "id": 18,
       "interval": "$inter",
@@ -3483,7 +3750,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 49
+        "y": 54
       },
       "id": 9,
       "interval": "$inter",
@@ -3630,14 +3897,19 @@
         "h": 3,
         "w": 5,
         "x": 19,
-        "y": 56
+        "y": 61
       },
       "id": 166,
       "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
         "content": "<a href=\"https://www.jorgedelacruz.es\"><img src=\"https://www.jorgedelacruz.es/wp-content/uploads/2019/04/jorgedelacruz-banner_2efede4ef704c939e63a3763231f5961.png\"></a>",
         "mode": "html"
       },
-      "pluginVersion": "9.1.3",
+      "pluginVersion": "9.5.2",
       "targets": [
         {
           "datasource": {
@@ -3683,8 +3955,8 @@
       "type": "text"
     }
   ],
-  "refresh": "",
-  "schemaVersion": 37,
+  "refresh": false,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
     "VMware",
@@ -3892,7 +4164,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {
@@ -3922,6 +4194,6 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 4,
+  "version": 5,
   "weekStart": ""
 }
