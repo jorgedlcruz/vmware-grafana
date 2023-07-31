@@ -1046,7 +1046,7 @@
           "measurement": "vsphere_host_sys",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> filter(fn: (r) => r[\"cpu\"] != \"instance-total\")\r\n  |> keep(columns: [\"cpu\"])\r\n  |> distinct(column: \"cpu\")\r\n  |> group()\r\n  |> count()",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_cpu\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> filter(fn: (r) => r[\"cpu\"] != \"instance-total\")\r\n  |> keep(columns: [\"cpu\"])\r\n  |> distinct(column: \"cpu\")\r\n  |> group()\r\n  |> count()",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "table",
@@ -1090,7 +1090,7 @@
             "uid": "${DS_INFLUXDB}"
           },
           "hide": false,
-          "query": "from(bucket: \"telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_cpu\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> keep(columns: [\"cpu\",\"vmname\"])\r\n  |> filter(fn: (r) => r[\"cpu\"] != \"instance-total\")\r\n  |> group(columns: [\"vmname\"])\r\n  |> distinct(column: \"cpu\")\r\n  |> group()\r\n  |> count()",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_cpu\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> keep(columns: [\"cpu\",\"vmname\"])\r\n  |> filter(fn: (r) => r[\"cpu\"] != \"instance-total\")\r\n  |> group(columns: [\"vmname\"])\r\n  |> distinct(column: \"cpu\")\r\n  |> group()\r\n  |> count()",
           "refId": "B"
         },
         {
@@ -4194,6 +4194,6 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 5,
+  "version": 6,
   "weekStart": ""
 }
