@@ -891,8 +891,24 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "dark-blue",
+                "color": "dark-green",
                 "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 2.5
+              },
+              {
+                "color": "dark-yellow",
+                "value": 3
+              },
+              {
+                "color": "dark-orange",
+                "value": 4
+              },
+              {
+                "color": "dark-red",
+                "value": 6
               }
             ]
           },
@@ -939,7 +955,7 @@
               {
                 "id": "color",
                 "value": {
-                  "fixedColor": "#4588a9",
+                  "fixedColor": "#54aad8",
                   "mode": "fixed"
                 }
               }
@@ -957,34 +973,64 @@
               },
               {
                 "id": "color"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "D"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Total RAM"
               },
               {
-                "id": "thresholds",
+                "id": "unit",
+                "value": "decmbytes"
+              },
+              {
+                "id": "color",
                 "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "dark-green",
-                      "value": null
-                    },
-                    {
-                      "color": "dark-green",
-                      "value": 2.5
-                    },
-                    {
-                      "color": "dark-yellow",
-                      "value": 3
-                    },
-                    {
-                      "color": "dark-orange",
-                      "value": 4
-                    },
-                    {
-                      "color": "dark-red",
-                      "value": 6
-                    }
-                  ]
+                  "fixedColor": "#4588a9",
+                  "mode": "fixed"
                 }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "E"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Provisioned vRAM"
+              },
+              {
+                "id": "unit",
+                "value": "deckbytes"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#4588a9",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "F"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "xTimes OP RAM"
               }
             ]
           }
@@ -1102,9 +1148,287 @@
           "hide": false,
           "refId": "C",
           "type": "math"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "hide": true,
+          "query": "from(bucket: \"telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_mem\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"totalCapacity_average\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] == \"esxi-zlon-002.jorgedelacruz.es\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "hide": true,
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_mem\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"entitlement_average\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> group(columns: [\"vmname\"])\r\n  |> last()\r\n  |> group()\r\n  |> sum()",
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "__expr__",
+            "uid": "${DS_EXPRESSION}"
+          },
+          "expression": "$E/($D*1024)",
+          "hide": true,
+          "refId": "F",
+          "type": "math"
         }
       ],
-      "title": "$esxi Overprovisioned",
+      "title": "$esxi Overprovisioned - CPU",
+      "transformations": [],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 1,
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Total RAM"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#4588a9",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "decmbytes"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Provisioned vRAM"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#4588a9",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "deckbytes"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "C"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "xTimes Overprovisioned"
+              },
+              {
+                "id": "color"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "dark-green",
+                      "value": null
+                    },
+                    {
+                      "color": "dark-green",
+                      "value": 2.5
+                    },
+                    {
+                      "color": "dark-yellow",
+                      "value": 3
+                    },
+                    {
+                      "color": "dark-orange",
+                      "value": 4
+                    },
+                    {
+                      "color": "dark-red",
+                      "value": 6
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 8,
+        "x": 0,
+        "y": 15
+      },
+      "id": 229,
+      "interval": "$inter",
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "background",
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.2",
+      "repeat": "esxi",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$inter"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "vsphere_host_sys",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "from(bucket: \"telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_mem\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"totalCapacity_average\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] == \"esxi-zlon-002.jorgedelacruz.es\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "uptime_latest"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "Uptime"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "vcenter",
+              "operator": "=~",
+              "value": "/^$vcenter$/"
+            },
+            {
+              "condition": "AND",
+              "key": "clustername",
+              "operator": "=~",
+              "value": "/^$clustername$/"
+            }
+          ]
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
+          "hide": false,
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_vm_mem\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"entitlement_average\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] =~ /${esxi:regex}/)\r\n  |> group(columns: [\"vmname\"])\r\n  |> last()\r\n  |> group()\r\n  |> sum()",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "__expr__",
+            "uid": "${DS_EXPRESSION}"
+          },
+          "expression": "$B/($A*1024)",
+          "hide": false,
+          "refId": "C",
+          "type": "math"
+        }
+      ],
+      "title": "$esxi Overprovisioned - RAM",
       "transformations": [],
       "type": "stat"
     },
@@ -1118,7 +1442,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 15
+        "y": 19
       },
       "id": 61,
       "panels": [],
@@ -1199,7 +1523,7 @@
         "h": 5,
         "w": 6,
         "x": 0,
-        "y": 16
+        "y": 20
       },
       "id": 23,
       "interval": "$inter",
@@ -1361,7 +1685,7 @@
         "h": 5,
         "w": 7,
         "x": 6,
-        "y": 16
+        "y": 20
       },
       "id": 26,
       "interval": "$inter",
@@ -1490,7 +1814,7 @@
         "h": 9,
         "w": 11,
         "x": 13,
-        "y": 16
+        "y": 20
       },
       "hideTimeOverride": false,
       "id": 123,
@@ -1624,7 +1948,7 @@
         "h": 4,
         "w": 6,
         "x": 0,
-        "y": 21
+        "y": 25
       },
       "id": 90,
       "interval": "$inter",
@@ -1824,7 +2148,7 @@
         "h": 4,
         "w": 7,
         "x": 6,
-        "y": 21
+        "y": 25
       },
       "id": 91,
       "interval": "$inter",
@@ -1970,7 +2294,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 25
+        "y": 29
       },
       "id": 25,
       "panels": [],
@@ -2024,7 +2348,7 @@
         "h": 4,
         "w": 4,
         "x": 0,
-        "y": 26
+        "y": 30
       },
       "hideTimeOverride": true,
       "id": 34,
@@ -2110,7 +2434,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 38
+        "y": 42
       },
       "id": 20,
       "panels": [],
@@ -2191,7 +2515,7 @@
         "h": 7,
         "w": 6,
         "x": 0,
-        "y": 39
+        "y": 43
       },
       "id": 15,
       "interval": "$inter",
@@ -2346,7 +2670,7 @@
         "h": 7,
         "w": 6,
         "x": 6,
-        "y": 39
+        "y": 43
       },
       "id": 16,
       "interval": "$inter",
@@ -2492,7 +2816,7 @@
         "h": 7,
         "w": 6,
         "x": 12,
-        "y": 39
+        "y": 43
       },
       "id": 17,
       "interval": "$inter",
@@ -2640,7 +2964,7 @@
         "h": 7,
         "w": 6,
         "x": 18,
-        "y": 39
+        "y": 43
       },
       "id": 19,
       "interval": "$inter",
@@ -2790,7 +3114,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 46
+        "y": 50
       },
       "id": 21,
       "panels": [],
@@ -2875,7 +3199,7 @@
         "h": 7,
         "w": 6,
         "x": 0,
-        "y": 47
+        "y": 51
       },
       "id": 14,
       "interval": "$inter",
@@ -3032,7 +3356,7 @@
         "h": 7,
         "w": 6,
         "x": 6,
-        "y": 47
+        "y": 51
       },
       "id": 13,
       "interval": "$inter",
@@ -3174,7 +3498,7 @@
         "h": 7,
         "w": 6,
         "x": 12,
-        "y": 47
+        "y": 51
       },
       "hideTimeOverride": false,
       "id": 10,
@@ -3319,7 +3643,7 @@
         "h": 7,
         "w": 6,
         "x": 18,
-        "y": 47
+        "y": 51
       },
       "id": 12,
       "interval": "$inter",
@@ -3461,7 +3785,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 54
+        "y": 58
       },
       "id": 3,
       "interval": "$inter",
@@ -3606,7 +3930,7 @@
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 54
+        "y": 58
       },
       "id": 18,
       "interval": "$inter",
@@ -3750,7 +4074,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 54
+        "y": 58
       },
       "id": 9,
       "interval": "$inter",
@@ -3897,7 +4221,7 @@
         "h": 3,
         "w": 5,
         "x": 19,
-        "y": 61
+        "y": 65
       },
       "id": 166,
       "options": {
@@ -4194,6 +4518,6 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 6,
+  "version": 7,
   "weekStart": ""
 }
