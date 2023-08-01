@@ -1155,7 +1155,7 @@
             "uid": "${DS_INFLUXDB}"
           },
           "hide": true,
-          "query": "from(bucket: \"telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_mem\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"totalCapacity_average\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] == \"esxi-zlon-002.jorgedelacruz.es\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_mem\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"totalCapacity_average\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] == \"esxi-zlon-002.jorgedelacruz.es\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
           "refId": "D"
         },
         {
@@ -1370,7 +1370,7 @@
           "measurement": "vsphere_host_sys",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "from(bucket: \"telegraf\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_mem\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"totalCapacity_average\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] == \"esxi-zlon-002.jorgedelacruz.es\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+          "query": "from(bucket: v.defaultBucket)\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"vsphere_host_mem\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"totalCapacity_average\")\r\n  |> filter(fn: (r) => r[\"esxhostname\"] == \"esxi-zlon-002.jorgedelacruz.es\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "table",
@@ -4518,6 +4518,6 @@
   "timezone": "browser",
   "title": "VMware vSphere  - Overview",
   "uid": "kwtyVaAmz",
-  "version": 7,
+  "version": 8,
   "weekStart": ""
 }
