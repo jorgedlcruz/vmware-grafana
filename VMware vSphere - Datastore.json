@@ -482,7 +482,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Used Capacity"
+                "value": "${__field.displayName} Used Capacity"
               },
               {
                 "id": "color",
@@ -501,7 +501,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Free Capacity"
+                "value": "${__field.displayName} Free Capacity"
               },
               {
                 "id": "color",
